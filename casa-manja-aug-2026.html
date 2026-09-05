@@ -523,19 +523,19 @@ tr.highlight td { background: var(--brand-light); font-weight: 600; }
       <div class="card-title">Booking Pace · September</div>
       <div style="display: flex; justify-content: space-between; align-items: baseline; margin: 8px 0 16px;">
         <div>
-          <span style="font-family:'Impact','Arial Black',sans-serif;font-size:48px;color:var(--brand-dark);line-height:1;">18</span>
-          <span style="font-size:18px;color:var(--text-mid);margin-left:8px;">of 30 nights booked · Rp 20.11M revenue locked</span>
+          <span style="font-family:'Impact','Arial Black',sans-serif;font-size:48px;color:var(--brand-dark);line-height:1;">19</span>
+          <span style="font-size:18px;color:var(--text-mid);margin-left:8px;">of 30 nights booked · Rp 22.54M revenue locked</span>
         </div>
         <div style="text-align:right;">
-          <div style="font-family:'Impact','Arial Black',sans-serif;font-size:32px;color:var(--brand-mid);line-height:1;">12</div>
+          <div style="font-family:'Impact','Arial Black',sans-serif;font-size:32px;color:var(--brand-mid);line-height:1;">11</div>
           <div style="font-size:12px;color:var(--text-mid);">still available</div>
         </div>
       </div>
       <div style="height:24px;background:var(--brand-light);border-radius:100px;overflow:hidden;">
-        <div style="height:100%;width:60%;background:linear-gradient(90deg,var(--brand-dark),var(--brand-mid));border-radius:100px;"></div>
+        <div style="height:100%;width:63%;background:linear-gradient(90deg,var(--brand-dark),var(--brand-mid));border-radius:100px;"></div>
       </div>
       <div style="display:flex;justify-content:space-between;margin-top:8px;font-size:11px;color:var(--text-mid);">
-        <span>60% booked</span>
+        <span>63% booked</span>
         <span>2 cancellations noted</span>
       </div>
     </div>
@@ -544,7 +544,7 @@ tr.highlight td { background: var(--brand-light); font-weight: 600; }
       <div class="card" style="border-top: 4px solid var(--warn);">
         <div style="font-size:11px;font-weight:700;letter-spacing:0.15em;color:var(--warn);text-transform:uppercase;margin-bottom:8px;">Conservative</div>
         <div style="font-size:12px;color:var(--text-mid);margin-bottom:16px;">Already locked</div>
-        <div style="font-family:'Impact','Arial Black',sans-serif;font-size:40px;color:var(--brand-dark);line-height:1;">Rp 20.1M</div>
+        <div style="font-family:'Impact','Arial Black',sans-serif;font-size:40px;color:var(--brand-dark);line-height:1;">Rp 22.5M</div>
         <div style="font-size:12px;color:var(--text-mid);margin-top:8px;">19/30 · 63% occ</div>
         <div style="border-top:1px solid var(--border);padding-top:12px;margin-top:14px;font-size:12px;color:var(--text-mid);">No further conversion</div>
       </div>
@@ -717,8 +717,8 @@ new Chart(document.getElementById('revenueSourceChart'), {
 new Chart(document.getElementById('expenseChart'), {
   type: 'doughnut',
   data: {
-    labels: ['Electricity', 'Laundry', 'Housekeeping', 'Miscellaneous / Other', 'Pool & Gardener', 'Garbage Collection', 'Cleaning Supplies', 'Guest Supplies', 'Beverages & Consumables', 'Other'],
-    datasets: [{ data: [1700, 1406, 1131, 712, 450, 300, 131, 84, 20, 3], backgroundColor: ['#6B2C1F', '#7A3323', '#8A3A28', '#A94F36', '#C97B5F', '#D89478', '#E5AA92', '#EDBFAB', '#F4D9CC', '#F9E9DE'], borderWidth: 0 }]
+    labels: ['Electricity', 'Laundry (proxy from Jul)', 'Housekeeping', 'Miscellaneous', 'Pool & Gardener', 'Senja combined', 'Garbage Collection', 'Cleaning Supplies', 'Guest Supplies', 'Beverages & Consumables', 'Bank Charge'],
+    datasets: [{ data: [1700, 1341, 1131, 712, 450, 429, 300, 131, 84, 20, 3], backgroundColor: ['#6B2C1F', '#7A3323', '#8A3A28', '#9C4530', '#A94F36', '#B76449', '#C97B5F', '#D89478', '#E5AA92', '#EDBFAB', '#F4D9CC'], borderWidth: 0 }]
   },
   options: {
     responsive: true, maintainAspectRatio: false, cutout: '55%',
