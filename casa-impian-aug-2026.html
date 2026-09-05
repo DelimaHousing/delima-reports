@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Casa Impian — Monthly Report · August 2026</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0/dist/chart.umd.js" integrity="sha384-iU8HYtnGQ8Cy4zl7gbNMOhsDTTKX02BTXptVP/vqAWIaTfM7isw76iyZCsjL2eVi" crossorigin="anonymous"></script>
+<style>
+:root {
+  color-scheme: light;
+  --brand-dark: #6B2C1F;
+  --brand-mid: #C97B5F;
+  --brand-light: #F4D9CC;
+  --brand-bg: #FAF1E8;
+  --cream: #FBF6EF;
+  --text-dark: #2C1810;
+  --text-mid: #6B5445;
+  --text-light: #A08977;
+  --success: #5BA678;
+  --danger: #C44545;
+  --warn: #D9933A;
+  --gold: #E6A017;
+  --border: #E8DCCD;
+  --shadow: 0 2px 12px rgba(107,44,31,0.08);
+  --shadow-lg: 0 8px 32px rgba(107,44,31,0.12);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  background: var(--brand-bg); color: var(--text-dark); line-height: 1.55; -webkit-font-smoothing: antialiased; }
+.display { font-family: 'Impact', 'Arial Black', sans-serif; font-weight: 900; letter-spacing: 0.02em; text-transform: uppercase; }
+.nav { position: sticky; top: 0; z-index: 100; background: rgba(251,246,239,0.95); backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border); padding: 12px 24px; display: flex; justify-content: space-between; align-items: center; }
+.nav-brand { font-family: 'Impact', 'Arial Black', sans-serif; font-weight: 900; letter-spacing: 0.02em; font-size: 20px; color: var(--brand-dark); }
+.nav-brand small { font-family: -apple-system, BlinkMacSystemFont, sans-serif; font-size: 11px; color: var(--text-mid); font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em; margin-left: 6px; }
+.nav-links { display: flex; gap: 18px; }
+.nav-links a { color: var(--text-mid); text-decoration: none; font-size: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; transition: color .2s; }
+.nav-links a:hover { color: var(--brand-dark); }
+@media (max-width: 768px) { .nav-links { display: none; } }
+.container { max-width: 1240px; margin: 0 auto; padding: 0 24px; }
+section { padding: 72px 0; }
+section + section { border-top: 1px solid var(--border); }
+.hero { background: linear-gradient(135deg, var(--brand-light) 0%, var(--brand-bg) 100%);
+  padding: 80px 24px 60px; text-align: center; border-bottom: 3px solid var(--brand-mid); }
+.hero-eyebrow { font-size: 12px; color: var(--brand-dark); font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 12px; }
+.hero-title { font-family: 'Impact', 'Arial Black', sans-serif; font-weight: 900; letter-spacing: 0.02em; font-size: clamp(48px, 8vw, 92px); color: var(--brand-dark); line-height: 1; letter-spacing: -0.02em; margin-bottom: 8px; }
+.hero-sub { font-size: 20px; color: var(--text-mid); margin-bottom: 40px; letter-spacing: 0.02em; }
+.hero-brand { display: inline-flex; align-items: center; gap: 12px; padding: 8px 20px; background: white; border-radius: 100px; box-shadow: var(--shadow); font-size: 12px; font-weight: 600; color: var(--brand-dark); letter-spacing: 0.1em; text-transform: uppercase; }
+.hero-brand .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--brand-mid); }
+.stats-strip { max-width: 1240px; margin: -40px auto 0; padding: 0 24px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+@media (max-width: 900px) { .stats-strip { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 480px) { .stats-strip { grid-template-columns: 1fr; } }
+.stat-card { background: white; padding: 24px; border-radius: 14px; box-shadow: var(--shadow); border-top: 3px solid var(--brand-mid); }
+.stat-label { font-size: 10px; color: var(--text-mid); font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 8px; }
+.stat-value { font-family: 'Impact', 'Arial Black', sans-serif; font-weight: 900; letter-spacing: 0.02em; font-size: 36px; color: var(--brand-dark); line-height: 1.05; }
+.stat-value.sm { font-size: 28px; }
+.stat-sub { font-size: 12px; color: var(--text-mid); margin-top: 6px; }
+.section-eyebrow { font-size: 11px; color: var(--brand-mid); font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 8px; }
+.section-title { font-family: 'Impact', 'Arial Black', sans-serif; font-weight: 900; letter-spacing: 0.02em; font-size: clamp(36px, 5vw, 56px); color: var(--brand-dark); line-height: 1; margin-bottom: 24px; }
+.section-desc { font-size: 16px; color: var(--text-mid); max-width: 680px; margin-bottom: 40px; }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.grid-2-1 { display: grid; grid-template-columns: 2fr 1fr; gap: 32px; }
+@media (max-width: 900px) { .grid-2, .grid-3, .grid-2-1 { grid-template-columns: 1fr; } }
+.card { background: white; padding: 28px; border-radius: 14px; box-shadow: var(--shadow); border: 1px solid var(--border); }
+.card-title { font-size: 14px; color: var(--brand-dark); font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 16px; }
+.chart-wrap { position: relative; height: 300px; }
+.chart-wrap.tall { height: 380px; } .chart-wrap.short { height: 220px; }
+.narrative { background: var(--cream); padding: 32px; border-radius: 14px; border-left: 4px solid var(--brand-mid); }
+.narrative-title { font-size: 12px; color: var(--brand-dark); font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 12px; }
+.narrative p { font-size: 15px; color: var(--text-dark); margin-bottom: 10px; }
+.narrative p:last-child { margin-bottom: 0; }
+.narrative ul { margin: 8px 0 0 20px; } .narrative li { font-size: 14px; color: var(--text-dark); margin-bottom: 6px; }
+.table-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th { text-align: left; padding: 12px 14px; background: var(--brand-dark); color: white; font-weight: 600; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; }
+td { padding: 12px 14px; border-bottom: 1px solid var(--border); color: var(--text-dark); }
+tr:hover td { background: var(--cream); } tr.highlight td { background: var(--brand-light); font-weight: 600; }
+.pill { display: inline-block; padding: 3px 10px; border-radius: 100px; font-size: 11px; font-weight: 600; }
+.pill.us { background: var(--brand-dark); color: white; }
+.pill.comp { background: var(--cream); color: var(--text-mid); }
+.projection-table { width: 100%; border-collapse: collapse; margin-top: 16px; }
+.projection-table th, .projection-table td { padding: 10px 14px; text-align: right; font-size: 13px; }
+.projection-table th { background: var(--brand-dark); color: white; font-weight: 600; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; }
+.projection-table th:first-child, .projection-table td:first-child { text-align: left; }
+.projection-table tbody tr:nth-child(even) { background: var(--cream); }
+.projection-table tr.total-row td { font-weight: 700; background: var(--brand-light); border-top: 2px solid var(--brand-mid); }
+.expandable { background: white; border-radius: 14px; border: 1px solid var(--border); overflow: hidden; }
+.expand-header { padding: 24px 28px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: background .2s; }
+.expand-header:hover { background: var(--cream); }
+.expand-header .expand-title { font-family: 'Impact', 'Arial Black', sans-serif; font-weight: 900; letter-spacing: 0.02em; font-size: 24px; color: var(--brand-dark); }
+.expand-header .expand-icon { font-size: 24px; color: var(--brand-mid); transition: transform .3s; }
+.expandable.open .expand-icon { transform: rotate(45deg); }
+.expand-content { max-height: 0; overflow: hidden; transition: max-height .4s ease; }
+.expandable.open .expand-content { max-height: 6000px; }
+.expand-inner { padding: 0 28px 28px; }
+.footer { background: var(--brand-dark); color: white; padding: 48px 24px; text-align: center; }
+.footer-brand { font-family: 'Impact', 'Arial Black', sans-serif; font-weight: 900; letter-spacing: 0.02em; font-size: 32px; margin-bottom: 8px; }
+.footer-tag { font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; opacity: 0.7; margin-bottom: 24px; }
+.footer-contact { font-size: 14px; opacity: 0.85; } .footer-contact span { margin: 0 12px; }
+.footer-mini { font-size: 11px; margin-top: 20px; opacity: 0.5; }
+</style>
+<style>
+/* ===== REVIEWS ===== */
+.reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+@media (max-width: 900px) { .reviews-grid { grid-template-columns: 1fr; } }
+.reviews-grid.two-col { grid-template-columns: repeat(2, 1fr); }
+@media (max-width: 700px) { .reviews-grid.two-col { grid-template-columns: 1fr; } }
+.reviews-grid.one-col { grid-template-columns: 1fr; }
+.review-card { background: white; padding: 24px; border-radius: 14px; box-shadow: var(--shadow); border: 1px solid var(--border); display: flex; flex-direction: column; }
+.review-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+.review-avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--brand-mid); color: white; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 15px; }
+.review-name { font-weight: 600; font-size: 14px; color: var(--text-dark); }
+.review-meta { font-size: 11px; color: var(--text-mid); }
+.review-stars { color: var(--gold); font-size: 14px; letter-spacing: 1px; margin-bottom: 10px; }
+.review-text { font-size: 13px; color: var(--text-dark); line-height: 1.6; }
+.review-trans { margin-top: 8px; font-style: italic; color: var(--text-mid); }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-brand">Casa Impian <small>August 2026 · 3BR</small></div>
+  <div class="nav-links">
+    <a href="#financial">Financials</a>
+    <a href="#performance">Performance</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#deepdive">Deep Dive</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-eyebrow">Monthly Report</div>
+  <h1 class="hero-title">Casa Impian</h1>
+  <p class="hero-sub">August 2026 · 3 Bedroom</p>
+  <div class="hero-brand"><span class="dot"></span>Made by Delima Housing</div>
+  <div style="margin-top:16px;"><a href="https://www.airbnb.com/rooms/1652699252326557081?guests=1&adults=1&s=67&unique_share_id=5908e2c8-5173-4a7b-ae3e-502d3feb92b7" target="_blank" style="display:inline-block; background:var(--brand-dark); color:white; padding:10px 20px; border-radius:100px; text-decoration:none; font-size:12px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase;">View Airbnb Listing →</a></div>
+</div>
+
+<div class="stats-strip">
+  <div class="stat-card">
+    <div class="stat-label">Revenue</div>
+    <div class="stat-value">Rp 83.82M</div>
+    <div class="stat-sub">Airbnb 88.9% · Booking.com 11.1%</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-label">Net Profit</div>
+    <div class="stat-value">Rp 49.40M</div>
+    <div class="stat-sub">59% margin</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-label">Occupancy</div>
+    <div class="stat-value">77%</div>
+    <div class="stat-sub">24 of 31 nights sold</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-label">ADR</div>
+    <div class="stat-value sm">Rp 3,492,550</div>
+    <div class="stat-sub">per paid night</div>
+  </div>
+</div>
+
+<div style="max-width:1240px;margin:12px auto 0;padding:0 24px;font-size:11px;color:var(--text-mid);line-height:1.5;">
+  <p><strong>Occupancy</strong> = paid OTA + direct + cancelled nights ÷ 31. &nbsp;·&nbsp; <strong>ADR</strong> = Total Income ÷ all occupied nights. &nbsp;·&nbsp; <strong>Gov Tax</strong> = 10% × OTA revenue (direct bookings excluded).</p>
+</div>
+
+<section id="financial">
+  <div class="container">
+    <div class="section-eyebrow">01 · Financial Performance</div>
+    <h2 class="section-title">Strong August<br>at 59% margin.</h2>
+
+    <div class="grid-2-1">
+      <div class="card">
+        <div class="card-title">Revenue trend — Jun–Aug 2026</div>
+        <div class="chart-wrap"><canvas id="revenueChart"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="card-title">Source of Revenue · August</div>
+        <div class="chart-wrap"><canvas id="revenueSourceChart"></canvas></div>
+      </div>
+    </div>
+
+    <div class="grid-2-1" style="margin-top:32px;">
+      <div class="card">
+        <div class="card-title">Where the expenses went · August</div>
+        <div class="chart-wrap"><canvas id="expenseChart"></canvas></div>
+      </div>
+      <div class="narrative">
+        <div class="narrative-title">The story this month</div>
+        <p>Casa Impian generated <strong>Rp 83.82M in total revenue</strong> across 24 paid nights — a healthy month at a Rp 3.49M ADR.</p>
+        <p>Operational spend is very lean at <strong>Rp 3.13M (3.7% of revenue)</strong>, giving OTA commission (17.4%), management fee (9.9%) and government tax (10%) headroom to still land a <strong>59% net margin</strong>.</p>
+        <p><strong>Net profit landed at Rp 49.40M.</strong> Aug figures compiled from booking data and operational expenses.</p>
+        <p>Management fee for Casa Impian is <strong>12%</strong> (reflects the 3BR long-stay operational model).</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="performance">
+  <div class="container">
+    <div class="section-eyebrow">02 · Performance Overview</div>
+    <h2 class="section-title">77% occupancy<br>at Rp 3.49M ADR.</h2>
+
+    <div class="grid-3">
+      <div class="card">
+        <div class="card-title">Average Daily Rate</div>
+        <div class="chart-wrap short"><canvas id="adrChart"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="card-title">Occupancy %</div>
+        <div class="chart-wrap short"><canvas id="occChart"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="card-title">Net Profit trend</div>
+        <div class="chart-wrap short"><canvas id="npChart"></canvas></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section id="reviews">
+  <div class="container">
+    <div class="section-eyebrow">03 · Guest Reviews</div>
+    <h2 class="section-title">Recent 5-star<br>guest reviews.</h2>
+    <p class="section-desc">Verified Airbnb stays, August 2026 stay window.</p>
+
+<div style="background:linear-gradient(90deg, #FBF6EF, #F4D9CC); border-left:4px solid var(--gold); padding:14px 18px; border-radius:10px; margin-bottom:16px; text-align:center;">
+      <strong style="font-size:14px; color:var(--brand-dark);">1 recent review in August · 5.0⭐ · All from Airbnb</strong>
+    </div>
+
+    <div class="reviews-grid one-col" style="max-width:720px;">
+      <div class="review-card">
+        <div class="review-header">
+          <div class="review-avatar">S</div>
+          <div><div class="review-name">Sanaa Sanaa</div><div class="review-meta">Aug 5–15 · 7 guests · FR · Airbnb</div></div>
+        </div>
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text" lang="fr">We had a wonderful stay! Host was reactive and welcoming. House was lovely, calm, well maintained. Location great with massage salon and restaurants short walk away. 20–30 min by bike from more animated area. Recommend to anyone.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="outlook">
+  <div class="container">
+    <div class="section-eyebrow">06 · Outlook · September 2026</div>
+    <h2 class="section-title">Where we're at,<br>where we can land.</h2>
+
+    <div class="card" style="margin-bottom: 32px;">
+      <div class="card-title">Booking Pace · September</div>
+      <div style="display: flex; justify-content: space-between; align-items: baseline; margin: 8px 0 16px;">
+        <div>
+          <span style="font-family:'Impact','Arial Black',sans-serif;font-size:48px;color:var(--brand-dark);line-height:1;">5</span>
+          <span style="font-size:18px;color:var(--text-mid);margin-left:8px;">of 30 nights booked · Rp 12.77M revenue locked</span>
+        </div>
+        <div style="text-align:right;">
+          <div style="font-family:'Impact','Arial Black',sans-serif;font-size:32px;color:var(--brand-mid);line-height:1;">25</div>
+          <div style="font-size:12px;color:var(--text-mid);">still available</div>
+        </div>
+      </div>
+      <div style="height:24px;background:var(--brand-light);border-radius:100px;overflow:hidden;">
+        <div style="height:100%;width:17%;background:linear-gradient(90deg,var(--brand-dark),var(--brand-mid));border-radius:100px;"></div>
+      </div>
+      <div style="display:flex;justify-content:space-between;margin-top:8px;font-size:11px;color:var(--text-mid);">
+        <span>17% booked</span>
+        <span>0 cancellations noted</span>
+      </div>
+    </div>
+
+    <div class="grid-3" style="margin-bottom: 32px;">
+      <div class="card" style="border-top: 4px solid var(--warn);">
+        <div style="font-size:11px;font-weight:700;letter-spacing:0.15em;color:var(--warn);text-transform:uppercase;margin-bottom:8px;">Conservative</div>
+        <div style="font-size:12px;color:var(--text-mid);margin-bottom:16px;">Already locked</div>
+        <div style="font-family:'Impact','Arial Black',sans-serif;font-size:40px;color:var(--brand-dark);line-height:1;">Rp 12.8M</div>
+        <div style="font-size:12px;color:var(--text-mid);margin-top:8px;">5/30 · 17% occ</div>
+        <div style="border-top:1px solid var(--border);padding-top:12px;margin-top:14px;font-size:12px;color:var(--text-mid);">No further conversion</div>
+      </div>
+      <div class="card" style="border-top: 4px solid var(--brand-mid);box-shadow: 0 8px 32px rgba(107,44,31,0.15);position: relative;">
+        <div style="position:absolute;top:-12px;right:16px;background:var(--brand-dark);color:white;padding:3px 10px;border-radius:100px;font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;">Target</div>
+        <div style="font-size:11px;font-weight:700;letter-spacing:0.15em;color:var(--brand-mid);text-transform:uppercase;margin-bottom:8px;">Expected</div>
+        <div style="font-size:12px;color:var(--text-mid);margin-bottom:16px;">Realistic pickup</div>
+        <div style="font-family:'Impact','Arial Black',sans-serif;font-size:40px;color:var(--brand-dark);line-height:1;">Rp 28.7M</div>
+        <div style="font-size:12px;color:var(--text-mid);margin-top:8px;">10/30 · 33% occ</div>
+        <div style="border-top:1px solid var(--border);padding-top:12px;margin-top:14px;font-size:12px;color:var(--text-mid);">Normal tier holds</div>
+      </div>
+      <div class="card" style="border-top: 4px solid var(--success);">
+        <div style="font-size:11px;font-weight:700;letter-spacing:0.15em;color:var(--success);text-transform:uppercase;margin-bottom:8px;">Strong</div>
+        <div style="font-size:12px;color:var(--text-mid);margin-bottom:16px;">Upside if gaps fill</div>
+        <div style="font-family:'Impact','Arial Black',sans-serif;font-size:40px;color:var(--brand-dark);line-height:1;">Rp 38.3M</div>
+        <div style="font-size:12px;color:var(--text-mid);margin-top:8px;">13/30 · 43% occ</div>
+        <div style="border-top:1px solid var(--border);padding-top:12px;margin-top:14px;font-size:12px;color:var(--text-mid);">Last-minute demand holds</div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom: 32px;">
+      <div class="card-title">September confirmed bookings · Casa Impian</div>
+      <div class="table-wrap">
+        <table class="projection-table" style="font-size:12px;">
+          <thead><tr>
+            <th style="text-align:left;">Guest</th>
+            <th>Channel</th>
+            <th>Check-in</th>
+            <th>Check-out</th>
+            <th>Sept nights</th>
+            <th>Revenue (Rp)</th>
+          </tr></thead>
+          <tbody>
+            <tr><td style='text-align:left;'>Greta Dabizzi (carryover)</td><td>Airbnb</td><td>Aug 31</td><td>Sep 02</td><td>1</td><td>4,990,945</td></tr><tr><td style='text-align:left;'>Feraldo Axel Paulus (in-stay)</td><td>Airbnb</td><td>Sep 03</td><td>Sep 06</td><td>3</td><td>7,782,730</td></tr><tr style="background:#EEE9E4;color:var(--text-mid);"><td style='text-align:left;'>Deep cleaning (block)</td><td>Direct</td><td>Sep 09</td><td>Sep 10</td><td>1</td><td>0</td></tr><tr class='total-row'><td style='text-align:left;'>Total (Sept nights)</td><td></td><td></td><td></td><td>5</td><td>12,773,675</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size:11px;color:var(--text-mid);margin-top:10px;">
+        <span style="display:inline-block;width:12px;height:12px;background:#FBF6EF;border-radius:2px;vertical-align:middle;margin-right:4px;"></span>Direct booking
+        &nbsp;&nbsp;
+        <span style="display:inline-block;width:12px;height:12px;background:#F4E9D8;border-radius:2px;vertical-align:middle;margin-right:4px;"></span>LTR / long-stay
+        &nbsp;&nbsp;
+        <span style="display:inline-block;width:12px;height:12px;background:#EEE9E4;border-radius:2px;vertical-align:middle;margin-right:4px;"></span>Block / maintenance
+        &nbsp;&nbsp;
+        <span style="display:inline-block;width:12px;height:12px;background:#FDECEC;border-radius:2px;vertical-align:middle;margin-right:4px;"></span>Cancelled
+      </p>
+    </div>
+    <div class="narrative" style="border-left:4px solid var(--brand-dark);background:linear-gradient(135deg,var(--cream) 0%,var(--brand-light) 100%);padding:20px 24px;border-radius:10px;">
+      <div style="font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--brand-mid);margin-bottom:8px;">Sept outlook · narrative</div>
+      <p style="font-size:14px;color:var(--text-dark);line-height:1.5;">Sept pace is <strong>light</strong> at <strong>17% booked</strong> (5/30 nights, Rp 12.77M locked). Two short front-of-month stays (Greta carryover 1n, Feraldo 3n in-stay) plus a 1-night deep-cleaning block Sep 9-10. Sep 10 onward largely open (20+ nights) — priority is last-minute promotion.</p>
+    </div>
+  </div>
+</section>
+
+<section id="deepdive">
+  <div class="container">
+    <div class="section-eyebrow">04 · Deep dive</div>
+    <h2 class="section-title">Detailed financials.</h2>
+    <p class="section-desc">Full P&amp;L breakdown, recent trend, and complete August booking list. Click to expand.</p>
+
+    <div class="expandable" style="margin-bottom:20px;">
+      <div class="expand-header">
+        <div class="expand-title">Full P&amp;L — August 2026</div>
+        <div class="expand-icon">+</div>
+      </div>
+      <div class="expand-content"><div class="expand-inner">
+        <table class="projection-table">
+          <thead><tr><th>Line</th><th>IDR</th><th>% of Revenue</th></tr></thead>
+          <tbody>
+  <tr><td colspan="3" style="background:var(--brand-light);font-weight:700;">REVENUE</td></tr>
+  <tr><td>OTA – Airbnb</td><td>74,513,710</td><td>88.9%</td></tr>
+  <tr><td>OTA – Booking.com</td><td>9,307,500</td><td>11.1%</td></tr>
+  <tr class="total-row"><td>Total Income</td><td>83,821,210</td><td>100%</td></tr>
+  <tr><td colspan="3" style="background:var(--brand-light);font-weight:700;">OPERATIONAL EXPENSES</td></tr>
+  <tr><td>Housekeeping</td><td>1,500,000</td><td>1.8%</td></tr>
+  <tr><td>Laundry</td><td>1,499,160</td><td>1.8%</td></tr>
+  <tr><td>Miscellaneous</td><td>50,000</td><td>0.1%</td></tr>
+  <tr><td>Guest Supplies</td><td>37,667</td><td>0.0%</td></tr>
+  <tr><td>Cleaning Supplies</td><td>23,720</td><td>0.0%</td></tr>
+  <tr><td>Beverages &amp; Consumables</td><td>20,000</td><td>0.0%</td></tr>
+  <tr class="total-row"><td>Total Operational</td><td>3,130,547</td><td>3.7%</td></tr>
+  <tr><td colspan="3" style="background:var(--brand-light);font-weight:700;">OTHER EXPENSES</td></tr>
+  <tr><td>Management Fee (12% × [Income − OTA Comm])</td><td>8,305,664</td><td>9.9%</td></tr>
+  <tr><td>OTA Commission (Airbnb + Booking.com ×1.11 VAT)</td><td>14,607,347</td><td>17.4%</td></tr>
+  <tr><td>Government Tax (10% × OTA revenue)</td><td>8,382,121</td><td>10.0%</td></tr>
+  <tr class="total-row"><td>Total Other Expenses</td><td>31,295,132</td><td>37.3%</td></tr>
+  <tr class="total-row"><td style="background:var(--brand-dark);color:white;font-weight:700;">NET PROFIT</td><td style="background:var(--brand-dark);color:white;font-weight:700;">49,395,531</td><td style="background:var(--brand-dark);color:white;font-weight:700;">59%</td></tr>
+</tbody>
+        </table>
+      </div></div>
+    </div>
+
+    <div class="expandable" style="margin-bottom:20px;">
+      <div class="expand-header">
+        <div class="expand-title">Recent P&amp;L — Casa Impian (Jun–Aug 2026)</div>
+        <div class="expand-icon">+</div>
+      </div>
+      <div class="expand-content"><div class="expand-inner">
+        <div class="table-wrap"><table class="projection-table" style="font-size:11.5px;">
+          <thead><tr><th style="text-align:left;">Category</th><th>Jun</th><th>Jul</th><th style="background:#4A1D14;">Aug</th><th style="background:var(--brand-mid);">YTD Total</th></tr></thead>
+          <tbody>
+  <tr><td colspan="5" style="background:var(--brand-light);font-weight:700;text-align:left;">REVENUE</td></tr>
+  <tr><td style="text-align:left;">Direct – Delima (Owner block)</td><td>9,000,000</td><td>0</td><td style="background:#F4D9CC;">0</td><td>9,000,000</td></tr>
+  <tr><td style="text-align:left;">OTA – Airbnb</td><td>13,756,000</td><td>95,773,790</td><td style="background:#F4D9CC;">74,513,710</td><td>184,043,500</td></tr>
+  <tr><td style="text-align:left;">OTA – Booking</td><td>7,344,000</td><td>0</td><td style="background:#F4D9CC;">9,307,500</td><td>16,651,500</td></tr>
+  <tr class="total-row"><td style="text-align:left;">Total Income</td><td>30,100,000</td><td>95,773,790</td><td style="background:var(--brand-mid);color:white;">83,821,210</td><td>209,695,000</td></tr>
+  <tr><td colspan="5" style="background:var(--brand-light);font-weight:700;text-align:left;">EXPENSES</td></tr>
+  <tr><td style="text-align:left;">Total Operational Exp.</td><td>3,470,187</td><td>2,919,450</td><td style="background:#F4D9CC;">3,130,547</td><td>9,520,184</td></tr>
+  <tr><td style="text-align:left;">Management Fee</td><td>3,158,762</td><td>9,515,514</td><td style="background:#F4D9CC;">8,305,664</td><td>20,979,940</td></tr>
+  <tr><td style="text-align:left;">OTA Commission</td><td>3,776,986</td><td>16,477,841</td><td style="background:#F4D9CC;">14,607,347</td><td>34,862,174</td></tr>
+  <tr><td style="text-align:left;">Government Tax (10% of OTA)</td><td>2,110,000</td><td>9,577,379</td><td style="background:#F4D9CC;">8,382,121</td><td>20,069,500</td></tr>
+  <tr class="total-row"><td style="background:var(--brand-dark);color:white;font-weight:700;text-align:left;">NET PROFIT</td><td style="background:var(--brand-dark);color:white;font-weight:700;">17,584,065</td><td style="background:var(--brand-dark);color:white;font-weight:700;">57,283,606</td><td style="background:#4A1D14;color:white;font-weight:700;">49,395,531</td><td style="background:var(--brand-dark);color:white;font-weight:700;">124,263,202</td></tr>
+  <tr><td colspan="5" style="background:var(--brand-light);font-weight:700;text-align:left;">PERFORMANCE</td></tr>
+  <tr><td style="text-align:left;">Occupancy Rate</td><td>40%</td><td>87%</td><td style="background:#F4D9CC;">77%</td><td>68% avg</td></tr>
+  <tr><td style="text-align:left;">Average Nightly Rate (Rp)</td><td>2,508,333</td><td>3,547,177</td><td style="background:#F4D9CC;">3,492,550</td><td>—</td></tr>
+</tbody>
+        </table></div>
+      </div></div>
+    </div>
+
+    <div class="expandable">
+      <div class="expand-header">
+        <div class="expand-title">Booking list — August 2026 (24 nights)</div>
+        <div class="expand-icon">+</div>
+      </div>
+      <div class="expand-content"><div class="expand-inner">
+        <table class="projection-table">
+          <thead><tr><th>Guest</th><th>Channel</th><th>Type</th><th>Check-in</th><th>Check-out</th><th>Nights</th><th>Revenue (Rp)</th><th>Commission (Rp)</th></tr></thead>
+          <tbody>
+  <tr><td>Matthew Spiteri</td><td>Airbnb</td><td>Paid</td><td>Aug 15</td><td>Aug 22</td><td>7</td><td>24,842,500</td><td>4,274,096</td></tr>
+  <tr><td>Elena Volkova</td><td>Airbnb</td><td>Paid</td><td>Jul 5</td><td>Aug 5</td><td>4</td><td>14,188,710</td><td>2,441,162</td></tr>
+  <tr><td>Sanaa Sanaa</td><td>Airbnb</td><td>Paid</td><td>Aug 5</td><td>Aug 15</td><td>10</td><td>35,482,500</td><td>6,104,770</td></tr>
+  <tr><td>Greta Dabizzi</td><td>Booking.com</td><td>Paid</td><td>Aug 31</td><td>Sep 2</td><td>1</td><td>3,017,500</td><td>522,028</td></tr>
+  <tr><td>Nikita Tasi</td><td>Booking.com</td><td>Paid</td><td>Aug 24</td><td>Aug 26</td><td>2</td><td>6,290,000</td><td>1,088,170</td></tr>
+</tbody>
+        </table>
+        <p style="font-size:11px;color:var(--text-mid);margin-top:12px;"><em>Note:</em> Booking.com commission column shown before +11% Indonesian VAT multiplier.</p>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<div class="footer">
+  <div class="footer-brand">Delima Housing</div>
+  <div class="footer-tag">Your Property · Our Priority</div>
+  <div class="footer-contact">
+    <span>+62 878-9560-3000</span>·<span>info@delimahousing.com</span>·<span>www.delimahousing.com</span>
+  </div>
+  <div class="footer-mini">Casa Impian · August 2026 · Report generated Sep 2026 · Next report: October 2026</div>
+</div>
+
+<script>
+const BRAND_DARK = '#6B2C1F';
+const BRAND_MID = '#C97B5F';
+const BRAND_LIGHT = '#F4D9CC';
+const CREAM = '#FBF6EF';
+const SUCCESS = '#5BA678';
+const TEXT_MID = '#6B5445';
+Chart.defaults.font.family = "-apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif";
+Chart.defaults.color = TEXT_MID;
+Chart.defaults.plugins.legend.labels.usePointStyle = true;
+Chart.defaults.plugins.legend.labels.padding = 12;
+Chart.defaults.plugins.legend.labels.font = { size: 11, weight: 500 };
+
+const months = ['Jun','Jul','Aug'];
+
+new Chart(document.getElementById('revenueChart'), {
+  type: 'line',
+  data: { labels: months,
+    datasets: [{ label: 'Total Income (IDR M)',
+      data: [30.10, 95.77, 83.82],
+      borderColor: BRAND_DARK, backgroundColor: 'rgba(107,44,31,0.08)',
+      borderWidth: 3, tension: 0.3, fill: true, pointRadius: 5, pointBackgroundColor: BRAND_DARK }]
+  },
+  options: { responsive: true, maintainAspectRatio: false,
+    scales: { y: { beginAtZero: true, ticks: { callback: v => 'Rp ' + v + 'M' } } },
+    plugins: { legend: { position: 'top' }, tooltip: { callbacks: { label: c => 'Rp ' + c.parsed.y.toFixed(2) + 'M' } } }
+  }
+});
+
+new Chart(document.getElementById('revenueSourceChart'), {
+  type: 'doughnut',
+  data: {
+    labels: ['OTA – Airbnb', 'OTA – Booking.com'],
+    datasets: [{ data: [74.51, 9.31], backgroundColor: [BRAND_DARK, BRAND_MID], borderWidth: 0 }]
+  },
+  options: { responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { position: 'bottom' }, tooltip: { callbacks: { label: c => c.label + ': Rp ' + c.parsed.toFixed(2) + 'M' } } }
+  }
+});
+
+new Chart(document.getElementById('expenseChart'), {
+  type: 'bar',
+  data: {
+    labels: ['OTA Commission','Mgmt Fee','Gov Tax','Operational'],
+    datasets: [{ label: 'IDR M',
+      data: [14.61, 8.31, 8.38, 3.13],
+      backgroundColor: [BRAND_DARK, BRAND_MID, '#8A3A28', '#D89478'], borderRadius: 8 }]
+  },
+  options: { responsive: true, maintainAspectRatio: false, indexAxis: 'y',
+    scales: { x: { beginAtZero: true, ticks: { callback: v => 'Rp ' + v + 'M' } } },
+    plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => 'Rp ' + c.parsed.x.toFixed(2) + 'M' } } }
+  }
+});
+
+new Chart(document.getElementById('adrChart'), {
+  type: 'bar',
+  data: { labels: months,
+    datasets: [{ label: 'ADR (Rp k)',
+      data: [2508, 3547, 3493],
+      backgroundColor: BRAND_MID, borderRadius: 6 }]
+  },
+  options: { responsive: true, maintainAspectRatio: false,
+    scales: { y: { beginAtZero: true, ticks: { callback: v => 'Rp ' + v + 'k' } } },
+    plugins: { legend: { display: false } }
+  }
+});
+
+new Chart(document.getElementById('occChart'), {
+  type: 'bar',
+  data: { labels: months,
+    datasets: [{ label: 'Occupancy %',
+      data: [40, 87, 77],
+      backgroundColor: BRAND_DARK, borderRadius: 6 }]
+  },
+  options: { responsive: true, maintainAspectRatio: false,
+    scales: { y: { beginAtZero: true, max: 100, ticks: { callback: v => v + '%' } } },
+    plugins: { legend: { display: false } }
+  }
+});
+
+new Chart(document.getElementById('npChart'), {
+  type: 'line',
+  data: { labels: months,
+    datasets: [{ label: 'Net Profit (IDR M)',
+      data: [17.58, 57.28, 49.40],
+      borderColor: SUCCESS, backgroundColor: 'rgba(91,166,120,0.15)',
+      borderWidth: 3, tension: 0.3, fill: true, pointRadius: 4, pointBackgroundColor: SUCCESS }]
+  },
+  options: { responsive: true, maintainAspectRatio: false,
+    scales: { y: { beginAtZero: true, ticks: { callback: v => 'Rp ' + v + 'M' } } },
+    plugins: { legend: { display: false } }
+  }
+});
+
+document.querySelectorAll('.expand-header').forEach(h => {
+  h.addEventListener('click', () => h.parentElement.classList.toggle('open'));
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Casa Mimosa — Monthly Report · August 2026</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0/dist/chart.umd.js" integrity="sha384-iU8HYtnGQ8Cy4zl7gbNMOhsDTTKX02BTXptVP/vqAWIaTfM7isw76iyZCsjL2eVi" crossorigin="anonymous"></script>
+<style>
+:root {
+  color-scheme: light;
+  --brand-dark: #6B2C1F;
+  --brand-mid: #C97B5F;
+  --brand-light: #F4D9CC;
+  --brand-bg: #FAF1E8;
+  --cream: #FBF6EF;
+  --text-dark: #2C1810;
+  --text-mid: #6B5445;
+  --text-light: #A08977;
+  --success: #5BA678;
+  --danger: #C44545;
+  --warn: #D9933A;
+  --gold: #E6A017;
+  --border: #E8DCCD;
+  --shadow: 0 2px 12px rgba(107,44,31,0.08);
+  --shadow-lg: 0 8px 32px rgba(107,44,31,0.12);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  background: var(--brand-bg);
+  color: var(--text-dark);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+.display { font-family: 'Impact', 'Arial Black', sans-serif; font-weight: 900; letter-spacing: 0.02em; text-transform: uppercase; }
+
+.nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(251,246,239,0.95); backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border);
+  padding: 12px 24px;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.nav-brand { font-family: 'Impact', 'Arial Black', sans-serif; font-weight: 900; letter-spacing: 0.02em; font-size: 20px; color: var(--brand-dark); }
+.nav-brand small { font-family: -apple-system, BlinkMacSystemFont, sans-serif; font-size: 11px; color: var(--text-mid); font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em; margin-left: 6px; }
+.nav-links { display: flex; gap: 18px; }
+.nav-links a { color: var(--text-mid); text-decoration: none; font-size: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; transition: color .2s; }
+.nav-links a:hover { color: var(--brand-dark); }
+@media (max-width: 768px) { .nav-links { display: none; } }
+
+.container { max-width: 1240px; margin: 0 auto; padding: 0 24px; }
+section { padding: 72px 0; }
+section + section { border-top: 1px solid var(--border); }
+
+.hero {
+  background: linear-gradient(135deg, var(--brand-light) 0%, var(--brand-bg) 100%);
+  padding: 80px 24px 60px;
+  text-align: center;
+  border-bottom: 3px solid var(--brand-mid);
+}
+.hero-eyebrow { font-size: 12px; color: var(--brand-dark); font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 12px; }
+.hero-title { font-family: 'Impact', 'Arial Black', sans-serif; font-weight: 900; letter-spacing: 0.02em; font-size: clamp(48px, 8vw, 92px); color: var(--brand-dark); line-height: 1; letter-spacing: -0.02em; margin-bottom: 8px; }
+.hero-sub { font-size: 20px; color: var(--text-mid); margin-bottom: 40px; letter-spacing: 0.02em; }
+.hero-brand { display: inline-flex; align-items: center; gap: 12px; padding: 8px 20px; background: white; border-radius: 100px; box-shadow: var(--shadow); font-size: 12px; font-weight: 600; color: var(--brand-dark); letter-spacing: 0.1em; text-transform: uppercase; }
+.hero-brand .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--brand-mid); }
+.hero-logo { display: block; height: 120px; width: auto; margin: 0 auto 16px; }
+
+.stats-strip {
+  max-width: 1240px; margin: -40px auto 0;
+  padding: 0 24px;
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;
+}
+@media (max-width: 900px) { .stats-strip { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 480px) { .stats-strip { grid-template-columns: 1fr; } }
+.stat-card {
+  background: white; padding: 24px; border-radius: 14px;
+  box-shadow: var(--shadow); border-top: 3px solid var(--brand-mid);
+}
+.stat-label { font-size: 10px; color: var(--text-mid); font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 8px; }
+.stat-value { font-family: 'Impact', 'Arial Black', sans-serif; font-weight: 900; letter-spacing: 0.02em; font-size: 36px; color: var(--brand-dark); line-height: 1.05; }
+.stat-value.sm { font-size: 28px; }
+.stat-sub { font-size: 12px; color: var(--text-mid); margin-top: 6px; }
+.stat-delta { font-size: 12px; font-weight: 600; margin-top: 4px; display: inline-flex; align-items: center; gap: 4px; }
+.stat-delta.up { color: var(--success); }
+.stat-delta.down { color: var(--danger); }
+.stat-delta.flat { color: var(--text-mid); }
+
+.section-eyebrow { font-size: 11px; color: var(--brand-mid); font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 8px; }
+.section-title { font-family: 'Impact', 'Arial Black', sans-serif; font-weight: 900; letter-spacing: 0.02em; font-size: clamp(36px, 5vw, 56px); color: var(--brand-dark); line-height: 1; margin-bottom: 24px; }
+.section-desc { font-size: 16px; color: var(--text-mid); max-width: 680px; margin-bottom: 40px; }
+
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.grid-2-1 { display: grid; grid-template-columns: 2fr 1fr; gap: 32px; }
+@media (max-width: 900px) { .grid-2, .grid-3, .grid-2-1 { grid-template-columns: 1fr; } }
+
+.card {
+  background: white; padding: 28px; border-radius: 14px;
+  box-shadow: var(--shadow); border: 1px solid var(--border);
+}
+.card-title { font-size: 14px; color: var(--brand-dark); font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 16px; }
+.card-value { font-family: 'Impact', 'Arial Black', sans-serif; font-weight: 900; letter-spacing: 0.02em; font-size: 40px; color: var(--brand-dark); line-height: 1; margin-bottom: 4px; }
+.card-sub { font-size: 13px; color: var(--text-mid); }
+
+.chart-wrap { position: relative; height: 300px; }
+.chart-wrap.tall { height: 380px; }
+.chart-wrap.short { height: 220px; }
+
+.narrative {
+  background: var(--cream); padding: 32px; border-radius: 14px;
+  border-left: 4px solid var(--brand-mid);
+}
+.narrative-title { font-size: 12px; color: var(--brand-dark); font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 12px; }
+.narrative p { font-size: 15px; color: var(--text-dark); margin-bottom: 10px; }
+.narrative p:last-child { margin-bottom: 0; }
+.narrative ul { margin: 8px 0 0 20px; }
+.narrative li { font-size: 14px; color: var(--text-dark); margin-bottom: 6px; }
+
+.reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+@media (max-width: 900px) { .reviews-grid { grid-template-columns: 1fr; } }
+.review-card {
+  background: white; padding: 24px; border-radius: 14px;
+  box-shadow: var(--shadow); border: 1px solid var(--border);
+  display: flex; flex-direction: column;
+}
+.review-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+.review-avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--brand-mid); color: white; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 15px; }
+.review-name { font-weight: 600; font-size: 14px; color: var(--text-dark); }
+.review-meta { font-size: 11px; color: var(--text-mid); }
+.review-stars { color: var(--gold); font-size: 14px; letter-spacing: 1px; margin-bottom: 10px; }
+.review-text { font-size: 13px; color: var(--text-dark); line-height: 1.6; }
+.review-placeholder { color: var(--text-light); font-style: italic; }
+
+.table-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th { text-align: left; padding: 12px 14px; background: var(--brand-dark); color: white; font-weight: 600; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; }
+td { padding: 12px 14px; border-bottom: 1px solid var(--border); color: var(--text-dark); }
+tr:hover td { background: var(--cream); }
+tr.highlight td { background: var(--brand-light); font-weight: 600; }
+.pill { display: inline-block; padding: 3px 10px; border-radius: 100px; font-size: 11px; font-weight: 600; }
+.pill.us { background: var(--brand-dark); color: white; }
+.pill.comp { background: var(--cream); color: var(--text-mid); }
+
+.projection-table { width: 100%; border-collapse: collapse; margin-top: 16px; }
+.projection-table th, .projection-table td { padding: 10px 14px; text-align: right; font-size: 13px; }
+.projection-table th { background: var(--brand-dark); color: white; font-weight: 600; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; }
+.projection-table th:first-child, .projection-table td:first-child { text-align: left; }
+.projection-table tbody tr:nth-child(even) { background: var(--cream); }
+.projection-table tr.total-row td { font-weight: 700; background: var(--brand-light); border-top: 2px solid var(--brand-mid); }
+
+.expandable {
+  background: white; border-radius: 14px; border: 1px solid var(--border);
+  overflow: hidden;
+}
+.expand-header {
+  padding: 24px 28px; cursor: pointer;
+  display: flex; justify-content: space-between; align-items: center;
+  transition: background .2s;
+}
+.expand-header:hover { background: var(--cream); }
+.expand-header .expand-title { font-family: 'Impact', 'Arial Black', sans-serif; font-weight: 900; letter-spacing: 0.02em; font-size: 24px; color: var(--brand-dark); }
+.expand-header .expand-icon { font-size: 24px; color: var(--brand-mid); transition: transform .3s; }
+.expandable.open .expand-icon { transform: rotate(45deg); }
+.expand-content { max-height: 0; overflow: hidden; transition: max-height .4s ease; }
+.expandable.open .expand-content { max-height: 5000px; }
+.expand-inner { padding: 0 28px 28px; }
+
+.footer {
+  background: var(--brand-dark); color: white; padding: 48px 24px; text-align: center;
+}
+.footer-brand { font-family: 'Impact', 'Arial Black', sans-serif; font-weight: 900; letter-spacing: 0.02em; font-size: 32px; margin-bottom: 8px; }
+.footer-tag { font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; opacity: 0.7; margin-bottom: 24px; }
+.footer-contact { font-size: 14px; opacity: 0.85; }
+.footer-contact span { margin: 0 12px; }
+.footer-mini { font-size: 11px; margin-top: 20px; opacity: 0.5; }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-brand">Casa Mimosa <small>August 2026</small></div>
+  <div class="nav-links">
+    <a href="#financial">Financials</a>
+    <a href="#performance">Performance</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#market">Market</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#outlook">Outlook</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-eyebrow">Monthly Report</div>
+  <img class="hero-logo" alt="Casa Mimosa" src="data:image/png;base64,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">
+  <h1 class="hero-title">Casa Mimosa</h1>
+  <p class="hero-sub">August 2026 · Kedungu, Bali · 2-Bedroom</p>
+  <div class="hero-brand"><span class="dot"></span>Made by Delima Housing</div>
+  <div style="margin-top:16px;"><a href="https://www.airbnb.com/rooms/1430167106127844228?unique_share_id=592e045f-d8be-47ca-b92c-e89d4c8930f2&viralityEntryPoint=1&s=76" target="_blank" style="display:inline-block; background:var(--brand-dark); color:white; padding:10px 20px; border-radius:100px; text-decoration:none; font-size:12px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase;">View Airbnb Listing →</a></div>
+</div>
+
+<div class="stats-strip">
+  <div class="stat-card">
+    <div class="stat-label">Revenue</div>
+    <div class="stat-value">Rp 46.7M</div>
+    <div class="stat-sub">26 paid OTA nights</div>
+    <div class="stat-delta up">▲ +7.6% vs Jul</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-label">Net Profit</div>
+    <div class="stat-value">Rp 18.5M</div>
+    <div class="stat-sub">40% margin</div>
+    <div class="stat-delta down">▼ -8.5% vs Jul</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-label">Occupancy</div>
+    <div class="stat-value">84%</div>
+    <div class="stat-sub">26 of 31 nights (26 OTA)</div>
+    <div class="stat-delta up">▲ +19pp vs Jul</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-label">ADR</div>
+    <div class="stat-value sm">Rp 1,795,010</div>
+    <div class="stat-sub">per paid OTA night</div>
+    <div class="stat-delta down">▼ -17.3% vs Jul</div>
+  </div>
+</div>
+
+<section id="financial">
+  <div class="container">
+    <div class="section-eyebrow">01 · Financial Performance</div>
+    <h2 class="section-title">Casa Mimosa's<br>August recap.</h2>
+
+    <div class="grid-2-1">
+      <div class="card">
+        <div class="card-title">Revenue trend — recent months</div>
+        <div class="chart-wrap"><canvas id="revenueChart"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="card-title">Source of Revenue · August</div>
+        <div class="chart-wrap"><canvas id="revenueSourceChart"></canvas></div>
+      </div>
+    </div>
+
+    <div class="grid-2-1" style="margin-top: 32px;">
+      <div class="card">
+        <div class="card-title">Where the expenses went · August</div>
+        <div class="chart-wrap"><canvas id="expenseChart"></canvas></div>
+      </div>
+      <div class="narrative">
+        <div class="narrative-title">The story this month</div>
+        <p>August generated <strong>Rp 46.7M in total revenue</strong> — up 7.6% MoM vs July (Rp 43.39M).</p>
+        <p>26 paid OTA nights delivered <strong>Rp 46.67M</strong> gross across Airbnb and Booking.com.</p>
+        <p><strong>Net profit landed at Rp 18.5M with a 40% margin</strong> — down vs July, weighed by a one-off annual Internet prepay this month (see Cost breakdown below). Management fee applied at 12%.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-eyebrow">02 · Net Profit</div>
+    <h2 class="section-title">Margin at 40%<br>on Rp 46.7M revenue.</h2>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">Net Profit trend</div>
+        <div class="chart-wrap"><canvas id="netProfitChart"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="card-title">Profit Margin trend</div>
+        <div class="chart-wrap"><canvas id="marginChart"></canvas></div>
+      </div>
+    </div>
+
+    <div class="narrative" style="margin-top: 32px;">
+      <div class="narrative-title">Cost breakdown</div>
+      <p><strong>Management fee for Casa Mimosa set at 12%.</strong></p>
+      <p><strong>High August expenses driven by full annual Internet payment (Rp 3.33M)</strong> — normalized monthly baseline is ~Rp 277k. Excluding this one-off, Aug OpEx would have been ~Rp 3.3M lower and margin would sit at ~49% instead of 42%.</p>
+      <p>Net profit landed at <strong>Rp 18.54M</strong> vs Rp 20.27M in July (−Rp 1.73M).</p>
+      <p>Total operational expenses of <strong>Rp 10.68M</strong> (22.9% of revenue) — includes the annual internet prepay of Rp 3.33M booked in August. OTA commission absorbed Rp 8.16M (17.5%) — reflects Airbnb host fees plus 11% Indonesian VAT on the Booking.com commission. Management fee at Rp 4.62M (12%) and government tax at Rp 4.67M.</p>
+    </div>
+  </div>
+</section>
+
+<section id="performance">
+  <div class="container">
+    <div class="section-eyebrow">03 · Performance Overview</div>
+    <h2 class="section-title">Rate, occupancy,<br>nights sold.</h2>
+
+    <div class="grid-3">
+      <div class="card">
+        <div class="card-title">Average Daily Rate</div>
+        <div class="chart-wrap short"><canvas id="adrChart"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="card-title">Occupancy %</div>
+        <div class="chart-wrap short"><canvas id="occupancyChart"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="card-title">Paid Nights Sold</div>
+        <div class="chart-wrap short"><canvas id="nightsChart"></canvas></div>
+        <p style="font-size:11px;color:var(--text-mid);margin-top:8px;font-style:italic;">Note: Casa Mimosa had no direct booking in Aug.</p>
+      </div>
+    </div>
+
+    <div class="grid-3" style="margin-top: 32px;">
+      <div class="narrative" style="border-left-color: var(--success);">
+        <div class="narrative-title" style="color: var(--success);">✓ What worked</div>
+        <ul>
+          <li>ADR at <strong>Rp 1,795,010</strong> — down 17.3% MoM</li>
+          <li>Occupancy at <strong>84%</strong> (26 of 31 nights)</li>
+          <li>26 paid OTA nights delivered Rp 46.67M gross</li>
+        </ul>
+      </div>
+      <div class="narrative" style="border-left-color: var(--text-mid);">
+        <div class="narrative-title" style="color: var(--text-mid);">— Watch items</div>
+        <p>OpEx spike this month (Casa Mimosa Internet annual prepay Rp 3.33M).</p>
+      </div>
+      <div class="narrative" style="border-left-color: var(--warn);">
+        <div class="narrative-title" style="color: var(--warn);">⚠ Challenge ahead</div>
+        <ul>
+          <li>Sept pacing at <strong>24/30 nights (80%)</strong> — need to hold rate while filling gap dates</li>
+          <li>Shoulder-season (Oct/Nov) pipeline still thin across peer set</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="reviews">
+  <div class="container">
+    <div class="section-eyebrow">04 · Guest Reviews</div>
+    <h2 class="section-title">Recent 5-star<br>guest reviews.</h2>
+    <p class="section-desc">Verified stays through Airbnb / Booking.com, July–August 2026 stay window.</p>
+
+    <div style="background:linear-gradient(90deg, #FBF6EF, #F4D9CC); border-left:4px solid var(--gold); padding:16px 20px; border-radius:10px; margin-bottom:24px; text-align:center;">
+      <strong style="font-size:15px; color:var(--brand-dark);">3 recent 5-star reviews · 1 in August · All from Airbnb</strong>
+    </div>
+
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="review-header">
+          <div class="review-avatar">T</div>
+          <div><div class="review-name">Tim Thomas</div><div class="review-meta">Aug 6–8 · 4 guests · FR · Airbnb</div></div>
+        </div>
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">Tout était parfait! Nous avons choisi cet endroit pour ne pas être trop loin du mariage où nous étions. Excellents échanges toujours réactifs et aidant! Le chef à domicile sur ma demande était là et avait déjà tout préparé (excellent). Petit déjeuner à côté et petit restaurant avec chanteur acoustique: pura vida comme on dirait au costa Rica!</p>
+        <p class="review-text" style="margin-top: 8px; font-style: italic; color: var(--text-mid);">Translation: Everything was perfect! We chose this place to be near our wedding venue. Excellent, always-responsive communication. The private chef I requested was there and had everything prepared (excellent). Breakfast spot nearby and a small restaurant with an acoustic singer: pura vida, as they say in Costa Rica!</p>
+      </div>
+      <div class="review-card">
+        <div class="review-header">
+          <div class="review-avatar">D</div>
+          <div><div class="review-name">Deler Mirkhan</div><div class="review-meta">Jul 20–22 · 2 guests · SE · Airbnb</div></div>
+        </div>
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">Super trevligt ställe! Precis som på bilderna! Hjälpsam värd och fin städning 🙏🤩🤩💪</p>
+        <p class="review-text" style="margin-top: 8px; font-style: italic; color: var(--text-mid);">Translation: Super nice place! Just like the photos! Helpful host and lovely cleaning.</p>
+      </div>
+      <div class="review-card">
+        <div class="review-header">
+          <div class="review-avatar">K</div>
+          <div><div class="review-name">Khallil Fanich</div><div class="review-meta">Jul 13–17 · 1 guest · FR · Airbnb</div></div>
+        </div>
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">Logement incroyable, nous avons pu passer un super bon sejour merci infiniment, le personnel est au soin, souriant et chaleureux a bientot</p>
+        <p class="review-text" style="margin-top: 8px; font-style: italic; color: var(--text-mid);">Translation: Incredible place, we had a wonderful stay — thank you so much. The staff are attentive, smiling and warm. See you soon.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="market">
+  <div class="container">
+    <div class="section-eyebrow">05 · Market Position</div>
+    <h2 class="section-title">Casa Mimosa vs<br>2BR peer set.</h2>
+    <p class="section-desc">Peer cohort — pricing and forward occupancy for Sept, Oct, Nov 2026 (peer data scraped from Airbnb listings; Casa Mimosa Sept price/occ based on confirmed bookings; Oct/Nov own-villa prices are Aug ADR forward proxy, occupancy from confirmed Hostex bookings as of Sep 5 2026).</p>
+
+    <div class="card">
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Villa</th>
+              <th>Reviews</th>
+              <th>Rating</th>
+              <th>Price avg Sept</th>
+              <th>Occ Sept</th>
+              <th>Price avg Oct</th>
+              <th>Occ Oct</th>
+              <th>Price avg Nov</th>
+              <th>Occ Nov</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="highlight">
+              <td><span class="pill us">CASA MIMOSA</span> 2BR</td>
+              <td>TBD</td>
+              <td>TBD</td>
+              <td>Rp 1,493,000</td>
+              <td>80%</td>
+              <td>Rp 1,800,000</td>
+              <td>32%</td>
+              <td>Rp 1,800,000</td>
+              <td>0%</td>
+            </tr>
+            <tr class="">
+              <td><span class="pill comp">Casa Papaya</span> 2BR</td>
+              <td>55</td>
+              <td>4.90</td>
+              <td>Rp 1,600,000</td>
+              <td>33%</td>
+              <td>Rp 1,800,000</td>
+              <td>0%</td>
+              <td>Rp 1,800,000</td>
+              <td>0%</td>
+            </tr>
+            <tr class="">
+              <td><span class="pill comp">Casa Del Cielo</span> 2BR</td>
+              <td>43</td>
+              <td>4.77</td>
+              <td>Rp 1,608,790</td>
+              <td>37%</td>
+              <td>Rp 1,521,828</td>
+              <td>0%</td>
+              <td>Rp 1,690,920</td>
+              <td>0%</td>
+            </tr>
+            <tr class="">
+              <td><span class="pill comp">Casa Kaplan</span> 2BR</td>
+              <td>38</td>
+              <td>4.92</td>
+              <td>Rp 1,434,866</td>
+              <td>100%</td>
+              <td>Rp 1,434,866</td>
+              <td>0%</td>
+              <td>Rp 1,594,296</td>
+              <td>0%</td>
+            </tr>
+            <tr class="">
+              <td><span class="pill comp">NEW Designer's</span> 2BR</td>
+              <td>3</td>
+              <td>4.67</td>
+              <td>Rp 1,518,360</td>
+              <td>10%</td>
+              <td>Rp 1,872,303</td>
+              <td>0%</td>
+              <td>Rp 1,872,303</td>
+              <td>0%</td>
+            </tr>
+            <tr class="">
+              <td><span class="pill comp">Contemporary</span> 2BR</td>
+              <td>7</td>
+              <td>4.86</td>
+              <td>Rp 1,803,947</td>
+              <td>50%</td>
+              <td>Rp 1,796,626</td>
+              <td>0%</td>
+              <td>Rp 1,796,626</td>
+              <td>0%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size: 11px; color: var(--text-mid); margin-top: 10px;">Own Sept price = Sept-confirmed revenue ÷ nights. Oct/Nov own-villa prices are Aug ADR forward proxy. Occupancy reflects confirmed bookings on Hostex as of Sep 5, 2026.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING STRATEGY -->
+<section id="pricing">
+  <div class="container">
+    <div class="section-eyebrow">06 · Pricing Strategy</div>
+    <h2 class="section-title">September tiers.</h2>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:24px;">
+      <div style="padding:24px;border-radius:14px;text-align:center;border:2px solid var(--warn);background:white;">
+        <div style="font-size:11px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-mid);margin-bottom:12px;">Low Tier</div>
+        <div style="font-family:'Impact','Arial Black',sans-serif;font-weight:900;font-size:30px;color:var(--brand-dark);margin-bottom:4px;">Rp 1,400k</div>
+        <div style="font-size:12px;color:var(--text-mid);">gap-fill / last-minute</div>
+      </div>
+      <div style="padding:24px;border-radius:14px;text-align:center;border:2px solid var(--brand-mid);background:white;">
+        <div style="font-size:11px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-mid);margin-bottom:12px;">Normal Tier</div>
+        <div style="font-family:'Impact','Arial Black',sans-serif;font-weight:900;font-size:30px;color:var(--brand-dark);margin-bottom:4px;">Rp 1,800k</div>
+        <div style="font-size:12px;color:var(--text-mid);">shoulder-season demand</div>
+      </div>
+      <div style="padding:24px;border-radius:14px;text-align:center;border:2px solid var(--brand-dark);background:var(--brand-dark);color:white;">
+        <div style="font-size:11px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:white;margin-bottom:12px;">High Tier</div>
+        <div style="font-family:'Impact','Arial Black',sans-serif;font-weight:900;font-size:30px;color:white;margin-bottom:4px;">Rp 2,200k</div>
+        <div style="font-size:12px;color:var(--brand-light);">weekend / peak dates</div>
+      </div>
+    </div>
+    <div class="narrative" style="border-left: 4px solid var(--brand-mid); background: var(--cream, #FBF6EF); padding: 16px 20px; border-radius: 6px;">
+      <div style="font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--brand-dark);margin-bottom:8px;">Implementation plan</div>
+      <p style="font-size:13px;color:var(--text-dark);line-height:1.5;">September pricing recommendations to fill remaining open nights.</p>
+    </div>
+  </div>
+</section>
+
+<section id="outlook">
+  <div class="container">
+    <div class="section-eyebrow">07 · Outlook · September 2026</div>
+    <h2 class="section-title">Where we're at,<br>where we can land.</h2>
+
+    <div class="card" style="margin-bottom: 32px;">
+      <div class="card-title">Booking Pace · September</div>
+      <div style="display: flex; justify-content: space-between; align-items: baseline; margin: 8px 0 16px;">
+        <div>
+          <span style="font-family:'Impact','Arial Black',sans-serif;font-size:48px;color:var(--brand-dark);line-height:1;">28</span>
+          <span style="font-size:18px;color:var(--text-mid);margin-left:8px;">of 30 nights booked · Rp 43.07M revenue locked</span>
+        </div>
+        <div style="text-align:right;">
+          <div style="font-family:'Impact','Arial Black',sans-serif;font-size:32px;color:var(--brand-mid);line-height:1;">2</div>
+          <div style="font-size:12px;color:var(--text-mid);">still available</div>
+        </div>
+      </div>
+      <div style="height:24px;background:var(--brand-light);border-radius:100px;overflow:hidden;">
+        <div style="height:100%;width:93%;background:linear-gradient(90deg,var(--brand-dark),var(--brand-mid));border-radius:100px;"></div>
+      </div>
+      <div style="display:flex;justify-content:space-between;margin-top:8px;font-size:11px;color:var(--text-mid);">
+        <span>93% booked</span>
+        <span>1 cancellation noted</span>
+      </div>
+    </div>
+
+    <div class="grid-3" style="margin-bottom: 32px;">
+      <div class="card" style="border-top: 4px solid var(--warn);">
+        <div style="font-size:11px;font-weight:700;letter-spacing:0.15em;color:var(--warn);text-transform:uppercase;margin-bottom:8px;">Conservative</div>
+        <div style="font-size:12px;color:var(--text-mid);margin-bottom:16px;">Already locked</div>
+        <div style="font-family:'Impact','Arial Black',sans-serif;font-size:40px;color:var(--brand-dark);line-height:1;">Rp 43.1M</div>
+        <div style="font-size:12px;color:var(--text-mid);margin-top:8px;">28/30 · 93% occ</div>
+        <div style="border-top:1px solid var(--border);padding-top:12px;margin-top:14px;font-size:12px;color:var(--text-mid);">No further conversion</div>
+      </div>
+      <div class="card" style="border-top: 4px solid var(--brand-mid);box-shadow: 0 8px 32px rgba(107,44,31,0.15);position: relative;">
+        <div style="position:absolute;top:-12px;right:16px;background:var(--brand-dark);color:white;padding:3px 10px;border-radius:100px;font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;">Target</div>
+        <div style="font-size:11px;font-weight:700;letter-spacing:0.15em;color:var(--brand-mid);text-transform:uppercase;margin-bottom:8px;">Expected</div>
+        <div style="font-size:12px;color:var(--text-mid);margin-bottom:16px;">Realistic pickup</div>
+        <div style="font-family:'Impact','Arial Black',sans-serif;font-size:40px;color:var(--brand-dark);line-height:1;">Rp 46.1M</div>
+        <div style="font-size:12px;color:var(--text-mid);margin-top:8px;">30/30 · 100% occ</div>
+        <div style="border-top:1px solid var(--border);padding-top:12px;margin-top:14px;font-size:12px;color:var(--text-mid);">Normal tier holds</div>
+      </div>
+      <div class="card" style="border-top: 4px solid var(--success);">
+        <div style="font-size:11px;font-weight:700;letter-spacing:0.15em;color:var(--success);text-transform:uppercase;margin-bottom:8px;">Strong</div>
+        <div style="font-size:12px;color:var(--text-mid);margin-bottom:16px;">Upside if gaps fill</div>
+        <div style="font-family:'Impact','Arial Black',sans-serif;font-size:40px;color:var(--brand-dark);line-height:1;">Rp 46.1M</div>
+        <div style="font-size:12px;color:var(--text-mid);margin-top:8px;">30/30 · 100% occ</div>
+        <div style="border-top:1px solid var(--border);padding-top:12px;margin-top:14px;font-size:12px;color:var(--text-mid);">Last-minute demand holds</div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom: 32px;">
+      <div class="card-title">September confirmed bookings · Casa Mimosa</div>
+      <div class="table-wrap">
+        <table class="projection-table" style="font-size:12px;">
+          <thead><tr>
+            <th style="text-align:left;">Guest</th>
+            <th>Channel</th>
+            <th>Check-in</th>
+            <th>Check-out</th>
+            <th>Sept nights</th>
+            <th>Revenue (Rp)</th>
+          </tr></thead>
+          <tbody>
+            <tr><td style='text-align:left;'>Bas Van Leeuwen (carryover)</td><td>Airbnb</td><td>Aug 31</td><td>Sep 05</td><td>4</td><td>7,244,502</td></tr><tr><td style='text-align:left;'>Mehdi</td><td>Airbnb</td><td>Sep 05</td><td>Sep 10</td><td>5</td><td>7,256,892</td></tr><tr><td style='text-align:left;'>Jessie Earl</td><td>Airbnb</td><td>Sep 10</td><td>Sep 20</td><td>10</td><td>14,877,043</td></tr><tr><td style='text-align:left;'>Ya Jing Fong</td><td>Airbnb</td><td>Sep 20</td><td>Sep 23</td><td>3</td><td>4,344,270</td></tr><tr><td style='text-align:left;'>Mohammad Raizuly Ahmad</td><td>Booking</td><td>Sep 24</td><td>Sep 30</td><td>6</td><td>9,345,100</td></tr><tr style="background:#FDECEC;color:var(--text-mid);"><td style='text-align:left;'>Maya Prause</td><td>Airbnb</td><td>Sep 05</td><td>Sep 11</td><td>—</td><td><em>cancelled</em></td></tr><tr class='total-row'><td style='text-align:left;'>Total (Sept nights)</td><td></td><td></td><td></td><td>28</td><td>43,067,807</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size:11px;color:var(--text-mid);margin-top:10px;">
+        <span style="display:inline-block;width:12px;height:12px;background:#FBF6EF;border-radius:2px;vertical-align:middle;margin-right:4px;"></span>Direct booking
+        &nbsp;&nbsp;
+        <span style="display:inline-block;width:12px;height:12px;background:#F4E9D8;border-radius:2px;vertical-align:middle;margin-right:4px;"></span>LTR / long-stay
+        &nbsp;&nbsp;
+        <span style="display:inline-block;width:12px;height:12px;background:#EEE9E4;border-radius:2px;vertical-align:middle;margin-right:4px;"></span>Block / maintenance
+        &nbsp;&nbsp;
+        <span style="display:inline-block;width:12px;height:12px;background:#FDECEC;border-radius:2px;vertical-align:middle;margin-right:4px;"></span>Cancelled
+      </p>
+    </div>
+    <div class="narrative" style="border-left:4px solid var(--brand-dark);background:linear-gradient(135deg,var(--cream) 0%,var(--brand-light) 100%);padding:20px 24px;border-radius:10px;">
+      <div style="font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--brand-mid);margin-bottom:8px;">Sept outlook · narrative</div>
+      <p style="font-size:14px;color:var(--text-dark);line-height:1.5;">Sept pace is <strong>strong</strong> at <strong>93% booked</strong> (28/30 nights, Rp 43.07M locked). Best-in-portfolio pace: Bas carryover, then Mehdi/Jessie/Ya Jing/Raizuly chain covers Sep 5-30 with only a Sep 23-24 gap. Maya Prause cancel absorbed by Jessie's 10-night booking.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-eyebrow">08 · Deep dive</div>
+    <h2 class="section-title">Detailed financials.</h2>
+    <p class="section-desc">Full P&L breakdown and complete August booking list. Click to expand.</p>
+
+    <div class="expandable open" onclick="this.classList.toggle('open')">
+      <div class="expand-header">
+        <div class="expand-title">Year-to-Date P&L — Casa Mimosa 2026 (Jan–Aug)</div>
+        <div class="expand-icon">+</div>
+      </div>
+      <div class="expand-content"><div class="expand-inner">
+        <p style="font-size: 12px; color: var(--text-mid); margin-bottom: 12px;">Jan–Jul columns: official finance reports (Casa Mimosa 2026 P&L). Aug column is a preliminary estimate; formal Aug P&L to be issued end of month.</p>
+        <div class="table-wrap">
+        <table class="projection-table" style="font-size: 11.5px;">
+          <thead>
+            <tr>
+              <th style="text-align:left;">Category</th>
+              <th>Jan</th><th>Feb</th><th>Mar</th><th>Apr</th><th>May</th><th>Jun</th><th>Jul</th><th style="background:#4A1D14;">Aug</th><th style="background:var(--brand-mid);">YTD Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td colspan="10" style="background:var(--brand-light);font-weight:700;text-align:left;">REVENUE</td></tr><tr class=""><td style="text-align:left;">Direct – WhatsApp</td><td >6,487,503</td><td >1,300,000</td><td >0</td><td >2,600,000</td><td >0</td><td >0</td><td >1,700,000</td><td style="background:#F4D9CC;">0</td><td>12,087,503</td></tr><tr class=""><td style="text-align:left;">Direct – Delima</td><td >0</td><td >5,121,429</td><td >5,528,571</td><td >0</td><td >10,500,000</td><td >0</td><td >0</td><td style="background:#F4D9CC;">0</td><td>21,150,000</td></tr><tr class=""><td style="text-align:left;">OTA – Airbnb</td><td >45,603,979</td><td >34,909,773</td><td >41,756,176</td><td >43,599,871</td><td >16,983,200</td><td >46,817,692</td><td >33,464,558</td><td style="background:#F4D9CC;">40,070,250</td><td>303,205,499</td></tr><tr class=""><td style="text-align:left;">OTA – Booking</td><td >0</td><td >0</td><td >0</td><td >0</td><td >3,300,000</td><td >1,281,850</td><td >8,222,500</td><td style="background:#F4D9CC;">6,600,000</td><td>19,404,350</td></tr><tr class="total-row"><td style="text-align:left;">Total Income</td><td >52,091,482</td><td >41,331,201</td><td >47,284,748</td><td >46,199,871</td><td >30,783,200</td><td >48,099,542</td><td >43,387,058</td><td style="background:var(--brand-mid);color:white;">46,670,250</td><td>355,847,352</td></tr>
+            <tr><td colspan="10" style="background:var(--brand-light);font-weight:700;text-align:left;">OPERATIONAL EXPENSES</td></tr><tr class=""><td style="text-align:left;">Bank Charge</td><td >0</td><td >39,500</td><td >0</td><td >2,500</td><td >5,000</td><td >2,500</td><td >0</td><td style="background:#F4D9CC;">8,250</td><td>57,750</td></tr><tr class=""><td style="text-align:left;">Banjar Fee</td><td >100,000</td><td >100,000</td><td >100,000</td><td >100,000</td><td >100,000</td><td >100,000</td><td >100,000</td><td style="background:#F4D9CC;">100,000</td><td>800,000</td></tr><tr class=""><td style="text-align:left;">Cleaning Supplies</td><td >92,875</td><td >95,488</td><td >160,947</td><td >155,426</td><td >251,193</td><td >119,239</td><td >220,736</td><td style="background:#F4D9CC;">131,137</td><td>1,227,041</td></tr><tr class=""><td style="text-align:left;">Electricity</td><td >1,911,000</td><td >2,619,250</td><td >2,202,750</td><td >2,211,000</td><td >3,213,750</td><td >2,313,750</td><td >2,708,250</td><td style="background:#F4D9CC;">2,200,000</td><td>19,379,750</td></tr><tr class=""><td style="text-align:left;">Equipment</td><td >508,500</td><td >3,500</td><td >199,500</td><td >230,000</td><td >35,000</td><td >405,260</td><td >0</td><td style="background:#F4D9CC;">0</td><td>1,381,760</td></tr><tr class=""><td style="text-align:left;">Beverages & Consumables</td><td >205,500</td><td >146,000</td><td >120,000</td><td >200,000</td><td >214,000</td><td >100,000</td><td >60,000</td><td style="background:#F4D9CC;">162,060</td><td>1,207,560</td></tr><tr class=""><td style="text-align:left;">Garbage Collection</td><td >350,000</td><td >350,000</td><td >350,000</td><td >350,000</td><td >350,000</td><td >350,000</td><td >350,000</td><td style="background:#F4D9CC;">350,000</td><td>2,800,000</td></tr><tr class=""><td style="text-align:left;">Guest Supplies</td><td >363,911</td><td >247,117</td><td >532,581</td><td >240,477</td><td >273,900</td><td >114,444</td><td >388,068</td><td style="background:#F4D9CC;">1,140,594</td><td>3,301,092</td></tr><tr class=""><td style="text-align:left;">Internet</td><td >277,500</td><td >277,500</td><td >277,500</td><td >277,500</td><td >277,500</td><td >277,500</td><td >277,500</td><td style="background:#F4D9CC;">3,330,000</td><td>5,272,500</td></tr><tr class=""><td style="text-align:left;">Laundry</td><td >1,358,730</td><td >1,082,520</td><td >890,940</td><td >554,240</td><td >1,619,130</td><td >1,516,830</td><td >1,355,010</td><td style="background:#F4D9CC;">1,365,240</td><td>9,742,640</td></tr><tr class=""><td style="text-align:left;">Delivery Fee</td><td >41,667</td><td >0</td><td >0</td><td >0</td><td >6,571</td><td >0</td><td >5,136</td><td style="background:#F4D9CC;">6,000</td><td>59,374</td></tr><tr class=""><td style="text-align:left;">Housekeeping</td><td >1,130,682</td><td >1,130,682</td><td >1,130,682</td><td >1,130,682</td><td >1,130,682</td><td >1,130,682</td><td >1,130,682</td><td style="background:#F4D9CC;">1,130,682</td><td>9,045,456</td></tr><tr class=""><td style="text-align:left;">Maintenance</td><td >200,000</td><td >1,425,000</td><td >925,000</td><td >710,000</td><td >0</td><td >200,000</td><td >0</td><td style="background:#F4D9CC;">0</td><td>3,460,000</td></tr><tr class=""><td style="text-align:left;">Material for maintenance</td><td >0</td><td >0</td><td >627,000</td><td >35,000</td><td >0</td><td >120,000</td><td >22,000</td><td style="background:#F4D9CC;">0</td><td>804,000</td></tr><tr class=""><td style="text-align:left;">Pool & Gardener</td><td >900,000</td><td >500,000</td><td >500,000</td><td >500,000</td><td >500,000</td><td >500,000</td><td >500,000</td><td style="background:#F4D9CC;">500,000</td><td>4,400,000</td></tr><tr class=""><td style="text-align:left;">Marketing</td><td >0</td><td >67,898</td><td >0</td><td >0</td><td >0</td><td >0</td><td >0</td><td style="background:#F4D9CC;">0</td><td>67,898</td></tr><tr class=""><td style="text-align:left;">Miscellaneous</td><td >0</td><td >0</td><td >0</td><td >0</td><td >0</td><td >0</td><td >0</td><td style="background:#F4D9CC;">255,000</td><td>255,000</td></tr><tr class="total-row"><td style="text-align:left;">Total Operational Exp.</td><td >7,440,365</td><td >8,084,454</td><td >8,016,901</td><td >6,696,825</td><td >7,976,726</td><td >7,250,205</td><td >7,117,382</td><td style="background:var(--brand-mid);color:white;">10,678,963</td><td>63,261,821</td></tr><tr class="total-row"><td style="text-align:left;">Profit After Operational Exp.</td><td >44,651,117</td><td >33,246,747</td><td >39,267,847</td><td >39,503,046</td><td >22,806,474</td><td >40,849,337</td><td >36,269,676</td><td style="background:var(--brand-mid);color:white;">35,991,287</td><td>292,585,531</td></tr>
+            <tr><td colspan="10" style="background:var(--brand-light);font-weight:700;text-align:left;">OTHER EXPENSES</td></tr><tr class=""><td style="text-align:left;">Management Fee</td><td >6,636,829</td><td >5,298,770</td><td >6,015,072</td><td >5,804,818</td><td >3,267,272</td><td >4,805,335</td><td >4,326,054</td><td style="background:#F4D9CC;">4,621,031</td><td>40,775,181</td></tr><tr class=""><td style="text-align:left;">OTA Commission</td><td >7,845,958</td><td >6,006,069</td><td >7,184,265</td><td >7,501,083</td><td >3,555,937</td><td >8,055,082</td><td >7,336,611</td><td style="background:#F4D9CC;">8,161,656</td><td>55,646,661</td></tr><tr class="total-row"><td style="text-align:left;">Total Other Exp.</td><td >14,482,787</td><td >11,304,839</td><td >13,199,337</td><td >13,305,901</td><td >6,823,209</td><td >12,860,417</td><td >11,662,665</td><td style="background:var(--brand-mid);color:white;">12,782,687</td><td>96,421,842</td></tr><tr class="total-row"><td style="text-align:left;">Earning Before Tax</td><td >30,168,330</td><td >21,941,908</td><td >26,068,510</td><td >26,197,145</td><td >15,983,265</td><td >27,988,920</td><td >24,607,011</td><td style="background:var(--brand-mid);color:white;">23,208,600</td><td>196,163,689</td></tr><tr class=""><td style="text-align:left;">Government Tax (10%)</td><td >5,209,148</td><td >3,620,977</td><td >4,175,618</td><td >4,619,987</td><td >2,028,320</td><td >4,809,954</td><td >4,338,706</td><td style="background:#F4D9CC;">4,667,025</td><td>33,469,735</td></tr><tr class="total-row" style="background:var(--brand-dark);color:white;"><td style="text-align:left;">NET PROFIT</td><td >24,959,183</td><td >18,320,931</td><td >21,892,892</td><td >21,577,157</td><td >13,954,945</td><td >23,178,966</td><td >20,268,305</td><td style="background:#4A1D14;">18,541,575</td><td>162,693,954</td></tr>
+            <tr><td colspan="10" style="background:var(--brand-light);font-weight:700;text-align:left;">PERFORMANCE</td></tr><tr><td style="text-align:left;">Occupancy Rate</td><td>84%</td><td>82%</td><td>94%</td><td>87%</td><td>65%</td><td>80%</td><td>65%</td><td style="background:#F4D9CC;">84%</td><td>80% avg</td></tr><tr><td style="text-align:left;">Average Nightly Rate (Rp)</td><td>2,003,519</td><td>1,797,009</td><td>1,630,509</td><td>1,776,918</td><td>1,539,160</td><td>2,004,148</td><td>2,169,353</td><td style="background:#F4D9CC;">1,795,010</td><td>1,839,453 avg</td></tr>
+          </tbody>
+        </table>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="expandable" style="margin-top: 20px;" onclick="this.classList.toggle('open')">
+      <div class="expand-header">
+        <div class="expand-title">Full P&L — August 2026</div>
+        <div class="expand-icon">+</div>
+      </div>
+      <div class="expand-content"><div class="expand-inner">
+        <table class="projection-table">
+          <thead><tr><th>Line</th><th>IDR</th><th>% of Revenue</th></tr></thead>
+          <tbody><tr><td colspan="3" style="background:var(--brand-light);font-weight:700;">REVENUE</td></tr><tr><td style="text-align:left;">OTA – Airbnb</td><td>40,070,250</td><td>85.9%</td></tr><tr><td style="text-align:left;">OTA – Booking.com</td><td>6,600,000</td><td>14.1%</td></tr><tr class="total-row"><td style="text-align:left;">Total Income</td><td>46,670,250</td><td>100%</td></tr><tr><td colspan="3" style="background:var(--brand-light);font-weight:700;">OPERATIONAL EXPENSES</td></tr><tr><td style="text-align:left;">Internet <em>(annual prepay hit Aug; normalized monthly ~Rp 277K)</em></td><td>3,330,000</td><td>6.9%</td></tr><tr><td style="text-align:left;">Electricity</td><td>2,200,000</td><td>4.6%</td></tr><tr><td style="text-align:left;">Laundry</td><td>1,365,240</td><td>2.8%</td></tr><tr><td style="text-align:left;">Guest Supplies</td><td>1,140,594</td><td>2.4%</td></tr><tr><td style="text-align:left;">Housekeeping</td><td>1,130,682</td><td>2.4%</td></tr><tr><td style="text-align:left;">Pool & Gardener</td><td>500,000</td><td>1.0%</td></tr><tr><td style="text-align:left;">Garbage Collection</td><td>350,000</td><td>0.7%</td></tr><tr><td style="text-align:left;">Miscellaneous / Other</td><td>255,000</td><td>0.5%</td></tr><tr><td style="text-align:left;">Beverages & Consumables</td><td>162,060</td><td>0.3%</td></tr><tr><td style="text-align:left;">Cleaning Supplies</td><td>131,137</td><td>0.3%</td></tr><tr><td style="text-align:left;">Banjar Fee</td><td>100,000</td><td>0.2%</td></tr><tr><td style="text-align:left;">Bank Charge</td><td>8,250</td><td>0.0%</td></tr><tr><td style="text-align:left;">Delivery Fee</td><td>6,000</td><td>0.0%</td></tr><tr class="total-row"><td style="text-align:left;">Total Operational</td><td>10,678,963</td><td>22.9%</td></tr><tr><td colspan="3" style="background:var(--brand-light);font-weight:700;">OTHER EXPENSES</td></tr><tr><td style="text-align:left;">Management Fee (12% × [Income − OTA Comm])</td><td>4,621,031</td><td>9.9%</td></tr><tr><td style="text-align:left;">OTA Commission (Airbnb + Booking.com incl. 11% VAT)</td><td>8,161,656</td><td>17.5%</td></tr><tr><td style="text-align:left;">Government Tax (10% × OTA revenue)</td><td>4,667,025</td><td>10.0%</td></tr><tr class="total-row"><td style="text-align:left;">Total Other Expenses</td><td>17,449,712</td><td>37.4%</td></tr><tr class="total-row" style="background:var(--brand-dark);color:white;"><td style="text-align:left;">NET PROFIT</td><td>18,541,575</td><td>40%</td></tr>
+          </tbody>
+        </table>
+      </div></div>
+    </div>
+
+    <div class="expandable" style="margin-top: 20px;" onclick="this.classList.toggle('open')">
+      <div class="expand-header">
+        <div class="expand-title">Booking list — August 2026</div>
+        <div class="expand-icon">+</div>
+      </div>
+      <div class="expand-content"><div class="expand-inner">
+        <table class="projection-table">
+          <thead><tr><th>Guest</th><th>Channel</th><th>Type</th><th>Check-in</th><th>Check-out</th><th>Nights</th><th>Commission (Rp)</th><th>Revenue (Rp)</th></tr></thead>
+          <tbody><tr ><td style="text-align:left;">Asta Kidde Rønnow Nørgaard</td><td style="text-align:left;">Airbnb</td><td style="text-align:left;">Paid</td><td style="text-align:left;">Aug 10</td><td style="text-align:left;">Aug 13</td><td>3</td><td>-825,842</td><td>4,800,000</td></tr><tr ><td style="text-align:left;">Salomo Sihombing</td><td style="text-align:left;">Airbnb</td><td style="text-align:left;">Paid</td><td style="text-align:left;">Aug 24</td><td style="text-align:left;">Aug 25</td><td>1</td><td>-261,516</td><td>1,520,000</td></tr><tr ><td style="text-align:left;">보미 장</td><td style="text-align:left;">Airbnb</td><td style="text-align:left;">Paid</td><td style="text-align:left;">Aug 20</td><td style="text-align:left;">Aug 23</td><td>3</td><td>-833,587</td><td>4,845,000</td></tr><tr ><td style="text-align:left;">慈捷</td><td style="text-align:left;">Airbnb</td><td style="text-align:left;">Paid</td><td style="text-align:left;">Aug 8</td><td style="text-align:left;">Aug 10</td><td>2</td><td>-523,020</td><td>3,040,000</td></tr><tr ><td style="text-align:left;">Bas Van Leeuwen</td><td style="text-align:left;">Airbnb</td><td style="text-align:left;">Paid (split stay)</td><td style="text-align:left;">Aug 31</td><td style="text-align:left;">Sep 5</td><td>1</td><td>-301,100</td><td>1,750,000</td></tr><tr ><td style="text-align:left;">Genn Ang</td><td style="text-align:left;">Airbnb</td><td style="text-align:left;">Paid (partial Aug)</td><td style="text-align:left;">Jul 31</td><td style="text-align:left;">Aug 2</td><td>1</td><td>-421,624</td><td>2,450,250</td></tr><tr ><td style="text-align:left;">Nadine Tritschler</td><td style="text-align:left;">Airbnb</td><td style="text-align:left;">Paid</td><td style="text-align:left;">Aug 27</td><td style="text-align:left;">Aug 31</td><td>4</td><td>-1,155,400</td><td>6,715,000</td></tr><tr ><td style="text-align:left;">杨筱</td><td style="text-align:left;">Airbnb</td><td style="text-align:left;">Paid</td><td style="text-align:left;">Aug 14</td><td style="text-align:left;">Aug 20</td><td>6</td><td>-1,720,499</td><td>10,000,000</td></tr><tr ><td style="text-align:left;">Tim Thomas</td><td style="text-align:left;">Airbnb</td><td style="text-align:left;">Paid</td><td style="text-align:left;">Aug 6</td><td style="text-align:left;">Aug 8</td><td>2</td><td>-851,670</td><td>4,950,000</td></tr><tr ><td style="text-align:left;">Georgia Mclelland</td><td style="text-align:left;">Booking.com</td><td style="text-align:left;">Paid</td><td style="text-align:left;">Aug 25</td><td style="text-align:left;">Aug 27</td><td>2</td><td>-940,947</td><td>4,900,000</td></tr><tr ><td style="text-align:left;">Husan Ohunjonov</td><td style="text-align:left;">Booking.com</td><td style="text-align:left;">Paid</td><td style="text-align:left;">Aug 2</td><td style="text-align:left;">Aug 3</td><td>1</td><td>-326,451</td><td>1,700,000</td></tr><tr class="total-row"><td style="text-align:left;">Total</td><td></td><td></td><td></td><td></td><td>26 nights</td><td>-8,161,656</td><td>46,670,250</td></tr>
+          </tbody>
+        </table>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<div class="footer">
+  <div class="footer-brand">Delima Housing</div>
+  <div class="footer-tag">Your Property · Our Priority</div>
+  <div class="footer-contact">
+    <span>+62 878-9560-3000</span>·<span>info@delimahousing.com</span>·<span>www.delimahousing.com</span>
+  </div>
+  <div class="footer-mini">Casa Mimosa · August 2026 · Report generated Sep 2026 · Next report: October 2026</div>
+</div>
+
+<script>
+const BRAND_DARK = '#6B2C1F';
+const BRAND_MID = '#C97B5F';
+const BRAND_LIGHT = '#F4D9CC';
+const CREAM = '#FBF6EF';
+const SUCCESS = '#5BA678';
+const GOLD = '#E6A017';
+const TEXT_MID = '#6B5445';
+
+Chart.defaults.font.family = "-apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif";
+Chart.defaults.color = TEXT_MID;
+Chart.defaults.plugins.legend.labels.usePointStyle = true;
+Chart.defaults.plugins.legend.labels.padding = 12;
+Chart.defaults.plugins.legend.labels.font = { size: 11, weight: 500 };
+
+const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'];
+
+new Chart(document.getElementById('revenueChart'), {
+  type: 'line',
+  data: {
+    labels: months,
+    datasets: [
+      { label: 'Total Income (IDR M)', data: [52.09, 41.33, 47.28, 46.2, 30.78, 48.1, 43.39, 46.67], borderColor: BRAND_DARK, backgroundColor: 'rgba(107,44,31,0.08)', borderWidth: 3, tension: 0.3, fill: true, pointRadius: 5, pointBackgroundColor: BRAND_DARK }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    scales: { y: { beginAtZero: true, ticks: { callback: v => 'Rp ' + v + 'M' } } },
+    plugins: { legend: { position: 'top' }, tooltip: { callbacks: { label: c => 'Rp ' + c.parsed.y.toFixed(2) + 'M' } } }
+  }
+});
+
+new Chart(document.getElementById('revenueSourceChart'), {
+  type: 'doughnut',
+  data: {
+    labels: ['OTA (Airbnb + Booking.com)', 'Direct'],
+    datasets: [{ data: [46670250, 0], backgroundColor: ['#6B2C1F', '#C97B5F'], borderWidth: 0 }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false, cutout: '65%',
+    plugins: { legend: { position: 'bottom' }, tooltip: { callbacks: { label: c => c.label + ': Rp ' + (c.parsed/1000).toFixed(2) + 'M' } } }
+  }
+});
+
+new Chart(document.getElementById('expenseChart'), {
+  type: 'doughnut',
+  data: {
+    labels: ['Internet', 'Electricity', 'Laundry', 'Guest Supplies', 'Housekeeping', 'Pool & Gardener', 'Garbage Collection', 'Miscellaneous / Other', 'Beverages & Consumables', 'Other'],
+    datasets: [{ data: [3330, 2200, 1355, 1141, 1131, 500, 350, 255, 162, 245], backgroundColor: ['#6B2C1F', '#7A3323', '#8A3A28', '#A94F36', '#C97B5F', '#D89478', '#E5AA92', '#EDBFAB', '#F4D9CC', '#F9E9DE'], borderWidth: 0 }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false, cutout: '55%',
+    plugins: { legend: { position: 'right', labels: { font: { size: 10 } } }, tooltip: { callbacks: { label: c => c.label + ': Rp ' + c.parsed.toLocaleString() + 'k' } } }
+  }
+});
+
+new Chart(document.getElementById('netProfitChart'), {
+  type: 'line',
+  data: {
+    labels: months,
+    datasets: [
+      { label: 'Net Profit (IDR M)', data: [24.96, 18.32, 21.89, 21.58, 13.95, 23.18, 20.27, 18.54], borderColor: BRAND_DARK, backgroundColor: 'rgba(107,44,31,0.08)', borderWidth: 3, tension: 0.3, fill: true, pointRadius: 5, pointBackgroundColor: BRAND_DARK }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    scales: { y: { beginAtZero: true, ticks: { callback: v => 'Rp ' + v + 'M' } } },
+    plugins: { legend: { position: 'top' }, tooltip: { callbacks: { label: c => 'Rp ' + c.parsed.y.toFixed(2) + 'M' } } }
+  }
+});
+
+new Chart(document.getElementById('marginChart'), {
+  type: 'bar',
+  data: {
+    labels: months,
+    datasets: [{ label: 'Profit Margin %', data: [48, 44, 46, 47, 45, 48, 47, 40], backgroundColor: BRAND_LIGHT, borderColor: BRAND_MID, borderWidth: 2, borderRadius: 6 }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    scales: { y: { beginAtZero: true, max: 100, ticks: { callback: v => v + '%' } } },
+    plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => 'Margin: ' + c.parsed.y + '%' } } }
+  }
+});
+
+new Chart(document.getElementById('adrChart'), {
+  type: 'bar',
+  data: {
+    labels: months,
+    datasets: [{ data: [2004, 1797, 1631, 1777, 1539, 2004, 2169, 1795], backgroundColor: ['#C97B5F', '#C97B5F', '#C97B5F', '#C97B5F', '#C97B5F', '#C97B5F', '#C97B5F', '#6B2C1F'], borderRadius: 6 }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    scales: { y: { beginAtZero: true, ticks: { callback: v => 'Rp ' + (v/1000).toFixed(1) + 'M' } } },
+    plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => 'Rp ' + c.parsed.y.toLocaleString() + 'k' } } }
+  }
+});
+
+new Chart(document.getElementById('occupancyChart'), {
+  type: 'bar',
+  data: {
+    labels: months,
+    datasets: [{ data: [84, 82, 94, 87, 65, 80, 65, 84], backgroundColor: ['#C97B5F', '#C97B5F', '#C97B5F', '#C97B5F', '#C97B5F', '#C97B5F', '#C97B5F', '#6B2C1F'], borderRadius: 6 }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    scales: { y: { beginAtZero: true, max: 100, ticks: { callback: v => v + '%' } } },
+    plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => c.parsed.y + '% occupancy' } } }
+  }
+});
+
+new Chart(document.getElementById('nightsChart'), {
+  type: 'bar',
+  data: {
+    labels: ['Aug (OTA)','Aug (direct)'],
+    datasets: [{ data: [26, 0], backgroundColor: [BRAND_DARK, BRAND_LIGHT], borderRadius: 6 }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    scales: { y: { beginAtZero: true, ticks: { callback: v => v + ' nts' } } },
+    plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => c.parsed.y + ' nights' } } }
+  }
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Villa Deja Living — Monthly Report · August 2026</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0/dist/chart.umd.js" integrity="sha384-iU8HYtnGQ8Cy4zl7gbNMOhsDTTKX02BTXptVP/vqAWIaTfM7isw76iyZCsjL2eVi" crossorigin="anonymous"></script>
+<style>:root {
+  color-scheme: light;
+  --brand-dark: #6B2C1F; --brand-mid: #C97B5F; --brand-light: #F4D9CC;
+  --brand-bg: #FAF1E8; --cream: #FBF6EF; --text-dark: #2C1810;
+  --text-mid: #6B5445; --text-light: #A08977; --success: #5BA678;
+  --danger: #C44545; --warn: #D9933A; --gold: #E6A017; --border: #E8DCCD;
+  --shadow: 0 2px 12px rgba(107,44,31,0.08);
+  --shadow-lg: 0 8px 32px rgba(107,44,31,0.12);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  background: var(--brand-bg); color: var(--text-dark); line-height: 1.55; -webkit-font-smoothing: antialiased; }
+.display { font-family: 'Impact', 'Arial Black', sans-serif; font-weight: 900; letter-spacing: 0.02em; text-transform: uppercase; }
+.nav { position: sticky; top: 0; z-index: 100; background: rgba(251,246,239,0.95); backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border); padding: 12px 24px; display: flex; justify-content: space-between; align-items: center; }
+.nav-brand { font-family: 'Impact', 'Arial Black', sans-serif; font-weight: 900; letter-spacing: 0.02em; font-size: 20px; color: var(--brand-dark); }
+.nav-brand small { font-family: -apple-system, BlinkMacSystemFont, sans-serif; font-size: 11px; color: var(--text-mid); font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em; margin-left: 6px; }
+.nav-links { display: flex; gap: 18px; }
+.nav-links a { color: var(--text-mid); text-decoration: none; font-size: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; transition: color .2s; }
+.nav-links a:hover { color: var(--brand-dark); }
+@media (max-width: 768px) { .nav-links { display: none; } }
+.container { max-width: 1240px; margin: 0 auto; padding: 0 24px; }
+section { padding: 72px 0; }
+section + section { border-top: 1px solid var(--border); }
+.hero { background: linear-gradient(135deg, var(--brand-light) 0%, var(--brand-bg) 100%);
+  padding: 80px 24px 60px; text-align: center; border-bottom: 3px solid var(--brand-mid); }
+.hero-eyebrow { font-size: 12px; color: var(--brand-dark); font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 12px; }
+.hero-title { font-family: 'Impact', 'Arial Black', sans-serif; font-weight: 900; letter-spacing: 0.02em; font-size: clamp(48px, 8vw, 92px); color: var(--brand-dark); line-height: 1; letter-spacing: -0.02em; margin-bottom: 8px; }
+.hero-sub { font-size: 20px; color: var(--text-mid); margin-bottom: 40px; letter-spacing: 0.02em; }
+.hero-brand { display: inline-flex; align-items: center; gap: 12px; padding: 8px 20px; background: white; border-radius: 100px; box-shadow: var(--shadow); font-size: 12px; font-weight: 600; color: var(--brand-dark); letter-spacing: 0.1em; text-transform: uppercase; }
+.hero-brand .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--brand-mid); }
+.hero-logo { display: block; height: 120px; width: auto; margin: 0 auto 16px; }
+.stats-strip { max-width: 1240px; margin: -40px auto 0; padding: 0 24px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+@media (max-width: 900px) { .stats-strip { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 480px) { .stats-strip { grid-template-columns: 1fr; } }
+.stat-card { background: white; padding: 24px; border-radius: 14px; box-shadow: var(--shadow); border-top: 3px solid var(--brand-mid); }
+.stat-label { font-size: 10px; color: var(--text-mid); font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 8px; }
+.stat-value { font-family: 'Impact', 'Arial Black', sans-serif; font-weight: 900; letter-spacing: 0.02em; font-size: 36px; color: var(--brand-dark); line-height: 1.05; }
+.stat-value.sm { font-size: 28px; }
+.stat-sub { font-size: 12px; color: var(--text-mid); margin-top: 6px; }
+.stat-delta { font-size: 12px; font-weight: 600; margin-top: 4px; display: inline-flex; align-items: center; gap: 4px; }
+.stat-delta.up { color: var(--success); } .stat-delta.down { color: var(--danger); } .stat-delta.flat { color: var(--text-mid); }
+.section-eyebrow { font-size: 11px; color: var(--brand-mid); font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 8px; }
+.section-title { font-family: 'Impact', 'Arial Black', sans-serif; font-weight: 900; letter-spacing: 0.02em; font-size: clamp(36px, 5vw, 56px); color: var(--brand-dark); line-height: 1; margin-bottom: 24px; }
+.section-desc { font-size: 16px; color: var(--text-mid); max-width: 680px; margin-bottom: 40px; }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.grid-2-1 { display: grid; grid-template-columns: 2fr 1fr; gap: 32px; }
+@media (max-width: 900px) { .grid-2, .grid-3, .grid-2-1 { grid-template-columns: 1fr; } }
+.card { background: white; padding: 28px; border-radius: 14px; box-shadow: var(--shadow); border: 1px solid var(--border); }
+.card-title { font-size: 14px; color: var(--brand-dark); font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 16px; }
+.card-value { font-family: 'Impact', 'Arial Black', sans-serif; font-weight: 900; letter-spacing: 0.02em; font-size: 40px; color: var(--brand-dark); line-height: 1; margin-bottom: 4px; }
+.card-sub { font-size: 13px; color: var(--text-mid); }
+.chart-wrap { position: relative; height: 300px; }
+.chart-wrap.tall { height: 380px; } .chart-wrap.short { height: 220px; }
+.narrative { background: var(--cream); padding: 32px; border-radius: 14px; border-left: 4px solid var(--brand-mid); }
+.narrative-title { font-size: 12px; color: var(--brand-dark); font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 12px; }
+.narrative p { font-size: 15px; color: var(--text-dark); margin-bottom: 10px; } .narrative p:last-child { margin-bottom: 0; }
+.narrative ul { margin: 8px 0 0 20px; } .narrative li { font-size: 14px; color: var(--text-dark); margin-bottom: 6px; }
+.table-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th { text-align: left; padding: 12px 14px; background: var(--brand-dark); color: white; font-weight: 600; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; }
+td { padding: 12px 14px; border-bottom: 1px solid var(--border); color: var(--text-dark); }
+tr:hover td { background: var(--cream); } tr.highlight td { background: var(--brand-light); font-weight: 600; }
+.pill { display: inline-block; padding: 3px 10px; border-radius: 100px; font-size: 11px; font-weight: 600; }
+.pill.us { background: var(--brand-dark); color: white; } .pill.comp { background: var(--cream); color: var(--text-mid); }
+.projection-table { width: 100%; border-collapse: collapse; margin-top: 16px; }
+.projection-table th, .projection-table td { padding: 10px 14px; text-align: right; font-size: 13px; }
+.projection-table th { background: var(--brand-dark); color: white; font-weight: 600; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; }
+.projection-table th:first-child, .projection-table td:first-child { text-align: left; }
+.projection-table tbody tr:nth-child(even) { background: var(--cream); }
+.projection-table tr.total-row td { font-weight: 700; background: var(--brand-light); border-top: 2px solid var(--brand-mid); }
+.expandable { background: white; border-radius: 14px; border: 1px solid var(--border); overflow: hidden; }
+.expand-header { padding: 24px 28px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: background .2s; }
+.expand-header:hover { background: var(--cream); }
+.expand-header .expand-title { font-family: 'Impact', 'Arial Black', sans-serif; font-weight: 900; letter-spacing: 0.02em; font-size: 24px; color: var(--brand-dark); }
+.expand-header .expand-icon { font-size: 24px; color: var(--brand-mid); transition: transform .3s; }
+.expandable.open .expand-icon { transform: rotate(45deg); }
+.expand-content { max-height: 0; overflow: hidden; transition: max-height .4s ease; }
+.expandable.open .expand-content { max-height: 5000px; }
+.expand-inner { padding: 0 28px 28px; }
+.footer { background: var(--brand-dark); color: white; padding: 48px 24px; text-align: center; }
+.footer-brand { font-family: 'Impact', 'Arial Black', sans-serif; font-weight: 900; letter-spacing: 0.02em; font-size: 32px; margin-bottom: 8px; }
+.footer-tag { font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; opacity: 0.7; margin-bottom: 24px; }
+.footer-contact { font-size: 14px; opacity: 0.85; } .footer-contact span { margin: 0 12px; }
+.footer-mini { font-size: 11px; margin-top: 20px; opacity: 0.5; }</style>
+<style>
+/* ===== REVIEWS ===== */
+.reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+@media (max-width: 900px) { .reviews-grid { grid-template-columns: 1fr; } }
+.reviews-grid.two-col { grid-template-columns: repeat(2, 1fr); }
+@media (max-width: 700px) { .reviews-grid.two-col { grid-template-columns: 1fr; } }
+.reviews-grid.one-col { grid-template-columns: 1fr; max-width: 640px; margin: 0 auto; }
+.review-card { background: white; padding: 24px; border-radius: 14px; box-shadow: var(--shadow); border: 1px solid var(--border); display: flex; flex-direction: column; }
+.review-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+.review-avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--brand-mid); color: white; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 15px; }
+.review-name { font-weight: 600; font-size: 14px; color: var(--text-dark); }
+.review-meta { font-size: 11px; color: var(--text-mid); }
+.review-stars { color: var(--gold); font-size: 14px; letter-spacing: 1px; margin-bottom: 10px; }
+.review-text { font-size: 13px; color: var(--text-dark); line-height: 1.6; }
+.review-trans { margin-top: 8px; font-style: italic; color: var(--text-mid); }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-brand">Villa Deja Living <small>August 2026</small></div>
+  <div class="nav-links">
+    <a href="#financial">Financials</a>
+    <a href="#performance">Performance</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#market">Market</a>
+    <a href="#outlook">Outlook</a>
+    
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-eyebrow">Monthly Report</div>
+  <img class="hero-logo" alt="Villa Deja Living" src="data:image/png;base64,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">
+  <h1 class="hero-title">Villa Deja Living</h1>
+  <p class="hero-sub">August 2026 · Kediri, Tabanan · 2-Bedroom</p>
+  <div class="hero-brand"><span class="dot"></span>Made by Delima Housing</div>
+  <div style="margin-top:16px;"><a href="https://www.airbnb.com/rooms/1609223280079505274?guests=1&adults=1&s=67&unique_share_id=cf63bd41-d512-43c5-927c-880899b9b3f0" target="_blank" style="display:inline-block; background:var(--brand-dark); color:white; padding:10px 20px; border-radius:100px; text-decoration:none; font-size:12px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase;">View Airbnb Listing →</a></div>
+</div>
+
+<div class="stats-strip">
+  <div class="stat-card">
+    <div class="stat-label">Revenue</div>
+    <div class="stat-value">Rp 36.77M</div>
+    <div class="stat-sub">20 paid OTA nights + 2 direct</div>
+    <div class="stat-delta down">▼ -7.9% vs Jul</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-label">Net Profit</div>
+    <div class="stat-value">Rp 17.1M</div>
+    <div class="stat-sub">47% margin</div>
+    <div class="stat-delta down">▼ -44.7% vs Jul</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-label">Occupancy</div>
+    <div class="stat-value">71%</div>
+    <div class="stat-sub">22 of 31 nights (20 OTA + 2 direct)</div>
+    <div class="stat-delta down">▼ -29pp vs Jul</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-label">ADR</div>
+    <div class="stat-value sm">Rp 1,671,207</div>
+    <div class="stat-sub">Total income ÷ all occupied nights</div>
+    <div class="stat-delta up">▲ +29.8% vs Jul</div>
+  </div>
+</div>
+
+<section id="financial">
+  <div class="container">
+    <div class="section-eyebrow">01 · Financial Performance</div>
+    <h2 class="section-title">Villa Deja Living's<br>August recap.</h2>
+
+    <div class="grid-2-1">
+      <div class="card">
+        <div class="card-title">Revenue trend — recent months</div>
+        <div class="chart-wrap"><canvas id="revenueChart"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="card-title">Source of Revenue · August</div>
+        <div class="chart-wrap"><canvas id="revenueSourceChart"></canvas></div>
+      </div>
+    </div>
+
+    <div class="grid-2-1" style="margin-top: 32px;">
+      <div class="card">
+        <div class="card-title">Where the expenses went · August</div>
+        <div class="chart-wrap"><canvas id="expenseChart"></canvas></div>
+      </div>
+      <div class="narrative">
+        <div class="narrative-title">The story this month</div>
+        <p>August generated <strong>Rp 36.77M in total revenue</strong> — down 7.9% MoM vs July (Rp 39.90M).</p>
+        <p>20 paid OTA nights delivered <strong>Rp 33.37M</strong> at an average nightly rate of <strong>Rp 1,671,207</strong>, plus 2 direct night(s) worth Rp 3.40M.</p>
+        <p><strong>Net profit landed at Rp 17.1M with a 47% margin.</strong></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-eyebrow">02 · Net Profit</div>
+    <h2 class="section-title">Margin at 47%<br>on Rp 36.8M revenue.</h2>
+
+    <div class="grid-2">
+      <div class="card"><div class="card-title">Net Profit trend</div><div class="chart-wrap"><canvas id="netProfitChart"></canvas></div></div>
+      <div class="card"><div class="card-title">Profit Margin trend</div><div class="chart-wrap"><canvas id="marginChart"></canvas></div></div>
+    </div>
+
+    <div class="narrative" style="margin-top: 32px;">
+      <div class="narrative-title">Cost breakdown</div>
+      <p>Net profit landed at <strong>Rp 17.12M</strong> vs Rp 31.94M in July.</p>
+      <p>Total operational expenses of <strong>Rp 5.92M</strong> (16.1% of revenue). OTA commission absorbed Rp 5.74M (15.6%). Management fee at Rp 4.65M and government tax at Rp 3.34M.</p>
+    </div>
+  </div>
+</section>
+
+<section id="performance">
+  <div class="container">
+    <div class="section-eyebrow">03 · Performance Overview</div>
+    <h2 class="section-title">Rate, occupancy,<br>nights sold.</h2>
+
+    <div class="grid-3">
+      <div class="card"><div class="card-title">Average Daily Rate</div><div class="chart-wrap short"><canvas id="adrChart"></canvas></div></div>
+      <div class="card"><div class="card-title">Occupancy %</div><div class="chart-wrap short"><canvas id="occupancyChart"></canvas></div></div>
+      <div class="card"><div class="card-title">Paid Nights Sold — Aug</div><div class="chart-wrap short"><canvas id="nightsChart"></canvas></div></div>
+    </div>
+
+    <div class="grid-3" style="margin-top: 32px;">
+      <div class="narrative" style="border-left-color: var(--success);">
+        <div class="narrative-title" style="color: var(--success);">✓ What worked</div>
+        <ul>
+          <li>ADR at <strong>Rp 1,671,207</strong> — up 29.8% MoM</li>
+          <li>Occupancy at <strong>71%</strong> (22 of 31 nights)</li>
+          <li>20 paid OTA bookings delivered Rp 33.37M gross</li>
+        </ul>
+      </div>
+      <div class="narrative" style="border-left-color: var(--text-mid);">
+        <div class="narrative-title" style="color: var(--text-mid);">— Watch items</div>
+        <p>Direct-booking share still small — most revenue via Airbnb.</p>
+      </div>
+      <div class="narrative" style="border-left-color: var(--warn);">
+        <div class="narrative-title" style="color: var(--warn);">⚠ Challenge ahead</div>
+        <p>Shoulder-season (Oct/Nov) pipeline still thin across peer set. Continue defending ADR while filling Sept gap dates.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="reviews">
+  <div class="container">
+    <div class="section-eyebrow">04 · Guest Reviews</div>
+    <h2 class="section-title">Recent guest reviews.</h2>
+    
+    <div style="background:linear-gradient(90deg, #FBF6EF, #F4D9CC); border-left:4px solid var(--gold); padding:16px 20px; border-radius:10px; margin-bottom:24px; text-align:center;">
+      <strong style="font-size:15px; color:var(--brand-dark);">3 recent reviews in August · 4.3⭐ · All from Airbnb</strong>
+    </div>
+
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="review-header">
+          <div class="review-avatar">M</div>
+          <div><div class="review-name">Munezero Promesse</div><div class="review-meta">Aug 17–26 · 2 guests · Airbnb</div></div>
+        </div>
+        <div class="review-stars">★★★☆☆</div>
+        <p class="review-text">Villa was beautiful and peaceful, but no full body mirror despite what hosts said. All three bathrooms had foul smell. No TV. Communication was great initially but left on read after we mentioned we found our own decorator. Will not book again.</p>
+      </div>
+      <div class="review-card">
+        <div class="review-header">
+          <div class="review-avatar">N</div>
+          <div><div class="review-name">Nia Adiani</div><div class="review-meta">Aug 16–17 · 2 guests · ID · Airbnb</div></div>
+        </div>
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text" lang="id">Villa yg sangat cantik, bersih, fasilitas lengkap. Staff juga responsif dan sangat membantu.</p>
+        <p class="review-text review-trans">Translation: Very beautiful villa, clean, fully equipped. Staff also responsive and very helpful.</p>
+      </div>
+      <div class="review-card">
+        <div class="review-header">
+          <div class="review-avatar">N</div>
+          <div><div class="review-name">Nina Grafenhorst</div><div class="review-meta">Aug 8–11 · 4 guests · DE · Airbnb</div></div>
+        </div>
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text" lang="de">Sehr wohl in dem Haus gefühlt. Ganz neu, alles sehr schön eingerichtet, sehr sauber und hell. Spa 2 min entfernt.</p>
+        <p class="review-text review-trans">Translation: Felt very comfortable in the house. Brand new, everything beautifully furnished, very clean and bright. Spa 2 min away.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+        <section id="market">
+          <div class="container">
+            <div class="section-eyebrow">05 · Market Position</div>
+            <h2 class="section-title">Villa Deja Living vs<br>2BR peer set.</h2>
+            <p class="section-desc">Peer cohort — pricing and forward occupancy for Sept, Oct, Nov 2026 (peer data scraped from Airbnb listings).</p>
+            <div class="card"><div class="table-wrap"><table>
+              <thead><tr><th>Villa</th><th>Reviews</th><th>Rating</th><th>Price Sept</th><th>Occ Sept</th><th>Price Oct</th><th>Occ Oct</th><th>Price Nov</th><th>Occ Nov</th></tr></thead>
+              <tbody><tr class="highlight">
+              <td><span class="pill us">Villa Deja Living 2-Bedroom</span></td>
+              <td>—</td><td>—</td>
+              <td>Rp 1,671,207</td><td>71%</td>
+              <td>Rp 1,650,000</td><td>0%</td>
+              <td>Rp 1,650,000</td><td>0%</td>
+            </tr><tr class="">
+              <td><span class="pill comp">Casa Papaya 2BR</span></td>
+              <td>55</td><td>4.9</td>
+              <td>Rp 1,600,000</td><td>33%</td>
+              <td>Rp 1,800,000</td><td>0%</td>
+              <td>Rp 1,800,000</td><td>0%</td>
+            </tr><tr class="">
+              <td><span class="pill comp">Casa Del Cielo 2BR</span></td>
+              <td>43</td><td>4.77</td>
+              <td>Rp 1,608,790</td><td>37%</td>
+              <td>Rp 1,521,828</td><td>0%</td>
+              <td>Rp 1,690,920</td><td>0%</td>
+            </tr><tr class="">
+              <td><span class="pill comp">Casa Kaplan 2BR</span></td>
+              <td>38</td><td>4.92</td>
+              <td>Rp 1,434,866</td><td>100%</td>
+              <td>Rp 1,434,866</td><td>0%</td>
+              <td>Rp 1,594,296</td><td>0%</td>
+            </tr><tr class="">
+              <td><span class="pill comp">NEW Designer's 2BR</span></td>
+              <td>3</td><td>4.67</td>
+              <td>Rp 1,518,360</td><td>10%</td>
+              <td>Rp 1,872,303</td><td>0%</td>
+              <td>Rp 1,872,303</td><td>0%</td>
+            </tr><tr class="">
+              <td><span class="pill comp">Contemporary 2BR</span></td>
+              <td>7</td><td>4.86</td>
+              <td>Rp 1,803,947</td><td>50%</td>
+              <td>Rp 1,796,626</td><td>0%</td>
+              <td>Rp 1,796,626</td><td>0%</td>
+            </tr></tbody>
+            </table></div>
+      <p style="font-size:11px;color:var(--text-mid);margin-top:10px;">Oct/Nov own-villa prices are Aug ADR forward proxy. Occupancy reflects confirmed bookings on Hostex as of Sep 5, 2026.</p>
+
+            </div>
+          </div>
+        </section>
+
+<!-- PRICING STRATEGY -->
+<section id="pricing">
+  <div class="container">
+    <div class="section-eyebrow">06 · Pricing Strategy</div>
+    <h2 class="section-title">September tiers.</h2>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:24px;">
+      <div style="padding:24px;border-radius:14px;text-align:center;border:2px solid var(--warn);background:white;">
+        <div style="font-size:11px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-mid);margin-bottom:12px;">Low Tier</div>
+        <div style="font-family:'Impact','Arial Black',sans-serif;font-weight:900;font-size:30px;color:var(--brand-dark);margin-bottom:4px;">Rp 1,300k</div>
+        <div style="font-size:12px;color:var(--text-mid);">gap-fill / last-minute</div>
+      </div>
+      <div style="padding:24px;border-radius:14px;text-align:center;border:2px solid var(--brand-mid);background:white;">
+        <div style="font-size:11px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-mid);margin-bottom:12px;">Normal Tier</div>
+        <div style="font-family:'Impact','Arial Black',sans-serif;font-weight:900;font-size:30px;color:var(--brand-dark);margin-bottom:4px;">Rp 1,700k</div>
+        <div style="font-size:12px;color:var(--text-mid);">shoulder-season demand</div>
+      </div>
+      <div style="padding:24px;border-radius:14px;text-align:center;border:2px solid var(--brand-dark);background:var(--brand-dark);color:white;">
+        <div style="font-size:11px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:white;margin-bottom:12px;">High Tier</div>
+        <div style="font-family:'Impact','Arial Black',sans-serif;font-weight:900;font-size:30px;color:white;margin-bottom:4px;">Rp 2,000k</div>
+        <div style="font-size:12px;color:var(--brand-light);">weekend / peak dates</div>
+      </div>
+    </div>
+    <div class="narrative" style="border-left: 4px solid var(--brand-mid); background: var(--cream, #FBF6EF); padding: 16px 20px; border-radius: 6px;">
+      <div style="font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--brand-dark);margin-bottom:8px;">Implementation plan</div>
+      <p style="font-size:13px;color:var(--text-dark);line-height:1.5;">September pricing recommendations to fill remaining open nights.</p>
+    </div>
+  </div>
+</section>
+
+<section id="outlook">
+  <div class="container">
+    <div class="section-eyebrow">07 · Outlook · September 2026</div>
+    <h2 class="section-title">Where we're at,<br>where we can land.</h2>
+
+    <div class="card" style="margin-bottom: 32px;">
+      <div class="card-title">Booking Pace · September</div>
+      <div style="display: flex; justify-content: space-between; align-items: baseline; margin: 8px 0 16px;">
+        <div>
+          <span style="font-family:'Impact','Arial Black',sans-serif;font-size:48px;color:var(--brand-dark);line-height:1;">16</span>
+          <span style="font-size:18px;color:var(--text-mid);margin-left:8px;">of 30 nights booked · Rp 19.57M revenue locked</span>
+        </div>
+        <div style="text-align:right;">
+          <div style="font-family:'Impact','Arial Black',sans-serif;font-size:32px;color:var(--brand-mid);line-height:1;">14</div>
+          <div style="font-size:12px;color:var(--text-mid);">still available</div>
+        </div>
+      </div>
+      <div style="height:24px;background:var(--brand-light);border-radius:100px;overflow:hidden;">
+        <div style="height:100%;width:53%;background:linear-gradient(90deg,var(--brand-dark),var(--brand-mid));border-radius:100px;"></div>
+      </div>
+      <div style="display:flex;justify-content:space-between;margin-top:8px;font-size:11px;color:var(--text-mid);">
+        <span>53% booked</span>
+        <span>1 cancellation noted</span>
+      </div>
+    </div>
+
+    <div class="grid-3" style="margin-bottom: 32px;">
+      <div class="card" style="border-top: 4px solid var(--warn);">
+        <div style="font-size:11px;font-weight:700;letter-spacing:0.15em;color:var(--warn);text-transform:uppercase;margin-bottom:8px;">Conservative</div>
+        <div style="font-size:12px;color:var(--text-mid);margin-bottom:16px;">Already locked</div>
+        <div style="font-family:'Impact','Arial Black',sans-serif;font-size:40px;color:var(--brand-dark);line-height:1;">Rp 19.6M</div>
+        <div style="font-size:12px;color:var(--text-mid);margin-top:8px;">16/30 · 53% occ</div>
+        <div style="border-top:1px solid var(--border);padding-top:12px;margin-top:14px;font-size:12px;color:var(--text-mid);">No further conversion</div>
+      </div>
+      <div class="card" style="border-top: 4px solid var(--brand-mid);box-shadow: 0 8px 32px rgba(107,44,31,0.15);position: relative;">
+        <div style="position:absolute;top:-12px;right:16px;background:var(--brand-dark);color:white;padding:3px 10px;border-radius:100px;font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;">Target</div>
+        <div style="font-size:11px;font-weight:700;letter-spacing:0.15em;color:var(--brand-mid);text-transform:uppercase;margin-bottom:8px;">Expected</div>
+        <div style="font-size:12px;color:var(--text-mid);margin-bottom:16px;">Realistic pickup</div>
+        <div style="font-family:'Impact','Arial Black',sans-serif;font-size:40px;color:var(--brand-dark);line-height:1;">Rp 25.7M</div>
+        <div style="font-size:12px;color:var(--text-mid);margin-top:8px;">21/30 · 70% occ</div>
+        <div style="border-top:1px solid var(--border);padding-top:12px;margin-top:14px;font-size:12px;color:var(--text-mid);">Normal tier holds</div>
+      </div>
+      <div class="card" style="border-top: 4px solid var(--success);">
+        <div style="font-size:11px;font-weight:700;letter-spacing:0.15em;color:var(--success);text-transform:uppercase;margin-bottom:8px;">Strong</div>
+        <div style="font-size:12px;color:var(--text-mid);margin-bottom:16px;">Upside if gaps fill</div>
+        <div style="font-family:'Impact','Arial Black',sans-serif;font-size:40px;color:var(--brand-dark);line-height:1;">Rp 29.4M</div>
+        <div style="font-size:12px;color:var(--text-mid);margin-top:8px;">24/30 · 80% occ</div>
+        <div style="border-top:1px solid var(--border);padding-top:12px;margin-top:14px;font-size:12px;color:var(--text-mid);">Last-minute demand holds</div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom: 32px;">
+      <div class="card-title">September confirmed bookings · Villa Deja Living</div>
+      <div class="table-wrap">
+        <table class="projection-table" style="font-size:12px;">
+          <thead><tr>
+            <th style="text-align:left;">Guest</th>
+            <th>Channel</th>
+            <th>Check-in</th>
+            <th>Check-out</th>
+            <th>Sept nights</th>
+            <th>Revenue (Rp)</th>
+          </tr></thead>
+          <tbody>
+            <tr><td style='text-align:left;'>Francesco Reale (in-stay)</td><td>Airbnb</td><td>Sep 02</td><td>Sep 11</td><td>9</td><td>10,989,288</td></tr><tr><td style='text-align:left;'>Bex West</td><td>Airbnb</td><td>Sep 22</td><td>Sep 29</td><td>7</td><td>8,582,260</td></tr><tr style="background:#FDECEC;color:var(--text-mid);"><td style='text-align:left;'>Elaine Ayton</td><td>Airbnb</td><td>Sep 16</td><td>Sep 29</td><td>—</td><td><em>cancelled</em></td></tr><tr class='total-row'><td style='text-align:left;'>Total (Sept nights)</td><td></td><td></td><td></td><td>16</td><td>19,571,548</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size:11px;color:var(--text-mid);margin-top:10px;">
+        <span style="display:inline-block;width:12px;height:12px;background:#FBF6EF;border-radius:2px;vertical-align:middle;margin-right:4px;"></span>Direct booking
+        &nbsp;&nbsp;
+        <span style="display:inline-block;width:12px;height:12px;background:#F4E9D8;border-radius:2px;vertical-align:middle;margin-right:4px;"></span>LTR / long-stay
+        &nbsp;&nbsp;
+        <span style="display:inline-block;width:12px;height:12px;background:#EEE9E4;border-radius:2px;vertical-align:middle;margin-right:4px;"></span>Block / maintenance
+        &nbsp;&nbsp;
+        <span style="display:inline-block;width:12px;height:12px;background:#FDECEC;border-radius:2px;vertical-align:middle;margin-right:4px;"></span>Cancelled
+      </p>
+    </div>
+    <div class="narrative" style="border-left:4px solid var(--brand-dark);background:linear-gradient(135deg,var(--cream) 0%,var(--brand-light) 100%);padding:20px 24px;border-radius:10px;">
+      <div style="font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--brand-mid);margin-bottom:8px;">Sept outlook · narrative</div>
+      <p style="font-size:14px;color:var(--text-dark);line-height:1.5;">Sept pace is <strong>moderate</strong> at <strong>53% booked</strong> (16/30 nights, Rp 19.57M locked). Francesco Reale 9-night in-stay opens the month; Bex West 7n Sep 22-29 anchors the end. Elaine Ayton's 13-night cancel left the Sep 11-22 window open (11 nights).</p>
+    </div>
+  </div>
+</section>
+
+
+
+<section>
+  <div class="container">
+    <div class="section-eyebrow">08 · Deep dive</div>
+    <h2 class="section-title">Detailed financials.</h2>
+    <p class="section-desc">Full P&L breakdown and complete August booking list. Click to expand.</p>
+
+    
+        <div class="expandable open" onclick="this.classList.toggle('open')">
+          <div class="expand-header"><div class="expand-title">Year-to-Date P&amp;L — Villa Deja Living 2026 (Apr–Aug)</div><div class="expand-icon">+</div></div>
+          <div class="expand-content"><div class="expand-inner">
+            <div class="table-wrap"><table class="projection-table" style="font-size: 11.5px;">
+              <thead><tr><th style="text-align:left;">Category</th><th>Apr</th><th>May</th><th>Jun</th><th>Jul</th><th style="background:#4A1D14;">Aug</th><th style="background:var(--brand-mid);">YTD Total</th></tr></thead>
+              <tbody><tr><td colspan="6" style="background:var(--brand-light);font-weight:700;text-align:left;">REVENUE</td></tr><tr class=""><td style="text-align:left;">Direct - Owner</td><td >0</td><td >0</td><td >0</td><td >35,000,000</td><td style="background:#F4D9CC;">0</td><td>35,000,000</td></tr><tr class=""><td style="text-align:left;">OTA - Airbnb</td><td >3,680,000</td><td >21,991,309</td><td >48,999,265</td><td >4,899,926</td><td style="background:#F4D9CC;">33,366,562</td><td>112,937,062</td></tr><tr class="total-row"><td style="text-align:left;">Total Income</td><td >3,680,000</td><td >21,991,309</td><td >48,999,265</td><td >39,899,926</td><td style="background:var(--brand-mid);color:white;">36,766,562</td><td>151,337,062</td></tr><tr><td colspan="6" style="background:var(--brand-light);font-weight:700;text-align:left;">OPERATIONAL EXPENSES</td></tr><tr class=""><td style="text-align:left;">Bank Charge</td><td >10,000</td><td >0</td><td >0</td><td >0</td><td style="background:#F4D9CC;">11,000</td><td>21,000</td></tr><tr class=""><td style="text-align:left;">Cleaning Supplies</td><td >235,760</td><td >107,526</td><td >143,207</td><td >181,803</td><td style="background:#F4D9CC;">155,137</td><td>823,433</td></tr><tr class=""><td style="text-align:left;">Electricity</td><td >2,016,500</td><td >2,208,250</td><td >2,211,000</td><td >86,957</td><td style="background:#F4D9CC;">1,800,000</td><td>8,322,707</td></tr><tr class=""><td style="text-align:left;">Equipment</td><td >0</td><td >0</td><td >101,410</td><td >0</td><td style="background:#F4D9CC;">0</td><td>101,410</td></tr><tr class=""><td style="text-align:left;">Beverages & Consumables</td><td >20,000</td><td >141,000</td><td >20,000</td><td >156,000</td><td style="background:#F4D9CC;">102,060</td><td>439,060</td></tr><tr class=""><td style="text-align:left;">Garbage Collection</td><td >0</td><td >300,000</td><td >300,000</td><td >0</td><td style="background:#F4D9CC;">300,000</td><td>900,000</td></tr><tr class=""><td style="text-align:left;">Guest Supplies</td><td >28,353</td><td >21,000</td><td >0</td><td >0</td><td style="background:#F4D9CC;">1,024,361</td><td>1,073,714</td></tr><tr class=""><td style="text-align:left;">Laundry</td><td >755,160</td><td >621,240</td><td >609,150</td><td >365,000</td><td style="background:#F4D9CC;">919,770</td><td>3,270,320</td></tr><tr class=""><td style="text-align:left;">Delivery Fee</td><td >0</td><td >0</td><td >0</td><td >0</td><td style="background:#F4D9CC;">6,000</td><td>6,000</td></tr><tr class=""><td style="text-align:left;">Housekeeping</td><td >1,130,682</td><td >1,130,682</td><td >1,130,682</td><td >1,130,682</td><td style="background:#F4D9CC;">1,130,682</td><td>5,653,410</td></tr><tr class=""><td style="text-align:left;">Maintenance</td><td >365,000</td><td >0</td><td >0</td><td >0</td><td style="background:#F4D9CC;">0</td><td>365,000</td></tr><tr class=""><td style="text-align:left;">Pool & Gardener</td><td >450,000</td><td >450,000</td><td >450,000</td><td >450,000</td><td style="background:#F4D9CC;">450,000</td><td>2,250,000</td></tr><tr class=""><td style="text-align:left;">Utilities</td><td >27,000</td><td >27,000</td><td >0</td><td >150,000</td><td style="background:#F4D9CC;">0</td><td>204,000</td></tr><tr class=""><td style="text-align:left;">Marketing</td><td >735,305</td><td >189,152</td><td >0</td><td >0</td><td style="background:#F4D9CC;">0</td><td>924,457</td></tr><tr class="total-row"><td style="text-align:left;">Total Operational Exp.</td><td >5,773,760</td><td >5,195,850</td><td >4,965,449</td><td >2,520,442</td><td style="background:var(--brand-mid);color:white;">5,917,010</td><td>24,372,511</td></tr><tr><td colspan="6" style="background:var(--brand-light);font-weight:700;text-align:left;">OTHER EXPENSES</td></tr><tr class=""><td style="text-align:left;">Management Fee</td><td >457,028</td><td >2,731,134</td><td >6,085,337</td><td >4,108,534</td><td style="background:#F4D9CC;">4,653,874</td><td>18,035,907</td></tr><tr class=""><td style="text-align:left;">OTA Commission</td><td >633,147</td><td >3,783,746</td><td >8,430,355</td><td >843,035</td><td style="background:#F4D9CC;">5,740,733</td><td>19,431,016</td></tr><tr class=""><td style="text-align:left;">Government Tax (10% of OTA)</td><td >368,000</td><td >2,199,131</td><td >4,899,926</td><td >489,993</td><td style="background:#F4D9CC;">3,336,656</td><td>11,293,706</td></tr><tr class="total-row" style="background:var(--brand-dark);color:white;"><td style="text-align:left;">NET PROFIT</td><td >-3,551,935</td><td >8,081,447</td><td >24,618,198</td><td >31,937,923</td><td style="background:#4A1D14;">17,118,289</td><td>78,203,922</td></tr><tr><td colspan="6" style="background:var(--brand-light);font-weight:700;text-align:left;">PERFORMANCE</td></tr><tr class=""><td style="text-align:left;">Occupancy Rate</td><td >20%</td><td >52%</td><td >100%</td><td >100%</td><td style="background:#F4D9CC;">71%</td><td>69% avg</td></tr><tr class=""><td style="text-align:left;">Average Nightly Rate (Rp)</td><td >613,333</td><td >1,374,457</td><td >1,633,309</td><td >1,287,094</td><td style="background:#F4D9CC;">1,671,207</td><td>6,579,400</td></tr></tbody>
+            </table></div>
+          </div></div>
+        </div>
+
+    <div class="expandable" style="margin-top: 20px;" onclick="this.classList.toggle('open')">
+      <div class="expand-header"><div class="expand-title">Full P&amp;L — August 2026</div><div class="expand-icon">+</div></div>
+      <div class="expand-content"><div class="expand-inner">
+        <table class="projection-table">
+          <thead><tr><th>Line</th><th>IDR</th><th>% of Revenue</th></tr></thead>
+          <tbody><tr><td colspan="3" style="background:var(--brand-light);font-weight:700;">REVENUE</td></tr><tr><td style="text-align:left;">Direct – Delima (2n)</td><td>3,400,000</td><td>9.2%</td></tr><tr><td style="text-align:left;">OTA – Airbnb</td><td>33,366,562</td><td>90.8%</td></tr><tr class="total-row"><td style="text-align:left;">Total Income</td><td>36,766,562</td><td>100%</td></tr><tr><td colspan="3" style="background:var(--brand-light);font-weight:700;">OPERATIONAL EXPENSES</td></tr><tr><td style="text-align:left;">Electricity</td><td>1,800,000</td><td>4.9%</td></tr><tr><td style="text-align:left;">Housekeeping</td><td>1,130,682</td><td>3.1%</td></tr><tr><td style="text-align:left;">Guest Supplies</td><td>1,024,361</td><td>2.8%</td></tr><tr><td style="text-align:left;">Laundry</td><td>919,770</td><td>2.5%</td></tr><tr><td style="text-align:left;">Pool & Gardener</td><td>450,000</td><td>1.2%</td></tr><tr><td style="text-align:left;">Garbage Collection</td><td>300,000</td><td>0.8%</td></tr><tr><td style="text-align:left;">Cleaning Supplies</td><td>155,137</td><td>0.4%</td></tr><tr><td style="text-align:left;">Beverages & Consumables</td><td>102,060</td><td>0.3%</td></tr><tr><td style="text-align:left;">Miscellaneous</td><td>18,000</td><td>0.0%</td></tr><tr><td style="text-align:left;">Bank Charge</td><td>11,000</td><td>0.0%</td></tr><tr><td style="text-align:left;">Delivery Fee</td><td>6,000</td><td>0.0%</td></tr><tr class="total-row"><td style="text-align:left;">Total Operational</td><td>5,917,010</td><td>16.1%</td></tr><tr><td colspan="3" style="background:var(--brand-light);font-weight:700;">OTHER EXPENSES</td></tr><tr><td style="text-align:left;">Management Fee (15% × [Income − OTA Comm])</td><td>4,653,874</td><td>12.7%</td></tr><tr><td style="text-align:left;">OTA Commission (Airbnb + Booking.com ×1.11 VAT)</td><td>5,740,733</td><td>15.6%</td></tr><tr><td style="text-align:left;">Government Tax (10% × OTA revenue)</td><td>3,336,656</td><td>9.1%</td></tr><tr class="total-row"><td style="text-align:left;">Total Other Expenses</td><td>13,731,263</td><td>37.3%</td></tr><tr class="total-row" style="background:var(--brand-dark);color:white;"><td style="text-align:left;">NET PROFIT</td><td>17,118,289</td><td>47%</td></tr></tbody>
+        </table>
+      </div></div>
+    </div>
+
+    <div class="expandable" style="margin-top: 20px;" onclick="this.classList.toggle('open')">
+      <div class="expand-header"><div class="expand-title">Booking list — August 2026</div><div class="expand-icon">+</div></div>
+      <div class="expand-content"><div class="expand-inner">
+        <table class="projection-table">
+          <thead><tr><th>Guest</th><th>Channel</th><th>Type</th><th>Check-in</th><th>Check-out</th><th>Nights</th><th>Revenue (Rp)</th><th>Commission (Rp)</th></tr></thead>
+          <tbody><tr ><td style="text-align:left;">Munezero Promesse</td><td style="text-align:left;">Airbnb</td><td style="text-align:left;">Paid</td><td style="text-align:left;">Aug 17</td><td style="text-align:left;">Aug 26</td><td>9</td><td>14,382,000</td><td>2,474,379</td></tr><tr ><td style="text-align:left;">Nia Adiani</td><td style="text-align:left;">Airbnb</td><td style="text-align:left;">Paid</td><td style="text-align:left;">Aug 16</td><td style="text-align:left;">Aug 17</td><td>1</td><td>1,553,375</td><td>267,258</td></tr><tr ><td style="text-align:left;">Lucky Singh</td><td style="text-align:left;">Airbnb</td><td style="text-align:left;">Paid</td><td style="text-align:left;">Aug 29</td><td style="text-align:left;">Aug 30</td><td>1</td><td>1,575,000</td><td>270,980</td></tr><tr ><td style="text-align:left;">Руслан Мамедов</td><td style="text-align:left;">Airbnb</td><td style="text-align:left;">Paid</td><td style="text-align:left;">Aug 11</td><td style="text-align:left;">Aug 15</td><td>4</td><td>7,659,000</td><td>1,317,731</td></tr><tr ><td style="text-align:left;">Nina Grafenhorst</td><td style="text-align:left;">Airbnb</td><td style="text-align:left;">Paid</td><td style="text-align:left;">Aug 8</td><td style="text-align:left;">Aug 11</td><td>3</td><td>4,605,937</td><td>792,511</td></tr><tr ><td style="text-align:left;">Lucky Singh</td><td style="text-align:left;">Airbnb</td><td style="text-align:left;">Paid</td><td style="text-align:left;">Aug 27</td><td style="text-align:left;">Aug 29</td><td>2</td><td>3,591,250</td><td>617,874</td></tr><tr style="background:#F4E9D8;"><td style="text-align:left;">Daan</td><td style="text-align:left;">Direct</td><td style="text-align:left;">Direct – Delima</td><td style="text-align:left;">Aug 6</td><td style="text-align:left;">Aug 8</td><td>2</td><td>3,400,000</td><td>—</td></tr></tbody>
+        </table>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<div class="footer">
+  <div class="footer-brand">Delima Housing</div>
+  <div class="footer-tag">Your Property · Our Priority</div>
+  <div class="footer-contact">
+    <span>+62 878-9560-3000</span>·<span>info@delimahousing.com</span>·<span>www.delimahousing.com</span>
+  </div>
+  <div class="footer-mini">Villa Deja Living · August 2026 · Report generated Sep 2026 · Next report: October 2026</div>
+</div>
+
+<script>
+const BRAND_DARK = '#6B2C1F'; const BRAND_MID = '#C97B5F'; const BRAND_LIGHT = '#F4D9CC';
+const CREAM = '#FBF6EF'; const SUCCESS = '#5BA678'; const GOLD = '#E6A017'; const TEXT_MID = '#6B5445';
+
+Chart.defaults.font.family = "-apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif";
+Chart.defaults.color = TEXT_MID;
+Chart.defaults.plugins.legend.labels.usePointStyle = true;
+Chart.defaults.plugins.legend.labels.padding = 12;
+Chart.defaults.plugins.legend.labels.font = { size: 11, weight: 500 };
+
+const months = ['Apr', 'May', 'Jun', 'Jul', 'Aug'];
+
+new Chart(document.getElementById('revenueChart'), {
+  type: 'line', data: { labels: months,
+    datasets: [{ label: 'Total Income (IDR M)', data: [3.68, 21.99, 49.0, 39.9, 36.77], borderColor: BRAND_DARK, backgroundColor: 'rgba(107,44,31,0.08)', borderWidth: 3, tension: 0.3, fill: true, pointRadius: 5, pointBackgroundColor: BRAND_DARK }]
+  },
+  options: { responsive: true, maintainAspectRatio: false,
+    scales: { y: { beginAtZero: true, ticks: { callback: v => 'Rp ' + v + 'M' } } },
+    plugins: { legend: { position: 'top' }, tooltip: { callbacks: { label: c => 'Rp ' + c.parsed.y.toFixed(2) + 'M' } } }
+  }
+});
+
+new Chart(document.getElementById('revenueSourceChart'), {
+  type: 'doughnut', data: { labels: ['OTA (Airbnb + Booking.com)', 'Direct – Delima'],
+    datasets: [{ data: [33366562.0, 3400000], backgroundColor: ['#6B2C1F', '#C97B5F'], borderWidth: 0 }] },
+  options: { responsive: true, maintainAspectRatio: false, cutout: '65%',
+    plugins: { legend: { position: 'bottom' }, tooltip: { callbacks: { label: c => c.label + ': Rp ' + (c.parsed/1000000).toFixed(2) + 'M' } } }
+  }
+});
+
+new Chart(document.getElementById('expenseChart'), {
+  type: 'doughnut', data: { labels: ['Electricity', 'Housekeeping', 'Guest Supplies', 'Pool & Gardener', 'Laundry', 'Garbage Collection', 'Cleaning Supplies', 'Beverages & Consumables', 'Miscellaneous', 'Other'],
+    datasets: [{ data: [1800, 1131, 1024, 450, 920, 300, 155, 102, 18, 17], backgroundColor: ['#6B2C1F', '#7A3323', '#8A3A28', '#A94F36', '#C97B5F', '#D89478', '#E5AA92', '#EDBFAB', '#F4D9CC', '#F9E9DE'], borderWidth: 0 }] },
+  options: { responsive: true, maintainAspectRatio: false, cutout: '55%',
+    plugins: { legend: { position: 'right', labels: { font: { size: 10 } } }, tooltip: { callbacks: { label: c => c.label + ': Rp ' + c.parsed.toLocaleString() + 'k' } } }
+  }
+});
+
+new Chart(document.getElementById('netProfitChart'), {
+  type: 'line', data: { labels: months,
+    datasets: [{ label: 'Net Profit (IDR M)', data: [-3.55, 8.08, 24.62, 31.94, 17.12], borderColor: BRAND_DARK, backgroundColor: 'rgba(107,44,31,0.08)', borderWidth: 3, tension: 0.3, fill: true, pointRadius: 5, pointBackgroundColor: BRAND_DARK }]
+  },
+  options: { responsive: true, maintainAspectRatio: false,
+    scales: { y: { beginAtZero: true, ticks: { callback: v => 'Rp ' + v + 'M' } } },
+    plugins: { legend: { position: 'top' }, tooltip: { callbacks: { label: c => 'Rp ' + c.parsed.y.toFixed(2) + 'M' } } }
+  }
+});
+
+new Chart(document.getElementById('marginChart'), {
+  type: 'bar', data: { labels: months,
+    datasets: [{ label: 'Profit Margin %', data: [-97, 37, 50, 80, 47], backgroundColor: BRAND_LIGHT, borderColor: BRAND_MID, borderWidth: 2, borderRadius: 6 }]
+  },
+  options: { responsive: true, maintainAspectRatio: false,
+    scales: { y: { beginAtZero: true, max: 100, ticks: { callback: v => v + '%' } } },
+    plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => 'Margin: ' + c.parsed.y + '%' } } }
+  }
+});
+
+new Chart(document.getElementById('adrChart'), {
+  type: 'bar', data: { labels: months,
+    datasets: [{ data: [613, 1374, 1633, 1287, 1671], backgroundColor: ['#C97B5F', '#C97B5F', '#C97B5F', '#C97B5F', '#6B2C1F'], borderRadius: 6 }]
+  },
+  options: { responsive: true, maintainAspectRatio: false,
+    scales: { y: { beginAtZero: true, ticks: { callback: v => 'Rp ' + (v/1000).toFixed(1) + 'M' } } },
+    plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => 'Rp ' + c.parsed.y.toLocaleString() + 'k' } } }
+  }
+});
+
+new Chart(document.getElementById('occupancyChart'), {
+  type: 'bar', data: { labels: months,
+    datasets: [{ data: [20, 52, 100, 100, 71], backgroundColor: ['#C97B5F', '#C97B5F', '#C97B5F', '#C97B5F', '#6B2C1F'], borderRadius: 6 }]
+  },
+  options: { responsive: true, maintainAspectRatio: false,
+    scales: { y: { beginAtZero: true, max: 100, ticks: { callback: v => v + '%' } } },
+    plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => c.parsed.y + '% occupancy' } } }
+  }
+});
+
+new Chart(document.getElementById('nightsChart'), {
+  type: 'bar', data: { labels: ['OTA nights','Direct nights','Vacant'],
+    datasets: [{ data: [20, 2, 9], backgroundColor: [BRAND_DARK, BRAND_MID, BRAND_LIGHT], borderRadius: 6 }]
+  },
+  options: { responsive: true, maintainAspectRatio: false,
+    scales: { y: { beginAtZero: true, ticks: { callback: v => v + ' nts' } } },
+    plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => c.parsed.y + ' nights' } } }
+  }
+});
+</script>
+
+</body>
+</html>
