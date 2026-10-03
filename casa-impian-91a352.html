@@ -1,0 +1,783 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Casa Impian — Monthly Reports</title>
+<style>
+:root{--dark:#6B2C1F;--mid:#C97B5F;--light:#F4D9CC;--bg:#FBF6EF;--text:#2C1810;--muted:#6B5445;--border:#E8DCCD}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--dark:#F4D9CC;--mid:#C97B5F;--light:#4A2A20;--bg:#1C1411;--text:#F3E6DC;--muted:#C9B2A3;--border:#3D2C25}}
+:root[data-theme="dark"]{--dark:#F4D9CC;--mid:#C97B5F;--light:#4A2A20;--bg:#1C1411;--text:#F3E6DC;--muted:#C9B2A3;--border:#3D2C25}
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html,body{height:100%;margin:0}*,*::before,*::after{box-sizing:border-box}
+body{display:flex;flex-direction:column;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:10px 18px;border-bottom:1px solid var(--border);background:var(--bg)}
+.t{font-family:Impact,'Arial Black',sans-serif;font-size:19px;color:var(--dark)}.t small{font-family:inherit;font-size:12px;color:var(--muted);margin-left:8px;font-family:-apple-system,BlinkMacSystemFont,sans-serif}
+.ms{display:flex;gap:6px;flex-wrap:wrap}
+.m{font:inherit;font-size:13px;font-weight:600;padding:7px 14px;border-radius:100px;border:1px solid var(--border);background:transparent;color:var(--muted);cursor:pointer}
+.m[aria-pressed="true"]{background:var(--mid);border-color:var(--mid);color:#fff}
+.m:focus-visible{outline:2px solid var(--mid);outline-offset:2px}
+iframe{flex:1;width:100%;border:0;display:block;background:#FAF1E8}iframe[hidden]{display:none}
+</style></head><body>
+<div class="bar"><div class="t">Casa Impian<small>Monthly reports</small></div><div class="ms" role="group" aria-label="Choose month"><button type="button" class="m" data-m="2026-09" aria-pressed="false">September 2026</button><button type="button" class="m" data-m="2026-08" aria-pressed="false">August 2026</button></div></div>
+<iframe title="Casa Impian report September 2026" data-m="2026-09" srcdoc="&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;UTF-8&quot;&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1, viewport-fit=cover&quot;&gt;
+&lt;title&gt;Casa Impian — Monthly Report · September 2026&lt;/title&gt;
+&lt;script src=&quot;https://cdn.jsdelivr.net/npm/chart.js@4.5.0/dist/chart.umd.js&quot; integrity=&quot;sha384-iU8HYtnGQ8Cy4zl7gbNMOhsDTTKX02BTXptVP/vqAWIaTfM7isw76iyZCsjL2eVi&quot; crossorigin=&quot;anonymous&quot;&gt;&lt;/script&gt;
+&lt;style&gt;:root {
+  color-scheme: light;
+  --brand-dark: #6B2C1F; --brand-mid: #C97B5F; --brand-light: #F4D9CC;
+  --brand-bg: #FAF1E8; --cream: #FBF6EF; --text-dark: #2C1810;
+  --text-mid: #6B5445; --text-light: #A08977; --success: #5BA678;
+  --danger: #C44545; --warn: #D9933A; --gold: #E6A017; --border: #E8DCCD;
+  --shadow: 0 2px 12px rgba(107,44,31,0.08);
+  --shadow-lg: 0 8px 32px rgba(107,44,31,0.12);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Helvetica Neue&#x27;, Arial, sans-serif;
+  background: var(--brand-bg); color: var(--text-dark); line-height: 1.55; -webkit-font-smoothing: antialiased; }
+.display { font-family: &#x27;Impact&#x27;, &#x27;Arial Black&#x27;, sans-serif; font-weight: 900; letter-spacing: 0.02em; text-transform: uppercase; }
+.nav { position: sticky; top: 0; z-index: 100; background: rgba(251,246,239,0.95); backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border); padding: 12px 24px; display: flex; justify-content: space-between; align-items: center; }
+.nav-brand { font-family: &#x27;Impact&#x27;, &#x27;Arial Black&#x27;, sans-serif; font-weight: 900; letter-spacing: 0.02em; font-size: 20px; color: var(--brand-dark); }
+.nav-brand small { font-family: -apple-system, BlinkMacSystemFont, sans-serif; font-size: 11px; color: var(--text-mid); font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em; margin-left: 6px; }
+.nav-links { display: flex; gap: 18px; }
+.nav-links a { color: var(--text-mid); text-decoration: none; font-size: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; transition: color .2s; }
+.nav-links a:hover { color: var(--brand-dark); }
+@media (max-width: 768px) { .nav-links { display: none; } }
+.container { max-width: 1240px; margin: 0 auto; padding: 0 24px; }
+section { padding: 72px 0; }
+section + section { border-top: 1px solid var(--border); }
+.hero { background: linear-gradient(135deg, var(--brand-light) 0%, var(--brand-bg) 100%);
+  padding: 80px 24px 60px; text-align: center; border-bottom: 3px solid var(--brand-mid); }
+.hero-eyebrow { font-size: 12px; color: var(--brand-dark); font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 12px; }
+.hero-title { font-family: &#x27;Impact&#x27;, &#x27;Arial Black&#x27;, sans-serif; font-weight: 900; letter-spacing: 0.02em; font-size: clamp(48px, 8vw, 92px); color: var(--brand-dark); line-height: 1; letter-spacing: -0.02em; margin-bottom: 8px; }
+.hero-sub { font-size: 20px; color: var(--text-mid); margin-bottom: 40px; letter-spacing: 0.02em; }
+.hero-brand { display: inline-flex; align-items: center; gap: 12px; padding: 8px 20px; background: white; border-radius: 100px; box-shadow: var(--shadow); font-size: 12px; font-weight: 600; color: var(--brand-dark); letter-spacing: 0.1em; text-transform: uppercase; }
+.hero-brand .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--brand-mid); }
+.hero-logo { display: block; height: 120px; width: auto; margin: 0 auto 16px; }
+.stats-strip { max-width: 1240px; margin: -40px auto 0; padding: 0 24px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+@media (max-width: 900px) { .stats-strip { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 480px) { .stats-strip { grid-template-columns: 1fr; } }
+.stat-card { background: white; padding: 24px; border-radius: 14px; box-shadow: var(--shadow); border-top: 3px solid var(--brand-mid); }
+.stat-label { font-size: 10px; color: var(--text-mid); font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 8px; }
+.stat-value { font-family: &#x27;Impact&#x27;, &#x27;Arial Black&#x27;, sans-serif; font-weight: 900; letter-spacing: 0.02em; font-size: 36px; color: var(--brand-dark); line-height: 1.05; }
+.stat-value.sm { font-size: 28px; }
+.stat-sub { font-size: 12px; color: var(--text-mid); margin-top: 6px; }
+.stat-delta { font-size: 12px; font-weight: 600; margin-top: 4px; display: inline-flex; align-items: center; gap: 4px; }
+.stat-delta.up { color: var(--success); } .stat-delta.down { color: var(--danger); } .stat-delta.flat { color: var(--text-mid); }
+.section-eyebrow { font-size: 11px; color: var(--brand-mid); font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 8px; }
+.section-title { font-family: &#x27;Impact&#x27;, &#x27;Arial Black&#x27;, sans-serif; font-weight: 900; letter-spacing: 0.02em; font-size: clamp(36px, 5vw, 56px); color: var(--brand-dark); line-height: 1; margin-bottom: 24px; }
+.section-desc { font-size: 16px; color: var(--text-mid); max-width: 680px; margin-bottom: 40px; }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.grid-2-1 { display: grid; grid-template-columns: 2fr 1fr; gap: 32px; }
+@media (max-width: 900px) { .grid-2, .grid-3, .grid-2-1 { grid-template-columns: 1fr; } }
+.card { background: white; padding: 28px; border-radius: 14px; box-shadow: var(--shadow); border: 1px solid var(--border); }
+.card-title { font-size: 14px; color: var(--brand-dark); font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 16px; }
+.card-value { font-family: &#x27;Impact&#x27;, &#x27;Arial Black&#x27;, sans-serif; font-weight: 900; letter-spacing: 0.02em; font-size: 40px; color: var(--brand-dark); line-height: 1; margin-bottom: 4px; }
+.card-sub { font-size: 13px; color: var(--text-mid); }
+.chart-wrap { position: relative; height: 300px; }
+.chart-wrap.tall { height: 380px; } .chart-wrap.short { height: 220px; }
+.narrative { background: var(--cream); padding: 32px; border-radius: 14px; border-left: 4px solid var(--brand-mid); }
+.narrative-title { font-size: 12px; color: var(--brand-dark); font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 12px; }
+.narrative p { font-size: 15px; color: var(--text-dark); margin-bottom: 10px; } .narrative p:last-child { margin-bottom: 0; }
+.narrative ul { margin: 8px 0 0 20px; } .narrative li { font-size: 14px; color: var(--text-dark); margin-bottom: 6px; }
+.table-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th { text-align: left; padding: 12px 14px; background: var(--brand-dark); color: white; font-weight: 600; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; }
+td { padding: 12px 14px; border-bottom: 1px solid var(--border); color: var(--text-dark); }
+tr:hover td { background: var(--cream); } tr.highlight td { background: var(--brand-light); font-weight: 600; }
+.pill { display: inline-block; padding: 3px 10px; border-radius: 100px; font-size: 11px; font-weight: 600; }
+.pill.us { background: var(--brand-dark); color: white; } .pill.comp { background: var(--cream); color: var(--text-mid); }
+.projection-table { width: 100%; border-collapse: collapse; margin-top: 16px; }
+.projection-table th, .projection-table td { padding: 10px 14px; text-align: right; font-size: 13px; }
+.projection-table th { background: var(--brand-dark); color: white; font-weight: 600; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; }
+.projection-table th:first-child, .projection-table td:first-child { text-align: left; }
+.projection-table tbody tr:nth-child(even) { background: var(--cream); }
+.projection-table tr.total-row td { font-weight: 700; background: var(--brand-light); border-top: 2px solid var(--brand-mid); }
+.expandable { background: white; border-radius: 14px; border: 1px solid var(--border); overflow: hidden; }
+.expand-header { padding: 24px 28px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: background .2s; }
+.expand-header:hover { background: var(--cream); }
+.expand-header .expand-title { font-family: &#x27;Impact&#x27;, &#x27;Arial Black&#x27;, sans-serif; font-weight: 900; letter-spacing: 0.02em; font-size: 24px; color: var(--brand-dark); }
+.expand-header .expand-icon { font-size: 24px; color: var(--brand-mid); transition: transform .3s; }
+.expandable.open .expand-icon { transform: rotate(45deg); }
+.expand-content { max-height: 0; overflow: hidden; transition: max-height .4s ease; }
+.expandable.open .expand-content { max-height: 5000px; }
+.expand-inner { padding: 0 28px 28px; }
+.footer { background: var(--brand-dark); color: white; padding: 48px 24px; text-align: center; }
+.footer-brand { font-family: &#x27;Impact&#x27;, &#x27;Arial Black&#x27;, sans-serif; font-weight: 900; letter-spacing: 0.02em; font-size: 32px; margin-bottom: 8px; }
+.footer-tag { font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; opacity: 0.7; margin-bottom: 24px; }
+.footer-contact { font-size: 14px; opacity: 0.85; } .footer-contact span { margin: 0 12px; }
+.footer-mini { font-size: 11px; margin-top: 20px; opacity: 0.5; }&lt;/style&gt;
+&lt;style&gt;
+/* ===== REVIEWS ===== */
+.reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+@media (max-width: 900px) { .reviews-grid { grid-template-columns: 1fr; } }
+.reviews-grid.two-col { grid-template-columns: repeat(2, 1fr); }
+@media (max-width: 700px) { .reviews-grid.two-col { grid-template-columns: 1fr; } }
+.reviews-grid.one-col { grid-template-columns: 1fr; max-width: 640px; margin: 0 auto; }
+.review-card { background: white; padding: 24px; border-radius: 14px; box-shadow: var(--shadow); border: 1px solid var(--border); display: flex; flex-direction: column; }
+.review-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+.review-avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--brand-mid); color: white; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 15px; }
+.review-name { font-weight: 600; font-size: 14px; color: var(--text-dark); }
+.review-meta { font-size: 11px; color: var(--text-mid); }
+.review-stars { color: var(--gold); font-size: 14px; letter-spacing: 1px; margin-bottom: 10px; }
+.review-text { font-size: 13px; color: var(--text-dark); line-height: 1.6; }
+.review-trans { margin-top: 8px; font-style: italic; color: var(--text-mid); }
+&lt;/style&gt;
+&lt;style&gt;
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+.nav{top:env(safe-area-inset-top,0px)}
+.rbar{display:grid;grid-template-columns:130px 1fr 40px;align-items:center;gap:12px;margin:10px 0;font-size:13px}
+.rbar .t{height:8px;background:var(--brand-light);border-radius:100px;overflow:hidden}.rbar .t span{display:block;height:100%;background:var(--brand-mid)}
+.rbar .v{text-align:right;font-weight:700}
+.unit-banner{background:var(--brand-dark);color:#fff;padding:28px 24px;text-align:center;font-family:&#x27;Impact&#x27;,&#x27;Arial Black&#x27;,sans-serif;font-size:36px;letter-spacing:.02em}
+.unit-banner small{display:block;font-family:-apple-system,BlinkMacSystemFont,sans-serif;font-size:12px;letter-spacing:.15em;text-transform:uppercase;opacity:.75;margin-top:4px}
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;nav class=&quot;nav&quot;&gt;&lt;div class=&quot;nav-brand&quot;&gt;Casa Impian &lt;small&gt;September 2026&lt;/small&gt;&lt;/div&gt;&lt;div class=&quot;nav-links&quot;&gt;&lt;a href=&quot;#u-bookings&quot;&gt;Bookings&lt;/a&gt;&lt;a href=&quot;#u-expenses&quot;&gt;Expenses&lt;/a&gt;&lt;a href=&quot;#u-pnl&quot;&gt;P&amp;amp;L&lt;/a&gt;&lt;a href=&quot;#u-performance&quot;&gt;Performance&lt;/a&gt;&lt;a href=&quot;#u-outlook&quot;&gt;Outlook&lt;/a&gt;&lt;/div&gt;&lt;/nav&gt;
+&lt;div class=&quot;hero&quot;&gt;&lt;div class=&quot;hero-eyebrow&quot;&gt;Monthly Report&lt;/div&gt;
+&lt;h1 class=&quot;hero-title&quot;&gt;Casa Impian&lt;/h1&gt;&lt;p class=&quot;hero-sub&quot;&gt;September 2026 · Kediri, Tabanan · 3&amp;#8209;Bedroom&lt;/p&gt;&lt;div class=&quot;hero-brand&quot;&gt;&lt;span class=&quot;dot&quot;&gt;&lt;/span&gt;Made by Delima Housing&lt;/div&gt;
+&lt;div style=&quot;margin-top:16px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;&quot;&gt;&lt;a href=&quot;https://www.airbnb.com/rooms/1652699252326557081?guests=1&amp;adults=1&amp;s=67&amp;unique_share_id=5908e2c8-5173-4a7b-ae3e-502d3feb92b7&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot; style=&quot;display:inline-block; background:var(--brand-dark); color:white; padding:10px 20px; border-radius:100px; text-decoration:none; font-size:12px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase;&quot;&gt;View Casa Impian on Airbnb →&lt;/a&gt;&lt;/div&gt;&lt;/div&gt;
+
+
+&lt;div class=&quot;stats-strip&quot;&gt;
+  &lt;div class=&quot;stat-card&quot;&gt;&lt;div class=&quot;stat-label&quot;&gt;Revenue&lt;/div&gt;&lt;div class=&quot;stat-value&quot;&gt;Rp 12.42M&lt;/div&gt;&lt;div class=&quot;stat-sub&quot;&gt;4 paid nights&lt;/div&gt;&lt;div class=&quot;stat-delta down&quot;&gt;▼ -85.2% vs Aug&lt;/div&gt;&lt;/div&gt;
+  &lt;div class=&quot;stat-card&quot;&gt;&lt;div class=&quot;stat-label&quot;&gt;Net Profit&lt;/div&gt;&lt;div class=&quot;stat-value&quot;&gt;Rp 5.50M&lt;/div&gt;&lt;div class=&quot;stat-sub&quot;&gt;44.3% margin&lt;/div&gt;&lt;div class=&quot;stat-delta down&quot;&gt;▼ -88.9% vs Aug&lt;/div&gt;&lt;/div&gt;
+  &lt;div class=&quot;stat-card&quot;&gt;&lt;div class=&quot;stat-label&quot;&gt;Occupancy&lt;/div&gt;&lt;div class=&quot;stat-value&quot;&gt;13%&lt;/div&gt;&lt;div class=&quot;stat-sub&quot;&gt;4 of 30 nights&lt;/div&gt;&lt;div class=&quot;stat-delta down&quot;&gt;▼ -64pp vs Aug&lt;/div&gt;&lt;/div&gt;
+  &lt;div class=&quot;stat-card&quot;&gt;&lt;div class=&quot;stat-label&quot;&gt;ADR&lt;/div&gt;&lt;div class=&quot;stat-value sm&quot;&gt;Rp 3,104,375&lt;/div&gt;&lt;div class=&quot;stat-sub&quot;&gt;Total income ÷ all occupied nights&lt;/div&gt;&lt;div class=&quot;stat-delta down&quot;&gt;▼ -11.1% vs Aug&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;section id=&quot;u-bookings&quot;&gt;&lt;div class=&quot;container&quot;&gt;
+  &lt;div class=&quot;section-eyebrow&quot;&gt;01 · Booking Recap · September&lt;/div&gt;
+  &lt;h2 class=&quot;section-title&quot;&gt;Casa Impian&#x27;s&lt;br&gt;September bookings.&lt;/h2&gt;
+  &lt;div class=&quot;grid-2-1&quot;&gt;&lt;div class=&quot;card&quot;&gt;&lt;div class=&quot;card-title&quot;&gt;Revenue trend — 2026&lt;/div&gt;&lt;div class=&quot;chart-wrap&quot;&gt;&lt;canvas id=&quot;u-rev&quot;&gt;&lt;/canvas&gt;&lt;/div&gt;&lt;/div&gt;
+  &lt;div class=&quot;card&quot;&gt;&lt;div class=&quot;card-title&quot;&gt;Source of Revenue · September&lt;/div&gt;&lt;div class=&quot;chart-wrap&quot;&gt;&lt;canvas id=&quot;u-src&quot;&gt;&lt;/canvas&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;
+  &lt;div class=&quot;card&quot; style=&quot;margin-top:32px;&quot;&gt;&lt;div class=&quot;card-title&quot;&gt;Booking list — September 2026&lt;/div&gt;&lt;div class=&quot;table-wrap&quot;&gt;&lt;table class=&quot;projection-table&quot;&gt;
+  &lt;thead&gt;&lt;tr&gt;&lt;th style=&quot;text-align:left;&quot;&gt;Guest&lt;/th&gt;&lt;th style=&quot;text-align:left;&quot;&gt;Channel&lt;/th&gt;&lt;th style=&quot;text-align:left;&quot;&gt;Type&lt;/th&gt;&lt;th style=&quot;text-align:left;&quot;&gt;Check-in&lt;/th&gt;&lt;th style=&quot;text-align:left;&quot;&gt;Check-out&lt;/th&gt;&lt;th&gt;Nights&lt;/th&gt;&lt;th&gt;Revenue (Rp)&lt;/th&gt;&lt;th&gt;Commission (Rp)&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td style=&quot;text-align:left;&quot;&gt;Greta D.&lt;/td&gt;&lt;td style=&quot;text-align:left;&quot;&gt;Booking.com&lt;/td&gt;&lt;td style=&quot;text-align:left;&quot;&gt;Paid&lt;/td&gt;&lt;td style=&quot;text-align:left;&quot;&gt;Aug 31&lt;/td&gt;&lt;td style=&quot;text-align:left;&quot;&gt;Sep 02&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;3,017,500&lt;/td&gt;&lt;td&gt;579,451&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;text-align:left;&quot;&gt;Feraldo P.&lt;/td&gt;&lt;td style=&quot;text-align:left;&quot;&gt;Airbnb&lt;/td&gt;&lt;td style=&quot;text-align:left;&quot;&gt;Paid&lt;/td&gt;&lt;td style=&quot;text-align:left;&quot;&gt;Sep 03&lt;/td&gt;&lt;td style=&quot;text-align:left;&quot;&gt;Sep 06&lt;/td&gt;&lt;td&gt;3&lt;/td&gt;&lt;td&gt;9,400,000&lt;/td&gt;&lt;td&gt;1,617,270&lt;/td&gt;&lt;/tr&gt;&lt;tr class=&quot;total-row&quot;&gt;&lt;td style=&quot;text-align:left;&quot; colspan=&quot;5&quot;&gt;Total September&lt;/td&gt;&lt;td&gt;4&lt;/td&gt;&lt;td&gt;12,417,500&lt;/td&gt;&lt;td&gt;2,196,721&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;
+  &lt;p style=&quot;font-size:11px;color:var(--text-mid);margin-top:10px;&quot;&gt;Guest names are shortened for privacy. Nights and revenue count only the part of each stay that falls in September.&lt;/p&gt;&lt;/div&gt;
+  &lt;div class=&quot;narrative&quot; style=&quot;margin-top:32px;&quot;&gt;&lt;div class=&quot;narrative-title&quot;&gt;The story this month&lt;/div&gt;
+  &lt;p&gt;September generated &lt;strong&gt;Rp 12.42M in total revenue&lt;/strong&gt;, down 85.2% vs August (Rp 83.82M).&lt;/p&gt;
+  &lt;p&gt;4 paid nights at an average nightly rate of &lt;strong&gt;Rp 3,104,375&lt;/strong&gt;.&lt;/p&gt;&lt;/div&gt;
+&lt;/div&gt;&lt;/section&gt;
+&lt;section id=&quot;u-expenses&quot;&gt;&lt;div class=&quot;container&quot;&gt;
+  &lt;div class=&quot;section-eyebrow&quot;&gt;02 · Expense Recap&lt;/div&gt;
+  &lt;h2 class=&quot;section-title&quot;&gt;Where every&lt;br&gt;rupiah went.&lt;/h2&gt;
+  &lt;p class=&quot;section-desc&quot;&gt;Every operating expense paid for Casa Impian in September 2026, in date order.&lt;/p&gt;
+  &lt;div class=&quot;card&quot; style=&quot;margin-bottom:32px;&quot;&gt;&lt;div class=&quot;card-title&quot;&gt;Where the expenses went · September&lt;/div&gt;&lt;div class=&quot;chart-wrap&quot;&gt;&lt;canvas id=&quot;u-exp&quot;&gt;&lt;/canvas&gt;&lt;/div&gt;&lt;/div&gt;
+  &lt;div class=&quot;card&quot;&gt;&lt;div class=&quot;table-wrap&quot;&gt;&lt;table class=&quot;projection-table&quot;&gt;&lt;thead&gt;&lt;tr&gt;&lt;th style=&quot;text-align:left;&quot;&gt;Date&lt;/th&gt;&lt;th style=&quot;text-align:left;&quot;&gt;Category&lt;/th&gt;&lt;th style=&quot;text-align:left;&quot;&gt;Item&lt;/th&gt;&lt;th&gt;IDR&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td style=&quot;text-align:left;&quot;&gt;Sep 04&lt;/td&gt;&lt;td style=&quot;text-align:left;&quot;&gt;Beverages &amp; Consumables&lt;/td&gt;&lt;td style=&quot;text-align:left;&quot;&gt;Drinking water (gallon)&lt;/td&gt;&lt;td&gt;20,000&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;text-align:left;&quot;&gt;Sep 05&lt;/td&gt;&lt;td style=&quot;text-align:left;&quot;&gt;Beverages &amp; Consumables&lt;/td&gt;&lt;td style=&quot;text-align:left;&quot;&gt;Drinking water (gallon)&lt;/td&gt;&lt;td&gt;20,000&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;text-align:left;&quot;&gt;Sep 05&lt;/td&gt;&lt;td style=&quot;text-align:left;&quot;&gt;Cleaning &amp; Pool Supplies&lt;/td&gt;&lt;td style=&quot;text-align:left;&quot;&gt;Garbage bags&lt;/td&gt;&lt;td&gt;15,000&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;text-align:left;&quot;&gt;Sep 06&lt;/td&gt;&lt;td style=&quot;text-align:left;&quot;&gt;Cleaning &amp; Pool Supplies&lt;/td&gt;&lt;td style=&quot;text-align:left;&quot;&gt;Garbage bags&lt;/td&gt;&lt;td&gt;1,875&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;text-align:left;&quot;&gt;Sep 15&lt;/td&gt;&lt;td style=&quot;text-align:left;&quot;&gt;Cleaning &amp; Pool Supplies&lt;/td&gt;&lt;td style=&quot;text-align:left;&quot;&gt;Garbage bags&lt;/td&gt;&lt;td&gt;1,548&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;text-align:left;&quot;&gt;Sep 18&lt;/td&gt;&lt;td style=&quot;text-align:left;&quot;&gt;Cleaning &amp; Pool Supplies&lt;/td&gt;&lt;td style=&quot;text-align:left;&quot;&gt;Garbage bags&lt;/td&gt;&lt;td&gt;11,250&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;text-align:left;&quot;&gt;Sep 28&lt;/td&gt;&lt;td style=&quot;text-align:left;&quot;&gt;Cleaning &amp; Pool Supplies&lt;/td&gt;&lt;td style=&quot;text-align:left;&quot;&gt;Garbage bags&lt;/td&gt;&lt;td&gt;406&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;text-align:left;&quot;&gt;Sep 30&lt;/td&gt;&lt;td style=&quot;text-align:left;&quot;&gt;Housekeeping&lt;/td&gt;&lt;td style=&quot;text-align:left;&quot;&gt;Monthly housekeeping&lt;/td&gt;&lt;td&gt;1,500,000&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;text-align:left;&quot;&gt;Sep 30&lt;/td&gt;&lt;td style=&quot;text-align:left;&quot;&gt;Laundry&lt;/td&gt;&lt;td style=&quot;text-align:left;&quot;&gt;Laundry service — September invoice (Rp 678,900 after 7% discount)&lt;/td&gt;&lt;td&gt;678,900&lt;/td&gt;&lt;/tr&gt;&lt;tr class=&quot;total-row&quot;&gt;&lt;td style=&quot;text-align:left;&quot; colspan=&quot;3&quot;&gt;Total Operational Expenses · 9 items&lt;/td&gt;&lt;td&gt;2,248,980&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;
+  &lt;p style=&quot;font-size:11px;color:var(--text-mid);margin-top:10px;&quot;&gt;Operating expenses were 18.1% of revenue. Management fee, OTA commission and government tax are shown in the Profit &amp;amp; Loss below.&lt;/p&gt;&lt;/div&gt;
+&lt;/div&gt;&lt;/section&gt;
+&lt;section id=&quot;u-pnl&quot;&gt;&lt;div class=&quot;container&quot;&gt;
+  &lt;div class=&quot;section-eyebrow&quot;&gt;03 · Profit &amp;amp; Loss&lt;/div&gt;
+  &lt;h2 class=&quot;section-title&quot;&gt;Margin at 44%&lt;br&gt;on Rp 12.4M revenue.&lt;/h2&gt;
+  &lt;div class=&quot;card&quot;&gt;&lt;div class=&quot;card-title&quot;&gt;Full P&amp;amp;L — September 2026&lt;/div&gt;&lt;div class=&quot;table-wrap&quot;&gt;&lt;table class=&quot;projection-table&quot;&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Line&lt;/th&gt;&lt;th&gt;IDR&lt;/th&gt;&lt;th&gt;% of Revenue&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td colspan=&quot;3&quot; style=&quot;background:var(--brand-light);font-weight:700;&quot;&gt;REVENUE&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;text-align:left;&quot;&gt;Airbnb&lt;/td&gt;&lt;td&gt;9,400,000&lt;/td&gt;&lt;td&gt;75.7%&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;text-align:left;&quot;&gt;Booking.com&lt;/td&gt;&lt;td&gt;3,017,500&lt;/td&gt;&lt;td&gt;24.3%&lt;/td&gt;&lt;/tr&gt;&lt;tr class=&quot;total-row&quot;&gt;&lt;td style=&quot;text-align:left;&quot;&gt;Total Income&lt;/td&gt;&lt;td&gt;12,417,500&lt;/td&gt;&lt;td&gt;100%&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan=&quot;3&quot; style=&quot;background:var(--brand-light);font-weight:700;&quot;&gt;OPERATIONAL EXPENSES&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;text-align:left;&quot;&gt;Housekeeping&lt;/td&gt;&lt;td&gt;1,500,000&lt;/td&gt;&lt;td&gt;12.1%&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;text-align:left;&quot;&gt;Laundry&lt;/td&gt;&lt;td&gt;678,900&lt;/td&gt;&lt;td&gt;5.5%&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;text-align:left;&quot;&gt;Beverages &amp; Consumables&lt;/td&gt;&lt;td&gt;40,000&lt;/td&gt;&lt;td&gt;0.3%&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;text-align:left;&quot;&gt;Cleaning &amp; Pool Supplies&lt;/td&gt;&lt;td&gt;30,080&lt;/td&gt;&lt;td&gt;0.2%&lt;/td&gt;&lt;/tr&gt;&lt;tr class=&quot;total-row&quot;&gt;&lt;td style=&quot;text-align:left;&quot;&gt;Total Operational&lt;/td&gt;&lt;td&gt;2,248,980&lt;/td&gt;&lt;td&gt;18.1%&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan=&quot;3&quot; style=&quot;background:var(--brand-light);font-weight:700;&quot;&gt;OTHER EXPENSES&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;text-align:left;&quot;&gt;Management Fee (12%% × [Income − OTA Comm])&lt;/td&gt;&lt;td&gt;1,226,494&lt;/td&gt;&lt;td&gt;9.9%&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;text-align:left;&quot;&gt;OTA Commission (Airbnb + Booking.com ×1.11 VAT)&lt;/td&gt;&lt;td&gt;2,196,721&lt;/td&gt;&lt;td&gt;17.7%&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;text-align:left;&quot;&gt;Government Tax (10% of bookings paid through Delima)&lt;/td&gt;&lt;td&gt;1,241,750&lt;/td&gt;&lt;td&gt;10.0%&lt;/td&gt;&lt;/tr&gt;&lt;tr class=&quot;total-row&quot;&gt;&lt;td style=&quot;text-align:left;&quot;&gt;Total Other Expenses&lt;/td&gt;&lt;td&gt;4,664,964&lt;/td&gt;&lt;td&gt;37.6%&lt;/td&gt;&lt;/tr&gt;&lt;tr class=&quot;total-row&quot;&gt;&lt;td style=&quot;text-align:left;&quot;&gt;NET PROFIT&lt;/td&gt;&lt;td&gt;5,503,556&lt;/td&gt;&lt;td&gt;44.3%&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;&lt;/div&gt;
+  &lt;div class=&quot;grid-2&quot; style=&quot;margin-top:32px;&quot;&gt;&lt;div class=&quot;card&quot;&gt;&lt;div class=&quot;card-title&quot;&gt;Net Profit trend&lt;/div&gt;&lt;div class=&quot;chart-wrap&quot;&gt;&lt;canvas id=&quot;u-np&quot;&gt;&lt;/canvas&gt;&lt;/div&gt;&lt;/div&gt;
+  &lt;div class=&quot;card&quot;&gt;&lt;div class=&quot;card-title&quot;&gt;Profit Margin trend&lt;/div&gt;&lt;div class=&quot;chart-wrap&quot;&gt;&lt;canvas id=&quot;u-mar&quot;&gt;&lt;/canvas&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;
+  &lt;div class=&quot;narrative&quot; style=&quot;margin-top:32px;&quot;&gt;&lt;div class=&quot;narrative-title&quot;&gt;Cost breakdown&lt;/div&gt;
+  &lt;p&gt;Net profit landed at &lt;strong&gt;Rp 5.50M&lt;/strong&gt; (44.3% margin) vs Rp 49.40M in August.&lt;/p&gt;
+  &lt;p&gt;Operational expenses of &lt;strong&gt;Rp 2.25M&lt;/strong&gt; (18.1% of revenue). OTA commission absorbed Rp 2.20M (17.7%). Management fee at Rp 1.23M and government tax at Rp 1.24M.&lt;/p&gt;&lt;/div&gt;
+&lt;/div&gt;&lt;/section&gt;
+&lt;section id=&quot;u-performance&quot;&gt;&lt;div class=&quot;container&quot;&gt;
+  &lt;div class=&quot;section-eyebrow&quot;&gt;04 · Performance Overview&lt;/div&gt;
+  &lt;h2 class=&quot;section-title&quot;&gt;Rate, occupancy,&lt;br&gt;nights sold.&lt;/h2&gt;
+  &lt;div class=&quot;grid-3&quot;&gt;&lt;div class=&quot;card&quot;&gt;&lt;div class=&quot;card-title&quot;&gt;Average Daily Rate&lt;/div&gt;&lt;div class=&quot;chart-wrap short&quot;&gt;&lt;canvas id=&quot;u-adr&quot;&gt;&lt;/canvas&gt;&lt;/div&gt;&lt;/div&gt;
+  &lt;div class=&quot;card&quot;&gt;&lt;div class=&quot;card-title&quot;&gt;Occupancy %&lt;/div&gt;&lt;div class=&quot;chart-wrap short&quot;&gt;&lt;canvas id=&quot;u-occ&quot;&gt;&lt;/canvas&gt;&lt;/div&gt;&lt;/div&gt;
+  &lt;div class=&quot;card&quot;&gt;&lt;div class=&quot;card-title&quot;&gt;Paid Nights Sold — Sep&lt;/div&gt;&lt;div class=&quot;chart-wrap short&quot;&gt;&lt;canvas id=&quot;u-nts&quot;&gt;&lt;/canvas&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;
+  &lt;p style=&quot;font-size:11px;color:var(--text-mid);margin-top:10px;&quot;&gt;Occupancy counts paid nights only; owner stays, maintenance and cancelled nights are not counted.&lt;/p&gt;
+  
+&lt;/div&gt;&lt;/section&gt;
+&lt;section id=&quot;u-reviews&quot;&gt;&lt;div class=&quot;container&quot;&gt;
+  &lt;div class=&quot;section-eyebrow&quot;&gt;05 · Guest Reviews&lt;/div&gt;
+  &lt;h2 class=&quot;section-title&quot;&gt;Guest reviews.&lt;/h2&gt;
+  &lt;div style=&quot;background:linear-gradient(90deg, #FBF6EF, #F4D9CC); border-left:4px solid var(--gold); padding:16px 20px; border-radius:10px; margin-bottom:24px; text-align:center;&quot;&gt;
+  &lt;strong style=&quot;font-size:15px; color:var(--brand-dark);&quot;&gt;5.0⭐ · 7 reviews on Airbnb · Guest favourite · 1 new review since the August report&lt;/strong&gt;&lt;/div&gt;
+  &lt;div class=&quot;grid-2&quot;&gt;&lt;div class=&quot;card&quot;&gt;&lt;div class=&quot;card-title&quot;&gt;Category scores&lt;/div&gt;&lt;div class=&quot;rbar&quot;&gt;&lt;span&gt;Cleanliness&lt;/span&gt;&lt;span class=&quot;t&quot;&gt;&lt;span style=&quot;width:98%&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;v&quot;&gt;4.9&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;rbar&quot;&gt;&lt;span&gt;Accuracy&lt;/span&gt;&lt;span class=&quot;t&quot;&gt;&lt;span style=&quot;width:100%&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;v&quot;&gt;5.0&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;rbar&quot;&gt;&lt;span&gt;Check-in&lt;/span&gt;&lt;span class=&quot;t&quot;&gt;&lt;span style=&quot;width:100%&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;v&quot;&gt;5.0&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;rbar&quot;&gt;&lt;span&gt;Communication&lt;/span&gt;&lt;span class=&quot;t&quot;&gt;&lt;span style=&quot;width:100%&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;v&quot;&gt;5.0&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;rbar&quot;&gt;&lt;span&gt;Location&lt;/span&gt;&lt;span class=&quot;t&quot;&gt;&lt;span style=&quot;width:98%&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;v&quot;&gt;4.9&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;rbar&quot;&gt;&lt;span&gt;Value&lt;/span&gt;&lt;span class=&quot;t&quot;&gt;&lt;span style=&quot;width:100%&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;v&quot;&gt;5.0&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;narrative&quot;&gt;&lt;div class=&quot;narrative-title&quot;&gt;What guests rate highest&lt;/div&gt;&lt;p&gt;100% of all reviews are 5 stars. Accuracy, check-in, communication and value all score a perfect 5.0.&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;
+  
+&lt;/div&gt;&lt;/section&gt;
+
+&lt;section id=&quot;u-pricing&quot;&gt;&lt;div class=&quot;container&quot;&gt;&lt;div class=&quot;section-eyebrow&quot;&gt;06 · Pricing Strategy&lt;/div&gt;&lt;h2 class=&quot;section-title&quot;&gt;October:&lt;br&gt;long-term let.&lt;/h2&gt;
+&lt;div style=&quot;padding:24px;border-radius:14px;text-align:center;border:2px solid var(--brand-dark);background:var(--brand-dark);color:white;margin-bottom:24px;&quot;&gt;
+&lt;div style=&quot;font-size:11px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:white;margin-bottom:12px;&quot;&gt;October 2026&lt;/div&gt;
+&lt;div style=&quot;font-family:&#x27;Impact&#x27;,&#x27;Arial Black&#x27;,sans-serif;font-weight:900;font-size:30px;color:white;margin-bottom:4px;&quot;&gt;No confirmed bookings yet&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;narrative&quot; style=&quot;border-left: 4px solid var(--brand-mid); background: var(--cream, #FBF6EF); padding: 16px 20px; border-radius: 6px;&quot;&gt;&lt;div style=&quot;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--brand-dark);margin-bottom:8px;&quot;&gt;Implementation plan&lt;/div&gt;
+&lt;p style=&quot;font-size:13px;color:var(--text-dark);line-height:1.5;&quot;&gt;Nightly rates for the 3-bedroom villa are being reviewed for the low season and will be shown in next month’s report.&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;/section&gt;
+&lt;section id=&quot;u-outlook&quot;&gt;&lt;div class=&quot;container&quot;&gt;
+  &lt;div class=&quot;section-eyebrow&quot;&gt;07 · Outlook · October 2026&lt;/div&gt;
+  &lt;h2 class=&quot;section-title&quot;&gt;Where we&#x27;re at,&lt;br&gt;where we can land.&lt;/h2&gt;
+  &lt;div class=&quot;card&quot; style=&quot;margin-bottom:32px;&quot;&gt;&lt;div class=&quot;card-title&quot;&gt;Booking Pace · October&lt;/div&gt;
+    &lt;div style=&quot;display:flex;justify-content:space-between;align-items:baseline;margin:8px 0 16px;&quot;&gt;&lt;div&gt;&lt;span style=&quot;font-family:&#x27;Impact&#x27;,&#x27;Arial Black&#x27;,sans-serif;font-size:48px;color:var(--brand-dark);line-height:1;&quot;&gt;0&lt;/span&gt;&lt;span style=&quot;font-size:18px;color:var(--text-mid);margin-left:8px;&quot;&gt;of 31 nights booked · Rp 0.00M revenue locked&lt;/span&gt;&lt;/div&gt;
+    &lt;div style=&quot;text-align:right;&quot;&gt;&lt;div style=&quot;font-family:&#x27;Impact&#x27;,&#x27;Arial Black&#x27;,sans-serif;font-size:32px;color:var(--brand-mid);line-height:1;&quot;&gt;31&lt;/div&gt;&lt;div style=&quot;font-size:12px;color:var(--text-mid);&quot;&gt;still available&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;
+    &lt;div style=&quot;height:24px;background:var(--brand-light);border-radius:100px;overflow:hidden;&quot;&gt;&lt;div style=&quot;height:100%;width:0%;background:linear-gradient(90deg,var(--brand-dark),var(--brand-mid));border-radius:100px;&quot;&gt;&lt;/div&gt;&lt;/div&gt;
+    &lt;div style=&quot;display:flex;justify-content:space-between;margin-top:8px;font-size:11px;color:var(--text-mid);&quot;&gt;&lt;span&gt;0% booked&lt;/span&gt;&lt;span&gt;as of Oct 1&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
+  &lt;div class=&quot;card&quot;&gt;&lt;div class=&quot;card-title&quot;&gt;October confirmed bookings · Casa Impian&lt;/div&gt;&lt;div class=&quot;table-wrap&quot;&gt;&lt;table class=&quot;projection-table&quot; style=&quot;font-size:12px;&quot;&gt;
+  &lt;thead&gt;&lt;tr&gt;&lt;th style=&quot;text-align:left;&quot;&gt;Guest&lt;/th&gt;&lt;th&gt;Channel&lt;/th&gt;&lt;th&gt;Check-in&lt;/th&gt;&lt;th&gt;Check-out&lt;/th&gt;&lt;th&gt;Oct nights&lt;/th&gt;&lt;th&gt;Revenue (Rp)&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr class=&quot;total-row&quot;&gt;&lt;td style=&quot;text-align:left;&quot;&gt;Total (Oct nights)&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;&lt;/section&gt;
+&lt;section&gt;&lt;div class=&quot;container&quot;&gt;
+  &lt;div class=&quot;section-eyebrow&quot;&gt;08 · Deep dive&lt;/div&gt;
+  &lt;h2 class=&quot;section-title&quot;&gt;Year to date.&lt;/h2&gt;
+  &lt;div class=&quot;expandable open&quot; onclick=&quot;this.classList.toggle(&#x27;open&#x27;)&quot;&gt;&lt;div class=&quot;expand-header&quot;&gt;&lt;div class=&quot;expand-title&quot;&gt;Year-to-Date P&amp;amp;L — Casa Impian 2026 (Jun–Sep)&lt;/div&gt;&lt;div class=&quot;expand-icon&quot;&gt;+&lt;/div&gt;&lt;/div&gt;
+  &lt;div class=&quot;expand-content&quot;&gt;&lt;div class=&quot;expand-inner&quot;&gt;&lt;div class=&quot;table-wrap&quot;&gt;&lt;table class=&quot;projection-table&quot; style=&quot;font-size:11.5px;&quot;&gt;&lt;thead&gt;&lt;tr&gt;&lt;th style=&quot;text-align:left;&quot;&gt;Category&lt;/th&gt;&lt;th&gt;Jun&lt;/th&gt;&lt;th&gt;Jul&lt;/th&gt;&lt;th&gt;Aug&lt;/th&gt;&lt;th style=&quot;background:#4A1D14;&quot;&gt;Sep&lt;/th&gt;&lt;th style=&quot;background:var(--brand-mid);&quot;&gt;YTD Total&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr class=&quot;total-row&quot;&gt;&lt;td style=&quot;text-align:left;&quot;&gt;Total Income&lt;/td&gt;&lt;td&gt;30,100,000&lt;/td&gt;&lt;td&gt;95,773,790&lt;/td&gt;&lt;td&gt;83,821,210&lt;/td&gt;&lt;td style=&quot;background:#F4D9CC;&quot;&gt;12,417,500&lt;/td&gt;&lt;td&gt;222,112,500&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;text-align:left;&quot;&gt;Total Operational Exp.&lt;/td&gt;&lt;td&gt;3,470,187&lt;/td&gt;&lt;td&gt;2,919,450&lt;/td&gt;&lt;td&gt;3,130,547&lt;/td&gt;&lt;td style=&quot;background:#F4D9CC;&quot;&gt;2,248,980&lt;/td&gt;&lt;td&gt;11,769,164&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;text-align:left;&quot;&gt;Management Fee&lt;/td&gt;&lt;td&gt;3,158,762&lt;/td&gt;&lt;td&gt;9,515,514&lt;/td&gt;&lt;td&gt;8,305,664&lt;/td&gt;&lt;td style=&quot;background:#F4D9CC;&quot;&gt;1,226,494&lt;/td&gt;&lt;td&gt;22,206,434&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;text-align:left;&quot;&gt;OTA Commission&lt;/td&gt;&lt;td&gt;3,776,986&lt;/td&gt;&lt;td&gt;16,477,841&lt;/td&gt;&lt;td&gt;14,607,347&lt;/td&gt;&lt;td style=&quot;background:#F4D9CC;&quot;&gt;2,196,721&lt;/td&gt;&lt;td&gt;37,058,895&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;text-align:left;&quot;&gt;Government Tax&lt;/td&gt;&lt;td&gt;2,110,000&lt;/td&gt;&lt;td&gt;9,577,379&lt;/td&gt;&lt;td&gt;8,382,121&lt;/td&gt;&lt;td style=&quot;background:#F4D9CC;&quot;&gt;1,241,750&lt;/td&gt;&lt;td&gt;21,311,250&lt;/td&gt;&lt;/tr&gt;&lt;tr class=&quot;total-row&quot;&gt;&lt;td style=&quot;text-align:left;&quot;&gt;NET PROFIT&lt;/td&gt;&lt;td&gt;17,584,065&lt;/td&gt;&lt;td&gt;57,283,606&lt;/td&gt;&lt;td&gt;49,395,531&lt;/td&gt;&lt;td style=&quot;background:#F4D9CC;&quot;&gt;5,503,556&lt;/td&gt;&lt;td&gt;129,766,758&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;text-align:left;&quot;&gt;Occupancy Rate&lt;/td&gt;&lt;td&gt;40%&lt;/td&gt;&lt;td&gt;87%&lt;/td&gt;&lt;td&gt;77%&lt;/td&gt;&lt;td&gt;13%&lt;/td&gt;&lt;td&gt;55% avg&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;text-align:left;&quot;&gt;Average Nightly Rate (Rp)&lt;/td&gt;&lt;td&gt;2,508,333&lt;/td&gt;&lt;td&gt;3,547,177&lt;/td&gt;&lt;td&gt;3,492,550&lt;/td&gt;&lt;td&gt;3,104,375&lt;/td&gt;&lt;td&gt;3,315,112 avg&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;&lt;/section&gt;&lt;div class=&quot;footer&quot;&gt;&lt;div class=&quot;footer-brand&quot;&gt;Delima Housing&lt;/div&gt;&lt;div class=&quot;footer-tag&quot;&gt;Your Property · Our Priority&lt;/div&gt;
+&lt;div class=&quot;footer-contact&quot;&gt;&lt;span&gt;+62 878-9560-3000&lt;/span&gt;·&lt;span&gt;info@delimahousing.com&lt;/span&gt;·&lt;span&gt;www.delimahousing.com&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;footer-mini&quot;&gt;Casa Impian · September 2026 · Report generated Oct 2026 · Next report: November 2026&lt;/div&gt;&lt;/div&gt;&lt;script&gt;
+const BRAND_DARK=&#x27;#6B2C1F&#x27;,BRAND_MID=&#x27;#C97B5F&#x27;,BRAND_LIGHT=&#x27;#F4D9CC&#x27;,TEXT_MID=&#x27;#6B5445&#x27;;
+function mk(id,cfg){const el=document.getElementById(id); if(el&amp;&amp;window.Chart) new Chart(el,cfg);}
+function lineC(id,months,label,data){mk(id,{type:&#x27;line&#x27;,data:{labels:months,datasets:[{label:label,data:data,borderColor:BRAND_DARK,backgroundColor:&#x27;rgba(107,44,31,0.08)&#x27;,borderWidth:3,tension:0.3,fill:true,pointRadius:5,pointBackgroundColor:BRAND_DARK}]},
+ options:{responsive:true,maintainAspectRatio:false,scales:{y:{beginAtZero:true,ticks:{callback:v=&gt;&#x27;Rp &#x27;+v+&#x27;M&#x27;}}},plugins:{legend:{position:&#x27;top&#x27;},tooltip:{callbacks:{label:c=&gt;&#x27;Rp &#x27;+c.parsed.y.toFixed(2)+&#x27;M&#x27;}}}}});}
+function donut(id,labels,data,unit){mk(id,{type:&#x27;doughnut&#x27;,data:{labels:labels,datasets:[{data:data,backgroundColor:[&#x27;#6B2C1F&#x27;,&#x27;#7A3323&#x27;,&#x27;#8A3A28&#x27;,&#x27;#A94F36&#x27;,&#x27;#C97B5F&#x27;,&#x27;#D89478&#x27;,&#x27;#E5AA92&#x27;,&#x27;#EDBFAB&#x27;,&#x27;#F4D9CC&#x27;,&#x27;#B76449&#x27;,&#x27;#9C4530&#x27;,&#x27;#E8DCCD&#x27;,&#x27;#A08977&#x27;],borderWidth:0}]},
+ options:{responsive:true,maintainAspectRatio:false,cutout:&#x27;58%&#x27;,plugins:{legend:{position:&#x27;right&#x27;,labels:{font:{size:10}}},tooltip:{callbacks:{label:c=&gt;c.label+&#x27;: Rp &#x27;+c.parsed.toLocaleString(&#x27;en-US&#x27;)}}}}});}
+function barC(id,months,data,fmt,max){const cols=months.map((_,i)=&gt;i==months.length-1?&#x27;#6B2C1F&#x27;:&#x27;#C97B5F&#x27;);mk(id,{type:&#x27;bar&#x27;,data:{labels:months,datasets:[{data:data,backgroundColor:cols,borderRadius:6}]},
+ options:{responsive:true,maintainAspectRatio:false,scales:{y:{beginAtZero:true,max:max,ticks:{callback:fmt}}},plugins:{legend:{display:false},tooltip:{callbacks:{label:c=&gt;fmt(c.parsed.y)}}}}});}
+if(window.Chart){Chart.defaults.font.family=&quot;-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, Arial, sans-serif&quot;;Chart.defaults.color=TEXT_MID;Chart.defaults.plugins.legend.labels.usePointStyle=true;Chart.defaults.plugins.legend.labels.font={size:11,weight:500};}
+&lt;/script&gt;&lt;script&gt;
+(function(){const ms=[&quot;Jun&quot;, &quot;Jul&quot;, &quot;Aug&quot;, &quot;Sep&quot;];
+lineC(&#x27;u-rev&#x27;,ms,&#x27;Total Income (IDR M)&#x27;,[30.1, 95.77, 83.82, 12.42]);
+lineC(&#x27;u-np&#x27;,ms,&#x27;Net Profit (IDR M)&#x27;,[17.58, 57.28, 49.4, 5.5]);
+donut(&#x27;u-src&#x27;,[&quot;Booking.com&quot;, &quot;Airbnb&quot;],[3017500, 9400000]);
+donut(&#x27;u-exp&#x27;,[&quot;Housekeeping&quot;, &quot;Laundry&quot;, &quot;Beverages &amp; Consumables&quot;, &quot;Cleaning &amp; Pool Supplies&quot;],[1500000, 678900, 40000, 30080]);
+barC(&#x27;u-mar&#x27;,ms,[58, 60, 59, 44],v=&gt;v+&#x27;%&#x27;,100);
+barC(&#x27;u-adr&#x27;,ms,[2508, 3547, 3493, 3104],v=&gt;&#x27;Rp &#x27;+(v/1000).toFixed(2)+&#x27;M&#x27;);
+barC(&#x27;u-occ&#x27;,ms,[40, 87, 77, 13],v=&gt;v+&#x27;%&#x27;,100);
+mk(&#x27;u-nts&#x27;,{type:&#x27;bar&#x27;,data:{labels:[&#x27;OTA nights&#x27;,&#x27;Direct nights&#x27;,&#x27;Not sold&#x27;],datasets:[{data:[4, 0, 26],backgroundColor:[BRAND_DARK,BRAND_MID,BRAND_LIGHT],borderRadius:6}]},options:{responsive:true,maintainAspectRatio:false,scales:{y:{beginAtZero:true,ticks:{callback:v=&gt;v+&#x27; nts&#x27;}}},plugins:{legend:{display:false}}}});
+})();&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+" hidden></iframe><iframe title="Casa Impian report August 2026" data-m="2026-08" srcdoc="&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;UTF-8&quot;&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+&lt;title&gt;Casa Impian — Monthly Report · August 2026&lt;/title&gt;
+&lt;script src=&quot;https://cdn.jsdelivr.net/npm/chart.js@4.5.0/dist/chart.umd.js&quot; integrity=&quot;sha384-iU8HYtnGQ8Cy4zl7gbNMOhsDTTKX02BTXptVP/vqAWIaTfM7isw76iyZCsjL2eVi&quot; crossorigin=&quot;anonymous&quot;&gt;&lt;/script&gt;
+&lt;style&gt;
+:root {
+  color-scheme: light;
+  --brand-dark: #6B2C1F;
+  --brand-mid: #C97B5F;
+  --brand-light: #F4D9CC;
+  --brand-bg: #FAF1E8;
+  --cream: #FBF6EF;
+  --text-dark: #2C1810;
+  --text-mid: #6B5445;
+  --text-light: #A08977;
+  --success: #5BA678;
+  --danger: #C44545;
+  --warn: #D9933A;
+  --gold: #E6A017;
+  --border: #E8DCCD;
+  --shadow: 0 2px 12px rgba(107,44,31,0.08);
+  --shadow-lg: 0 8px 32px rgba(107,44,31,0.12);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Helvetica Neue&#x27;, Arial, sans-serif;
+  background: var(--brand-bg); color: var(--text-dark); line-height: 1.55; -webkit-font-smoothing: antialiased; }
+.display { font-family: &#x27;Impact&#x27;, &#x27;Arial Black&#x27;, sans-serif; font-weight: 900; letter-spacing: 0.02em; text-transform: uppercase; }
+.nav { position: sticky; top: 0; z-index: 100; background: rgba(251,246,239,0.95); backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border); padding: 12px 24px; display: flex; justify-content: space-between; align-items: center; }
+.nav-brand { font-family: &#x27;Impact&#x27;, &#x27;Arial Black&#x27;, sans-serif; font-weight: 900; letter-spacing: 0.02em; font-size: 20px; color: var(--brand-dark); }
+.nav-brand small { font-family: -apple-system, BlinkMacSystemFont, sans-serif; font-size: 11px; color: var(--text-mid); font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em; margin-left: 6px; }
+.nav-links { display: flex; gap: 18px; }
+.nav-links a { color: var(--text-mid); text-decoration: none; font-size: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; transition: color .2s; }
+.nav-links a:hover { color: var(--brand-dark); }
+@media (max-width: 768px) { .nav-links { display: none; } }
+.container { max-width: 1240px; margin: 0 auto; padding: 0 24px; }
+section { padding: 72px 0; }
+section + section { border-top: 1px solid var(--border); }
+.hero { background: linear-gradient(135deg, var(--brand-light) 0%, var(--brand-bg) 100%);
+  padding: 80px 24px 60px; text-align: center; border-bottom: 3px solid var(--brand-mid); }
+.hero-eyebrow { font-size: 12px; color: var(--brand-dark); font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 12px; }
+.hero-title { font-family: &#x27;Impact&#x27;, &#x27;Arial Black&#x27;, sans-serif; font-weight: 900; letter-spacing: 0.02em; font-size: clamp(48px, 8vw, 92px); color: var(--brand-dark); line-height: 1; letter-spacing: -0.02em; margin-bottom: 8px; }
+.hero-sub { font-size: 20px; color: var(--text-mid); margin-bottom: 40px; letter-spacing: 0.02em; }
+.hero-brand { display: inline-flex; align-items: center; gap: 12px; padding: 8px 20px; background: white; border-radius: 100px; box-shadow: var(--shadow); font-size: 12px; font-weight: 600; color: var(--brand-dark); letter-spacing: 0.1em; text-transform: uppercase; }
+.hero-brand .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--brand-mid); }
+.stats-strip { max-width: 1240px; margin: -40px auto 0; padding: 0 24px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+@media (max-width: 900px) { .stats-strip { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 480px) { .stats-strip { grid-template-columns: 1fr; } }
+.stat-card { background: white; padding: 24px; border-radius: 14px; box-shadow: var(--shadow); border-top: 3px solid var(--brand-mid); }
+.stat-label { font-size: 10px; color: var(--text-mid); font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 8px; }
+.stat-value { font-family: &#x27;Impact&#x27;, &#x27;Arial Black&#x27;, sans-serif; font-weight: 900; letter-spacing: 0.02em; font-size: 36px; color: var(--brand-dark); line-height: 1.05; }
+.stat-value.sm { font-size: 28px; }
+.stat-sub { font-size: 12px; color: var(--text-mid); margin-top: 6px; }
+.section-eyebrow { font-size: 11px; color: var(--brand-mid); font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 8px; }
+.section-title { font-family: &#x27;Impact&#x27;, &#x27;Arial Black&#x27;, sans-serif; font-weight: 900; letter-spacing: 0.02em; font-size: clamp(36px, 5vw, 56px); color: var(--brand-dark); line-height: 1; margin-bottom: 24px; }
+.section-desc { font-size: 16px; color: var(--text-mid); max-width: 680px; margin-bottom: 40px; }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.grid-2-1 { display: grid; grid-template-columns: 2fr 1fr; gap: 32px; }
+@media (max-width: 900px) { .grid-2, .grid-3, .grid-2-1 { grid-template-columns: 1fr; } }
+.card { background: white; padding: 28px; border-radius: 14px; box-shadow: var(--shadow); border: 1px solid var(--border); }
+.card-title { font-size: 14px; color: var(--brand-dark); font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 16px; }
+.chart-wrap { position: relative; height: 300px; }
+.chart-wrap.tall { height: 380px; } .chart-wrap.short { height: 220px; }
+.narrative { background: var(--cream); padding: 32px; border-radius: 14px; border-left: 4px solid var(--brand-mid); }
+.narrative-title { font-size: 12px; color: var(--brand-dark); font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 12px; }
+.narrative p { font-size: 15px; color: var(--text-dark); margin-bottom: 10px; }
+.narrative p:last-child { margin-bottom: 0; }
+.narrative ul { margin: 8px 0 0 20px; } .narrative li { font-size: 14px; color: var(--text-dark); margin-bottom: 6px; }
+.table-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th { text-align: left; padding: 12px 14px; background: var(--brand-dark); color: white; font-weight: 600; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; }
+td { padding: 12px 14px; border-bottom: 1px solid var(--border); color: var(--text-dark); }
+tr:hover td { background: var(--cream); } tr.highlight td { background: var(--brand-light); font-weight: 600; }
+.pill { display: inline-block; padding: 3px 10px; border-radius: 100px; font-size: 11px; font-weight: 600; }
+.pill.us { background: var(--brand-dark); color: white; }
+.pill.comp { background: var(--cream); color: var(--text-mid); }
+.projection-table { width: 100%; border-collapse: collapse; margin-top: 16px; }
+.projection-table th, .projection-table td { padding: 10px 14px; text-align: right; font-size: 13px; }
+.projection-table th { background: var(--brand-dark); color: white; font-weight: 600; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; }
+.projection-table th:first-child, .projection-table td:first-child { text-align: left; }
+.projection-table tbody tr:nth-child(even) { background: var(--cream); }
+.projection-table tr.total-row td { font-weight: 700; background: var(--brand-light); border-top: 2px solid var(--brand-mid); }
+.expandable { background: white; border-radius: 14px; border: 1px solid var(--border); overflow: hidden; }
+.expand-header { padding: 24px 28px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: background .2s; }
+.expand-header:hover { background: var(--cream); }
+.expand-header .expand-title { font-family: &#x27;Impact&#x27;, &#x27;Arial Black&#x27;, sans-serif; font-weight: 900; letter-spacing: 0.02em; font-size: 24px; color: var(--brand-dark); }
+.expand-header .expand-icon { font-size: 24px; color: var(--brand-mid); transition: transform .3s; }
+.expandable.open .expand-icon { transform: rotate(45deg); }
+.expand-content { max-height: 0; overflow: hidden; transition: max-height .4s ease; }
+.expandable.open .expand-content { max-height: 6000px; }
+.expand-inner { padding: 0 28px 28px; }
+.footer { background: var(--brand-dark); color: white; padding: 48px 24px; text-align: center; }
+.footer-brand { font-family: &#x27;Impact&#x27;, &#x27;Arial Black&#x27;, sans-serif; font-weight: 900; letter-spacing: 0.02em; font-size: 32px; margin-bottom: 8px; }
+.footer-tag { font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; opacity: 0.7; margin-bottom: 24px; }
+.footer-contact { font-size: 14px; opacity: 0.85; } .footer-contact span { margin: 0 12px; }
+.footer-mini { font-size: 11px; margin-top: 20px; opacity: 0.5; }
+&lt;/style&gt;
+&lt;style&gt;
+/* ===== REVIEWS ===== */
+.reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+@media (max-width: 900px) { .reviews-grid { grid-template-columns: 1fr; } }
+.reviews-grid.two-col { grid-template-columns: repeat(2, 1fr); }
+@media (max-width: 700px) { .reviews-grid.two-col { grid-template-columns: 1fr; } }
+.reviews-grid.one-col { grid-template-columns: 1fr; }
+.review-card { background: white; padding: 24px; border-radius: 14px; box-shadow: var(--shadow); border: 1px solid var(--border); display: flex; flex-direction: column; }
+.review-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+.review-avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--brand-mid); color: white; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 15px; }
+.review-name { font-weight: 600; font-size: 14px; color: var(--text-dark); }
+.review-meta { font-size: 11px; color: var(--text-mid); }
+.review-stars { color: var(--gold); font-size: 14px; letter-spacing: 1px; margin-bottom: 10px; }
+.review-text { font-size: 13px; color: var(--text-dark); line-height: 1.6; }
+.review-trans { margin-top: 8px; font-style: italic; color: var(--text-mid); }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;nav class=&quot;nav&quot;&gt;
+  &lt;div class=&quot;nav-brand&quot;&gt;Casa Impian &lt;small&gt;August 2026 · 3BR&lt;/small&gt;&lt;/div&gt;
+  &lt;div class=&quot;nav-links&quot;&gt;
+    &lt;a href=&quot;#financial&quot;&gt;Financials&lt;/a&gt;
+    &lt;a href=&quot;#performance&quot;&gt;Performance&lt;/a&gt;
+    &lt;a href=&quot;#reviews&quot;&gt;Reviews&lt;/a&gt;
+    &lt;a href=&quot;#deepdive&quot;&gt;Deep Dive&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/nav&gt;
+
+&lt;div class=&quot;hero&quot;&gt;
+  &lt;div class=&quot;hero-eyebrow&quot;&gt;Monthly Report&lt;/div&gt;
+  &lt;h1 class=&quot;hero-title&quot;&gt;Casa Impian&lt;/h1&gt;
+  &lt;p class=&quot;hero-sub&quot;&gt;August 2026 · 3 Bedroom&lt;/p&gt;
+  &lt;div class=&quot;hero-brand&quot;&gt;&lt;span class=&quot;dot&quot;&gt;&lt;/span&gt;Made by Delima Housing&lt;/div&gt;
+  &lt;div style=&quot;margin-top:16px;&quot;&gt;&lt;a href=&quot;https://www.airbnb.com/rooms/1652699252326557081?guests=1&amp;adults=1&amp;s=67&amp;unique_share_id=5908e2c8-5173-4a7b-ae3e-502d3feb92b7&quot; target=&quot;_blank&quot; style=&quot;display:inline-block; background:var(--brand-dark); color:white; padding:10px 20px; border-radius:100px; text-decoration:none; font-size:12px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase;&quot;&gt;View Airbnb Listing →&lt;/a&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;stats-strip&quot;&gt;
+  &lt;div class=&quot;stat-card&quot;&gt;
+    &lt;div class=&quot;stat-label&quot;&gt;Revenue&lt;/div&gt;
+    &lt;div class=&quot;stat-value&quot;&gt;Rp 83.82M&lt;/div&gt;
+    &lt;div class=&quot;stat-sub&quot;&gt;Airbnb 88.9% · Booking.com 11.1%&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;stat-card&quot;&gt;
+    &lt;div class=&quot;stat-label&quot;&gt;Net Profit&lt;/div&gt;
+    &lt;div class=&quot;stat-value&quot;&gt;Rp 49.40M&lt;/div&gt;
+    &lt;div class=&quot;stat-sub&quot;&gt;59% margin&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;stat-card&quot;&gt;
+    &lt;div class=&quot;stat-label&quot;&gt;Occupancy&lt;/div&gt;
+    &lt;div class=&quot;stat-value&quot;&gt;77%&lt;/div&gt;
+    &lt;div class=&quot;stat-sub&quot;&gt;24 of 31 nights sold&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;stat-card&quot;&gt;
+    &lt;div class=&quot;stat-label&quot;&gt;ADR&lt;/div&gt;
+    &lt;div class=&quot;stat-value sm&quot;&gt;Rp 3,492,550&lt;/div&gt;
+    &lt;div class=&quot;stat-sub&quot;&gt;per paid night&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div style=&quot;max-width:1240px;margin:12px auto 0;padding:0 24px;font-size:11px;color:var(--text-mid);line-height:1.5;&quot;&gt;
+  &lt;p&gt;&lt;strong&gt;Occupancy&lt;/strong&gt; = paid OTA + direct + cancelled nights ÷ 31. &amp;nbsp;·&amp;nbsp; &lt;strong&gt;ADR&lt;/strong&gt; = Total Income ÷ all occupied nights. &amp;nbsp;·&amp;nbsp; &lt;strong&gt;Gov Tax&lt;/strong&gt; = 10% × OTA revenue (direct bookings excluded).&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;section id=&quot;financial&quot;&gt;
+  &lt;div class=&quot;container&quot;&gt;
+    &lt;div class=&quot;section-eyebrow&quot;&gt;01 · Financial Performance&lt;/div&gt;
+    &lt;h2 class=&quot;section-title&quot;&gt;Strong August&lt;br&gt;at 59% margin.&lt;/h2&gt;
+
+    &lt;div class=&quot;grid-2-1&quot;&gt;
+      &lt;div class=&quot;card&quot;&gt;
+        &lt;div class=&quot;card-title&quot;&gt;Revenue trend — Jun–Aug 2026&lt;/div&gt;
+        &lt;div class=&quot;chart-wrap&quot;&gt;&lt;canvas id=&quot;revenueChart&quot;&gt;&lt;/canvas&gt;&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;card&quot;&gt;
+        &lt;div class=&quot;card-title&quot;&gt;Source of Revenue · August&lt;/div&gt;
+        &lt;div class=&quot;chart-wrap&quot;&gt;&lt;canvas id=&quot;revenueSourceChart&quot;&gt;&lt;/canvas&gt;&lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;grid-2-1&quot; style=&quot;margin-top:32px;&quot;&gt;
+      &lt;div class=&quot;card&quot;&gt;
+        &lt;div class=&quot;card-title&quot;&gt;Where the expenses went · August&lt;/div&gt;
+        &lt;div class=&quot;chart-wrap&quot;&gt;&lt;canvas id=&quot;expenseChart&quot;&gt;&lt;/canvas&gt;&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;narrative&quot;&gt;
+        &lt;div class=&quot;narrative-title&quot;&gt;The story this month&lt;/div&gt;
+        &lt;p&gt;Casa Impian generated &lt;strong&gt;Rp 83.82M in total revenue&lt;/strong&gt; across 24 paid nights — a healthy month at a Rp 3.49M ADR.&lt;/p&gt;
+        &lt;p&gt;Operational spend is very lean at &lt;strong&gt;Rp 3.13M (3.7% of revenue)&lt;/strong&gt;, giving OTA commission (17.4%), management fee (9.9%) and government tax (10%) headroom to still land a &lt;strong&gt;59% net margin&lt;/strong&gt;.&lt;/p&gt;
+        &lt;p&gt;&lt;strong&gt;Net profit landed at Rp 49.40M.&lt;/strong&gt; Aug figures compiled from booking data and operational expenses.&lt;/p&gt;
+        &lt;p&gt;Management fee for Casa Impian is &lt;strong&gt;12%&lt;/strong&gt; (reflects the 3BR long-stay operational model).&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/section&gt;
+
+&lt;section id=&quot;performance&quot;&gt;
+  &lt;div class=&quot;container&quot;&gt;
+    &lt;div class=&quot;section-eyebrow&quot;&gt;02 · Performance Overview&lt;/div&gt;
+    &lt;h2 class=&quot;section-title&quot;&gt;77% occupancy&lt;br&gt;at Rp 3.49M ADR.&lt;/h2&gt;
+
+    &lt;div class=&quot;grid-3&quot;&gt;
+      &lt;div class=&quot;card&quot;&gt;
+        &lt;div class=&quot;card-title&quot;&gt;Average Daily Rate&lt;/div&gt;
+        &lt;div class=&quot;chart-wrap short&quot;&gt;&lt;canvas id=&quot;adrChart&quot;&gt;&lt;/canvas&gt;&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;card&quot;&gt;
+        &lt;div class=&quot;card-title&quot;&gt;Occupancy %&lt;/div&gt;
+        &lt;div class=&quot;chart-wrap short&quot;&gt;&lt;canvas id=&quot;occChart&quot;&gt;&lt;/canvas&gt;&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;card&quot;&gt;
+        &lt;div class=&quot;card-title&quot;&gt;Net Profit trend&lt;/div&gt;
+        &lt;div class=&quot;chart-wrap short&quot;&gt;&lt;canvas id=&quot;npChart&quot;&gt;&lt;/canvas&gt;&lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/section&gt;
+
+
+&lt;section id=&quot;reviews&quot;&gt;
+  &lt;div class=&quot;container&quot;&gt;
+    &lt;div class=&quot;section-eyebrow&quot;&gt;03 · Guest Reviews&lt;/div&gt;
+    &lt;h2 class=&quot;section-title&quot;&gt;Recent 5-star&lt;br&gt;guest reviews.&lt;/h2&gt;
+    &lt;p class=&quot;section-desc&quot;&gt;Verified Airbnb stays, August 2026 stay window.&lt;/p&gt;
+
+&lt;div style=&quot;background:linear-gradient(90deg, #FBF6EF, #F4D9CC); border-left:4px solid var(--gold); padding:14px 18px; border-radius:10px; margin-bottom:16px; text-align:center;&quot;&gt;
+      &lt;strong style=&quot;font-size:14px; color:var(--brand-dark);&quot;&gt;1 recent review in August · 5.0⭐ · All from Airbnb&lt;/strong&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;reviews-grid one-col&quot; style=&quot;max-width:720px;&quot;&gt;
+      &lt;div class=&quot;review-card&quot;&gt;
+        &lt;div class=&quot;review-header&quot;&gt;
+          &lt;div class=&quot;review-avatar&quot;&gt;S&lt;/div&gt;
+          &lt;div&gt;&lt;div class=&quot;review-name&quot;&gt;Sanaa S.&lt;/div&gt;&lt;div class=&quot;review-meta&quot;&gt;Aug 5–15 · 7 guests · FR · Airbnb&lt;/div&gt;&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;review-stars&quot;&gt;★★★★★&lt;/div&gt;
+        &lt;p class=&quot;review-text&quot; lang=&quot;fr&quot;&gt;We had a wonderful stay! Host was reactive and welcoming. House was lovely, calm, well maintained. Location great with massage salon and restaurants short walk away. 20–30 min by bike from more animated area. Recommend to anyone.&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/section&gt;
+
+&lt;section id=&quot;outlook&quot;&gt;
+  &lt;div class=&quot;container&quot;&gt;
+    &lt;div class=&quot;section-eyebrow&quot;&gt;06 · Outlook · September 2026&lt;/div&gt;
+    &lt;h2 class=&quot;section-title&quot;&gt;Where we&#x27;re at,&lt;br&gt;where we can land.&lt;/h2&gt;
+
+    &lt;div class=&quot;card&quot; style=&quot;margin-bottom: 32px;&quot;&gt;
+      &lt;div class=&quot;card-title&quot;&gt;Booking Pace · September&lt;/div&gt;
+      &lt;div style=&quot;display: flex; justify-content: space-between; align-items: baseline; margin: 8px 0 16px;&quot;&gt;
+        &lt;div&gt;
+          &lt;span style=&quot;font-family:&#x27;Impact&#x27;,&#x27;Arial Black&#x27;,sans-serif;font-size:48px;color:var(--brand-dark);line-height:1;&quot;&gt;5&lt;/span&gt;
+          &lt;span style=&quot;font-size:18px;color:var(--text-mid);margin-left:8px;&quot;&gt;of 30 nights booked · Rp 12.77M revenue locked&lt;/span&gt;
+        &lt;/div&gt;
+        &lt;div style=&quot;text-align:right;&quot;&gt;
+          &lt;div style=&quot;font-family:&#x27;Impact&#x27;,&#x27;Arial Black&#x27;,sans-serif;font-size:32px;color:var(--brand-mid);line-height:1;&quot;&gt;25&lt;/div&gt;
+          &lt;div style=&quot;font-size:12px;color:var(--text-mid);&quot;&gt;still available&lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div style=&quot;height:24px;background:var(--brand-light);border-radius:100px;overflow:hidden;&quot;&gt;
+        &lt;div style=&quot;height:100%;width:17%;background:linear-gradient(90deg,var(--brand-dark),var(--brand-mid));border-radius:100px;&quot;&gt;&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div style=&quot;display:flex;justify-content:space-between;margin-top:8px;font-size:11px;color:var(--text-mid);&quot;&gt;
+        &lt;span&gt;17% booked&lt;/span&gt;
+        &lt;span&gt;0 cancellations noted&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;grid-3&quot; style=&quot;margin-bottom: 32px;&quot;&gt;
+      &lt;div class=&quot;card&quot; style=&quot;border-top: 4px solid var(--warn);&quot;&gt;
+        &lt;div style=&quot;font-size:11px;font-weight:700;letter-spacing:0.15em;color:var(--warn);text-transform:uppercase;margin-bottom:8px;&quot;&gt;Conservative&lt;/div&gt;
+        &lt;div style=&quot;font-size:12px;color:var(--text-mid);margin-bottom:16px;&quot;&gt;Already locked&lt;/div&gt;
+        &lt;div style=&quot;font-family:&#x27;Impact&#x27;,&#x27;Arial Black&#x27;,sans-serif;font-size:40px;color:var(--brand-dark);line-height:1;&quot;&gt;Rp 12.8M&lt;/div&gt;
+        &lt;div style=&quot;font-size:12px;color:var(--text-mid);margin-top:8px;&quot;&gt;5/30 · 17% occ&lt;/div&gt;
+        &lt;div style=&quot;border-top:1px solid var(--border);padding-top:12px;margin-top:14px;font-size:12px;color:var(--text-mid);&quot;&gt;No further conversion&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;card&quot; style=&quot;border-top: 4px solid var(--brand-mid);box-shadow: 0 8px 32px rgba(107,44,31,0.15);position: relative;&quot;&gt;
+        &lt;div style=&quot;position:absolute;top:-12px;right:16px;background:var(--brand-dark);color:white;padding:3px 10px;border-radius:100px;font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;&quot;&gt;Target&lt;/div&gt;
+        &lt;div style=&quot;font-size:11px;font-weight:700;letter-spacing:0.15em;color:var(--brand-mid);text-transform:uppercase;margin-bottom:8px;&quot;&gt;Expected&lt;/div&gt;
+        &lt;div style=&quot;font-size:12px;color:var(--text-mid);margin-bottom:16px;&quot;&gt;Realistic pickup&lt;/div&gt;
+        &lt;div style=&quot;font-family:&#x27;Impact&#x27;,&#x27;Arial Black&#x27;,sans-serif;font-size:40px;color:var(--brand-dark);line-height:1;&quot;&gt;Rp 28.7M&lt;/div&gt;
+        &lt;div style=&quot;font-size:12px;color:var(--text-mid);margin-top:8px;&quot;&gt;10/30 · 33% occ&lt;/div&gt;
+        &lt;div style=&quot;border-top:1px solid var(--border);padding-top:12px;margin-top:14px;font-size:12px;color:var(--text-mid);&quot;&gt;Normal tier holds&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;card&quot; style=&quot;border-top: 4px solid var(--success);&quot;&gt;
+        &lt;div style=&quot;font-size:11px;font-weight:700;letter-spacing:0.15em;color:var(--success);text-transform:uppercase;margin-bottom:8px;&quot;&gt;Strong&lt;/div&gt;
+        &lt;div style=&quot;font-size:12px;color:var(--text-mid);margin-bottom:16px;&quot;&gt;Upside if gaps fill&lt;/div&gt;
+        &lt;div style=&quot;font-family:&#x27;Impact&#x27;,&#x27;Arial Black&#x27;,sans-serif;font-size:40px;color:var(--brand-dark);line-height:1;&quot;&gt;Rp 38.3M&lt;/div&gt;
+        &lt;div style=&quot;font-size:12px;color:var(--text-mid);margin-top:8px;&quot;&gt;13/30 · 43% occ&lt;/div&gt;
+        &lt;div style=&quot;border-top:1px solid var(--border);padding-top:12px;margin-top:14px;font-size:12px;color:var(--text-mid);&quot;&gt;Last-minute demand holds&lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;card&quot; style=&quot;margin-bottom: 32px;&quot;&gt;
+      &lt;div class=&quot;card-title&quot;&gt;September confirmed bookings · Casa Impian&lt;/div&gt;
+      &lt;div class=&quot;table-wrap&quot;&gt;
+        &lt;table class=&quot;projection-table&quot; style=&quot;font-size:12px;&quot;&gt;
+          &lt;thead&gt;&lt;tr&gt;
+            &lt;th style=&quot;text-align:left;&quot;&gt;Guest&lt;/th&gt;
+            &lt;th&gt;Channel&lt;/th&gt;
+            &lt;th&gt;Check-in&lt;/th&gt;
+            &lt;th&gt;Check-out&lt;/th&gt;
+            &lt;th&gt;Sept nights&lt;/th&gt;
+            &lt;th&gt;Revenue (Rp)&lt;/th&gt;
+          &lt;/tr&gt;&lt;/thead&gt;
+          &lt;tbody&gt;
+            &lt;tr&gt;&lt;td style=&#x27;text-align:left;&#x27;&gt;Greta D. (carryover)&lt;/td&gt;&lt;td&gt;Airbnb&lt;/td&gt;&lt;td&gt;Aug 31&lt;/td&gt;&lt;td&gt;Sep 02&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;4,990,945&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&#x27;text-align:left;&#x27;&gt;Feraldo Axel Paulus (in-stay)&lt;/td&gt;&lt;td&gt;Airbnb&lt;/td&gt;&lt;td&gt;Sep 03&lt;/td&gt;&lt;td&gt;Sep 06&lt;/td&gt;&lt;td&gt;3&lt;/td&gt;&lt;td&gt;7,782,730&lt;/td&gt;&lt;/tr&gt;&lt;tr style=&quot;background:#EEE9E4;color:var(--text-mid);&quot;&gt;&lt;td style=&#x27;text-align:left;&#x27;&gt;Deep cleaning (block)&lt;/td&gt;&lt;td&gt;Direct&lt;/td&gt;&lt;td&gt;Sep 09&lt;/td&gt;&lt;td&gt;Sep 10&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;/tr&gt;&lt;tr class=&#x27;total-row&#x27;&gt;&lt;td style=&#x27;text-align:left;&#x27;&gt;Total (Sept nights)&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;5&lt;/td&gt;&lt;td&gt;12,773,675&lt;/td&gt;&lt;/tr&gt;
+          &lt;/tbody&gt;
+        &lt;/table&gt;
+      &lt;/div&gt;
+      &lt;p style=&quot;font-size:11px;color:var(--text-mid);margin-top:10px;&quot;&gt;
+        &lt;span style=&quot;display:inline-block;width:12px;height:12px;background:#FBF6EF;border-radius:2px;vertical-align:middle;margin-right:4px;&quot;&gt;&lt;/span&gt;Direct booking
+        &amp;nbsp;&amp;nbsp;
+        &lt;span style=&quot;display:inline-block;width:12px;height:12px;background:#F4E9D8;border-radius:2px;vertical-align:middle;margin-right:4px;&quot;&gt;&lt;/span&gt;LTR / long-stay
+        &amp;nbsp;&amp;nbsp;
+        &lt;span style=&quot;display:inline-block;width:12px;height:12px;background:#EEE9E4;border-radius:2px;vertical-align:middle;margin-right:4px;&quot;&gt;&lt;/span&gt;Block / maintenance
+        &amp;nbsp;&amp;nbsp;
+        &lt;span style=&quot;display:inline-block;width:12px;height:12px;background:#FDECEC;border-radius:2px;vertical-align:middle;margin-right:4px;&quot;&gt;&lt;/span&gt;Cancelled
+      &lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;narrative&quot; style=&quot;border-left:4px solid var(--brand-dark);background:linear-gradient(135deg,var(--cream) 0%,var(--brand-light) 100%);padding:20px 24px;border-radius:10px;&quot;&gt;
+      &lt;div style=&quot;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--brand-mid);margin-bottom:8px;&quot;&gt;Sept outlook · narrative&lt;/div&gt;
+      &lt;p style=&quot;font-size:14px;color:var(--text-dark);line-height:1.5;&quot;&gt;Sept pace is &lt;strong&gt;light&lt;/strong&gt; at &lt;strong&gt;17% booked&lt;/strong&gt; (5/30 nights, Rp 12.77M locked). Two short front-of-month stays (Greta carryover 1n, Feraldo 3n in-stay) plus a 1-night deep-cleaning block Sep 9-10. Sep 10 onward largely open (20+ nights) — priority is last-minute promotion.&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/section&gt;
+
+&lt;section id=&quot;deepdive&quot;&gt;
+  &lt;div class=&quot;container&quot;&gt;
+    &lt;div class=&quot;section-eyebrow&quot;&gt;04 · Deep dive&lt;/div&gt;
+    &lt;h2 class=&quot;section-title&quot;&gt;Detailed financials.&lt;/h2&gt;
+    &lt;p class=&quot;section-desc&quot;&gt;Full P&amp;amp;L breakdown, recent trend, and complete August booking list. Click to expand.&lt;/p&gt;
+
+    &lt;div class=&quot;expandable&quot; style=&quot;margin-bottom:20px;&quot;&gt;
+      &lt;div class=&quot;expand-header&quot;&gt;
+        &lt;div class=&quot;expand-title&quot;&gt;Full P&amp;amp;L — August 2026&lt;/div&gt;
+        &lt;div class=&quot;expand-icon&quot;&gt;+&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;expand-content&quot;&gt;&lt;div class=&quot;expand-inner&quot;&gt;
+        &lt;table class=&quot;projection-table&quot;&gt;
+          &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Line&lt;/th&gt;&lt;th&gt;IDR&lt;/th&gt;&lt;th&gt;% of Revenue&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+          &lt;tbody&gt;
+  &lt;tr&gt;&lt;td colspan=&quot;3&quot; style=&quot;background:var(--brand-light);font-weight:700;&quot;&gt;REVENUE&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td&gt;OTA – Airbnb&lt;/td&gt;&lt;td&gt;74,513,710&lt;/td&gt;&lt;td&gt;88.9%&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td&gt;OTA – Booking.com&lt;/td&gt;&lt;td&gt;9,307,500&lt;/td&gt;&lt;td&gt;11.1%&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr class=&quot;total-row&quot;&gt;&lt;td&gt;Total Income&lt;/td&gt;&lt;td&gt;83,821,210&lt;/td&gt;&lt;td&gt;100%&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td colspan=&quot;3&quot; style=&quot;background:var(--brand-light);font-weight:700;&quot;&gt;OPERATIONAL EXPENSES&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td&gt;Housekeeping&lt;/td&gt;&lt;td&gt;1,500,000&lt;/td&gt;&lt;td&gt;1.8%&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td&gt;Laundry&lt;/td&gt;&lt;td&gt;1,499,160&lt;/td&gt;&lt;td&gt;1.8%&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td&gt;Miscellaneous&lt;/td&gt;&lt;td&gt;50,000&lt;/td&gt;&lt;td&gt;0.1%&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td&gt;Guest Supplies&lt;/td&gt;&lt;td&gt;37,667&lt;/td&gt;&lt;td&gt;0.0%&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td&gt;Cleaning Supplies&lt;/td&gt;&lt;td&gt;23,720&lt;/td&gt;&lt;td&gt;0.0%&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td&gt;Beverages &amp;amp; Consumables&lt;/td&gt;&lt;td&gt;20,000&lt;/td&gt;&lt;td&gt;0.0%&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr class=&quot;total-row&quot;&gt;&lt;td&gt;Total Operational&lt;/td&gt;&lt;td&gt;3,130,547&lt;/td&gt;&lt;td&gt;3.7%&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td colspan=&quot;3&quot; style=&quot;background:var(--brand-light);font-weight:700;&quot;&gt;OTHER EXPENSES&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td&gt;Management Fee (12% × [Income − OTA Comm])&lt;/td&gt;&lt;td&gt;8,305,664&lt;/td&gt;&lt;td&gt;9.9%&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td&gt;OTA Commission (Airbnb + Booking.com ×1.11 VAT)&lt;/td&gt;&lt;td&gt;14,607,347&lt;/td&gt;&lt;td&gt;17.4%&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td&gt;Government Tax (10% × OTA revenue)&lt;/td&gt;&lt;td&gt;8,382,121&lt;/td&gt;&lt;td&gt;10.0%&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr class=&quot;total-row&quot;&gt;&lt;td&gt;Total Other Expenses&lt;/td&gt;&lt;td&gt;31,295,132&lt;/td&gt;&lt;td&gt;37.3%&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr class=&quot;total-row&quot;&gt;&lt;td style=&quot;background:var(--brand-dark);color:white;font-weight:700;&quot;&gt;NET PROFIT&lt;/td&gt;&lt;td style=&quot;background:var(--brand-dark);color:white;font-weight:700;&quot;&gt;49,395,531&lt;/td&gt;&lt;td style=&quot;background:var(--brand-dark);color:white;font-weight:700;&quot;&gt;59%&lt;/td&gt;&lt;/tr&gt;
+&lt;/tbody&gt;
+        &lt;/table&gt;
+      &lt;/div&gt;&lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;expandable&quot; style=&quot;margin-bottom:20px;&quot;&gt;
+      &lt;div class=&quot;expand-header&quot;&gt;
+        &lt;div class=&quot;expand-title&quot;&gt;Recent P&amp;amp;L — Casa Impian (Jun–Aug 2026)&lt;/div&gt;
+        &lt;div class=&quot;expand-icon&quot;&gt;+&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;expand-content&quot;&gt;&lt;div class=&quot;expand-inner&quot;&gt;
+        &lt;div class=&quot;table-wrap&quot;&gt;&lt;table class=&quot;projection-table&quot; style=&quot;font-size:11.5px;&quot;&gt;
+          &lt;thead&gt;&lt;tr&gt;&lt;th style=&quot;text-align:left;&quot;&gt;Category&lt;/th&gt;&lt;th&gt;Jun&lt;/th&gt;&lt;th&gt;Jul&lt;/th&gt;&lt;th style=&quot;background:#4A1D14;&quot;&gt;Aug&lt;/th&gt;&lt;th style=&quot;background:var(--brand-mid);&quot;&gt;YTD Total&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+          &lt;tbody&gt;
+  &lt;tr&gt;&lt;td colspan=&quot;5&quot; style=&quot;background:var(--brand-light);font-weight:700;text-align:left;&quot;&gt;REVENUE&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td style=&quot;text-align:left;&quot;&gt;Direct – Delima (Owner block)&lt;/td&gt;&lt;td&gt;9,000,000&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td style=&quot;background:#F4D9CC;&quot;&gt;0&lt;/td&gt;&lt;td&gt;9,000,000&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td style=&quot;text-align:left;&quot;&gt;OTA – Airbnb&lt;/td&gt;&lt;td&gt;13,756,000&lt;/td&gt;&lt;td&gt;95,773,790&lt;/td&gt;&lt;td style=&quot;background:#F4D9CC;&quot;&gt;74,513,710&lt;/td&gt;&lt;td&gt;184,043,500&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td style=&quot;text-align:left;&quot;&gt;OTA – Booking&lt;/td&gt;&lt;td&gt;7,344,000&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td style=&quot;background:#F4D9CC;&quot;&gt;9,307,500&lt;/td&gt;&lt;td&gt;16,651,500&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr class=&quot;total-row&quot;&gt;&lt;td style=&quot;text-align:left;&quot;&gt;Total Income&lt;/td&gt;&lt;td&gt;30,100,000&lt;/td&gt;&lt;td&gt;95,773,790&lt;/td&gt;&lt;td style=&quot;background:var(--brand-mid);color:white;&quot;&gt;83,821,210&lt;/td&gt;&lt;td&gt;209,695,000&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td colspan=&quot;5&quot; style=&quot;background:var(--brand-light);font-weight:700;text-align:left;&quot;&gt;EXPENSES&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td style=&quot;text-align:left;&quot;&gt;Total Operational Exp.&lt;/td&gt;&lt;td&gt;3,470,187&lt;/td&gt;&lt;td&gt;2,919,450&lt;/td&gt;&lt;td style=&quot;background:#F4D9CC;&quot;&gt;3,130,547&lt;/td&gt;&lt;td&gt;9,520,184&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td style=&quot;text-align:left;&quot;&gt;Management Fee&lt;/td&gt;&lt;td&gt;3,158,762&lt;/td&gt;&lt;td&gt;9,515,514&lt;/td&gt;&lt;td style=&quot;background:#F4D9CC;&quot;&gt;8,305,664&lt;/td&gt;&lt;td&gt;20,979,940&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td style=&quot;text-align:left;&quot;&gt;OTA Commission&lt;/td&gt;&lt;td&gt;3,776,986&lt;/td&gt;&lt;td&gt;16,477,841&lt;/td&gt;&lt;td style=&quot;background:#F4D9CC;&quot;&gt;14,607,347&lt;/td&gt;&lt;td&gt;34,862,174&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td style=&quot;text-align:left;&quot;&gt;Government Tax (10% of OTA)&lt;/td&gt;&lt;td&gt;2,110,000&lt;/td&gt;&lt;td&gt;9,577,379&lt;/td&gt;&lt;td style=&quot;background:#F4D9CC;&quot;&gt;8,382,121&lt;/td&gt;&lt;td&gt;20,069,500&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr class=&quot;total-row&quot;&gt;&lt;td style=&quot;background:var(--brand-dark);color:white;font-weight:700;text-align:left;&quot;&gt;NET PROFIT&lt;/td&gt;&lt;td style=&quot;background:var(--brand-dark);color:white;font-weight:700;&quot;&gt;17,584,065&lt;/td&gt;&lt;td style=&quot;background:var(--brand-dark);color:white;font-weight:700;&quot;&gt;57,283,606&lt;/td&gt;&lt;td style=&quot;background:#4A1D14;color:white;font-weight:700;&quot;&gt;49,395,531&lt;/td&gt;&lt;td style=&quot;background:var(--brand-dark);color:white;font-weight:700;&quot;&gt;124,263,202&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td colspan=&quot;5&quot; style=&quot;background:var(--brand-light);font-weight:700;text-align:left;&quot;&gt;PERFORMANCE&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td style=&quot;text-align:left;&quot;&gt;Occupancy Rate&lt;/td&gt;&lt;td&gt;40%&lt;/td&gt;&lt;td&gt;87%&lt;/td&gt;&lt;td style=&quot;background:#F4D9CC;&quot;&gt;77%&lt;/td&gt;&lt;td&gt;68% avg&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td style=&quot;text-align:left;&quot;&gt;Average Nightly Rate (Rp)&lt;/td&gt;&lt;td&gt;2,508,333&lt;/td&gt;&lt;td&gt;3,547,177&lt;/td&gt;&lt;td style=&quot;background:#F4D9CC;&quot;&gt;3,492,550&lt;/td&gt;&lt;td&gt;—&lt;/td&gt;&lt;/tr&gt;
+&lt;/tbody&gt;
+        &lt;/table&gt;&lt;/div&gt;
+      &lt;/div&gt;&lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;expandable&quot;&gt;
+      &lt;div class=&quot;expand-header&quot;&gt;
+        &lt;div class=&quot;expand-title&quot;&gt;Booking list — August 2026 (24 nights)&lt;/div&gt;
+        &lt;div class=&quot;expand-icon&quot;&gt;+&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;expand-content&quot;&gt;&lt;div class=&quot;expand-inner&quot;&gt;
+        &lt;table class=&quot;projection-table&quot;&gt;
+          &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Guest&lt;/th&gt;&lt;th&gt;Channel&lt;/th&gt;&lt;th&gt;Type&lt;/th&gt;&lt;th&gt;Check-in&lt;/th&gt;&lt;th&gt;Check-out&lt;/th&gt;&lt;th&gt;Nights&lt;/th&gt;&lt;th&gt;Revenue (Rp)&lt;/th&gt;&lt;th&gt;Commission (Rp)&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+          &lt;tbody&gt;
+  &lt;tr&gt;&lt;td&gt;Matthew S.&lt;/td&gt;&lt;td&gt;Airbnb&lt;/td&gt;&lt;td&gt;Paid&lt;/td&gt;&lt;td&gt;Aug 15&lt;/td&gt;&lt;td&gt;Aug 22&lt;/td&gt;&lt;td&gt;7&lt;/td&gt;&lt;td&gt;24,842,500&lt;/td&gt;&lt;td&gt;4,274,096&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td&gt;Elena V.&lt;/td&gt;&lt;td&gt;Airbnb&lt;/td&gt;&lt;td&gt;Paid&lt;/td&gt;&lt;td&gt;Jul 5&lt;/td&gt;&lt;td&gt;Aug 5&lt;/td&gt;&lt;td&gt;4&lt;/td&gt;&lt;td&gt;14,188,710&lt;/td&gt;&lt;td&gt;2,441,162&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td&gt;Sanaa S.&lt;/td&gt;&lt;td&gt;Airbnb&lt;/td&gt;&lt;td&gt;Paid&lt;/td&gt;&lt;td&gt;Aug 5&lt;/td&gt;&lt;td&gt;Aug 15&lt;/td&gt;&lt;td&gt;10&lt;/td&gt;&lt;td&gt;35,482,500&lt;/td&gt;&lt;td&gt;6,104,770&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td&gt;Greta D.&lt;/td&gt;&lt;td&gt;Booking.com&lt;/td&gt;&lt;td&gt;Paid&lt;/td&gt;&lt;td&gt;Aug 31&lt;/td&gt;&lt;td&gt;Sep 2&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;3,017,500&lt;/td&gt;&lt;td&gt;522,028&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td&gt;Nikita T.&lt;/td&gt;&lt;td&gt;Booking.com&lt;/td&gt;&lt;td&gt;Paid&lt;/td&gt;&lt;td&gt;Aug 24&lt;/td&gt;&lt;td&gt;Aug 26&lt;/td&gt;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;6,290,000&lt;/td&gt;&lt;td&gt;1,088,170&lt;/td&gt;&lt;/tr&gt;
+&lt;/tbody&gt;
+        &lt;/table&gt;
+        &lt;p style=&quot;font-size:11px;color:var(--text-mid);margin-top:12px;&quot;&gt;&lt;em&gt;Note:&lt;/em&gt; Booking.com commission column shown before +11% Indonesian VAT multiplier.&lt;/p&gt;
+      &lt;/div&gt;&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/section&gt;
+
+&lt;div class=&quot;footer&quot;&gt;
+  &lt;div class=&quot;footer-brand&quot;&gt;Delima Housing&lt;/div&gt;
+  &lt;div class=&quot;footer-tag&quot;&gt;Your Property · Our Priority&lt;/div&gt;
+  &lt;div class=&quot;footer-contact&quot;&gt;
+    &lt;span&gt;+62 878-9560-3000&lt;/span&gt;·&lt;span&gt;info@delimahousing.com&lt;/span&gt;·&lt;span&gt;www.delimahousing.com&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;footer-mini&quot;&gt;Casa Impian · August 2026 · Report generated Sep 2026 · Next report: October 2026&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+const BRAND_DARK = &#x27;#6B2C1F&#x27;;
+const BRAND_MID = &#x27;#C97B5F&#x27;;
+const BRAND_LIGHT = &#x27;#F4D9CC&#x27;;
+const CREAM = &#x27;#FBF6EF&#x27;;
+const SUCCESS = &#x27;#5BA678&#x27;;
+const TEXT_MID = &#x27;#6B5445&#x27;;
+Chart.defaults.font.family = &quot;-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, Arial, sans-serif&quot;;
+Chart.defaults.color = TEXT_MID;
+Chart.defaults.plugins.legend.labels.usePointStyle = true;
+Chart.defaults.plugins.legend.labels.padding = 12;
+Chart.defaults.plugins.legend.labels.font = { size: 11, weight: 500 };
+
+const months = [&#x27;Jun&#x27;,&#x27;Jul&#x27;,&#x27;Aug&#x27;];
+
+new Chart(document.getElementById(&#x27;revenueChart&#x27;), {
+  type: &#x27;line&#x27;,
+  data: { labels: months,
+    datasets: [{ label: &#x27;Total Income (IDR M)&#x27;,
+      data: [30.10, 95.77, 83.82],
+      borderColor: BRAND_DARK, backgroundColor: &#x27;rgba(107,44,31,0.08)&#x27;,
+      borderWidth: 3, tension: 0.3, fill: true, pointRadius: 5, pointBackgroundColor: BRAND_DARK }]
+  },
+  options: { responsive: true, maintainAspectRatio: false,
+    scales: { y: { beginAtZero: true, ticks: { callback: v =&gt; &#x27;Rp &#x27; + v + &#x27;M&#x27; } } },
+    plugins: { legend: { position: &#x27;top&#x27; }, tooltip: { callbacks: { label: c =&gt; &#x27;Rp &#x27; + c.parsed.y.toFixed(2) + &#x27;M&#x27; } } }
+  }
+});
+
+new Chart(document.getElementById(&#x27;revenueSourceChart&#x27;), {
+  type: &#x27;doughnut&#x27;,
+  data: {
+    labels: [&#x27;OTA – Airbnb&#x27;, &#x27;OTA – Booking.com&#x27;],
+    datasets: [{ data: [74.51, 9.31], backgroundColor: [BRAND_DARK, BRAND_MID], borderWidth: 0 }]
+  },
+  options: { responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { position: &#x27;bottom&#x27; }, tooltip: { callbacks: { label: c =&gt; c.label + &#x27;: Rp &#x27; + c.parsed.toFixed(2) + &#x27;M&#x27; } } }
+  }
+});
+
+new Chart(document.getElementById(&#x27;expenseChart&#x27;), {
+  type: &#x27;bar&#x27;,
+  data: {
+    labels: [&#x27;OTA Commission&#x27;,&#x27;Mgmt Fee&#x27;,&#x27;Gov Tax&#x27;,&#x27;Operational&#x27;],
+    datasets: [{ label: &#x27;IDR M&#x27;,
+      data: [14.61, 8.31, 8.38, 3.13],
+      backgroundColor: [BRAND_DARK, BRAND_MID, &#x27;#8A3A28&#x27;, &#x27;#D89478&#x27;], borderRadius: 8 }]
+  },
+  options: { responsive: true, maintainAspectRatio: false, indexAxis: &#x27;y&#x27;,
+    scales: { x: { beginAtZero: true, ticks: { callback: v =&gt; &#x27;Rp &#x27; + v + &#x27;M&#x27; } } },
+    plugins: { legend: { display: false }, tooltip: { callbacks: { label: c =&gt; &#x27;Rp &#x27; + c.parsed.x.toFixed(2) + &#x27;M&#x27; } } }
+  }
+});
+
+new Chart(document.getElementById(&#x27;adrChart&#x27;), {
+  type: &#x27;bar&#x27;,
+  data: { labels: months,
+    datasets: [{ label: &#x27;ADR (Rp k)&#x27;,
+      data: [2508, 3547, 3493],
+      backgroundColor: BRAND_MID, borderRadius: 6 }]
+  },
+  options: { responsive: true, maintainAspectRatio: false,
+    scales: { y: { beginAtZero: true, ticks: { callback: v =&gt; &#x27;Rp &#x27; + v + &#x27;k&#x27; } } },
+    plugins: { legend: { display: false } }
+  }
+});
+
+new Chart(document.getElementById(&#x27;occChart&#x27;), {
+  type: &#x27;bar&#x27;,
+  data: { labels: months,
+    datasets: [{ label: &#x27;Occupancy %&#x27;,
+      data: [40, 87, 77],
+      backgroundColor: BRAND_DARK, borderRadius: 6 }]
+  },
+  options: { responsive: true, maintainAspectRatio: false,
+    scales: { y: { beginAtZero: true, max: 100, ticks: { callback: v =&gt; v + &#x27;%&#x27; } } },
+    plugins: { legend: { display: false } }
+  }
+});
+
+new Chart(document.getElementById(&#x27;npChart&#x27;), {
+  type: &#x27;line&#x27;,
+  data: { labels: months,
+    datasets: [{ label: &#x27;Net Profit (IDR M)&#x27;,
+      data: [17.58, 57.28, 49.40],
+      borderColor: SUCCESS, backgroundColor: &#x27;rgba(91,166,120,0.15)&#x27;,
+      borderWidth: 3, tension: 0.3, fill: true, pointRadius: 4, pointBackgroundColor: SUCCESS }]
+  },
+  options: { responsive: true, maintainAspectRatio: false,
+    scales: { y: { beginAtZero: true, ticks: { callback: v =&gt; &#x27;Rp &#x27; + v + &#x27;M&#x27; } } },
+    plugins: { legend: { display: false } }
+  }
+});
+
+document.querySelectorAll(&#x27;.expand-header&#x27;).forEach(h =&gt; {
+  h.addEventListener(&#x27;click&#x27;, () =&gt; h.parentElement.classList.toggle(&#x27;open&#x27;));
+});
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+" hidden></iframe>
+<script>
+const bs=[...document.querySelectorAll('.m')], fs=[...document.querySelectorAll('iframe')];
+function show(m){ if(!fs.some(f=>f.dataset.m===m)) m=fs[0].dataset.m;
+  fs.forEach(f=>f.hidden=f.dataset.m!==m); bs.forEach(b=>b.setAttribute('aria-pressed',b.dataset.m===m));
+  try{history.replaceState(null,'','#'+m)}catch(e){} }
+bs.forEach(b=>b.addEventListener('click',()=>show(b.dataset.m)));
+show(location.hash.slice(1));
+</script></body></html>
